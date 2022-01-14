@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<title>Gulnur Avci | Projects | Implementation of RFID Technology</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
+<style>
+.mySlides {display:none;}
+body {font-family: "Quicksand", Arial, sans-serif}
+</style>
+<body>
+    <div class="w3-content" style="max-width:1500px">
+
+        <!-- Header -->
+        <header class="w3-container w3-xlarge w3-padding-24">
+            <a href="#" class="w3-left w3-button w3-white" style="font-family:Playfair Display">Projects | RFID in Schools Research Project</a>
+            <a href="../../index.html" class="w3-right w3-button w3-white" style="font-family:Playfair Display">Home</a>
+        </header>
+<!-- <h2 class="w3-center">The Olympic Games</h2> -->
+
+<div class="w3-content w3-display-container">
+  <img class="mySlides" src="../../images/RFID/rfid_thumbnail.png" style="width:100%">
+
+    <!--<button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+    <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>-->
+</div>
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+</script>
+</div>
+
+<!-- Footer / About Section -->
+<footer class="w3-light-grey w3-padding-64 w3-center" id="about">
+    <h2 style="font-family:Playfair Display">About</h2>
+    <p>Inefficient system with sign-out sheets and physical passes are used to keep track of students' locations. The effects of this include disruption of concentration in class, loss of class time, and non-optimal safety within the school. The proposed solution includes a system with RFID tags placed on school-issued items (such as IDs), strategically positioned readers, and need-specific software that takes attendance and track students inside the building, as well as other uses. Ideally, it would resolve safety, accuracy, and efficiency concerns with the current systems. I looked into ways in which RFID could be used to create a system that would resolve these issues by collecting survey data, contacting RFID companies, and talking to administrators from different schools. My research was recognized in the following conferences:</p>
+    <p><b>Lehigh Valley Science and Engineering Research Fair (1st place an U.S military special award)</b></p>
+    <p><b>Pennsylvania Junior Academy of Science State (Regional 1st award and State 2nd award)</b></p>
+    <p><b>Pennsylvania Junior Science and Humanities Symposium</b></p>
+</footer>
+</body>
+</html>
