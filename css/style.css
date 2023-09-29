@@ -404,9 +404,23 @@ body.offcanvas {
   position: relative; }
 
 .colorlib-heading {
-  font-size: 18px;
+  font-size: 20px;
   margin-bottom: 4em;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  line-height: 1.8;
+  position: relative; }
+  .colorlib-heading span {
+    display: block; }
+  @media screen and (max-width: 768px) {
+    .colorlib-heading {
+      margin-bottom: 3em; } }
+
+.colorlib-heading-subheading {
+  font-size: 16px;
+  margin-bottom: 4em;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 5px;
   line-height: 1.8;
@@ -572,6 +586,12 @@ body.offcanvas {
     height: 20px;
     margin-left: 10px; }
 
+.timeline-icon img {
+  display: block;
+  width: 100%; /* Adjust the width as needed */
+  height: auto;
+  border-radius: 50%; /* Makes the image circular */
+}
 .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label {
   position: relative;
   background: #f2f3f7;
