@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<title>Gulnur Avci | Projects | VR + AI Game</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
+<style>
+.mySlides {display:none;}
+body {font-family: "Quicksand", Arial, sans-serif}
+.image-style {
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+</style>
+<body>
+    <div class="w3-content" style="max-width:1500px">
+
+        <!-- Header -->
+        <header class="w3-container w3-xlarge w3-padding-24">
+            <a href="#" class="w3-left w3-button w3-white" style="font-family:Playfair Display">Projects | VR + AI Game </a>
+            <a href="../../index.html" class="w3-right w3-button w3-white" style="font-family:Playfair Display">Home</a>
+        </header>
+<!-- <h2 class="w3-center">The Olympic Games</h2> -->
+
+<div class="w3-content w3-display-container">
+  <img class="mySlides image-style" src="../../images/VR_AI_Game/cover.png" style="width:100%">
+
+  <button class="w3-button w3-green w3-round-large w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="w3-button w3-green w3-round-large w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+</div>
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+</script>
+</div>
+
+<footer class="w3-light-grey w3-padding-64" id="about" style="margin-top: 20px; text-align: left;">
+  <div style="max-width: 800px; margin: 0 auto;">
+      <a href="https://github.com/gulnuravci/vr_ai_game" style="text-decoration: none; color: #007BFF; font-weight: bold;">Github link</a>
+      <h2 style="font-family: 'Playfair Display'; color: #333; margin-top: 20px;">About</h2>
+      <p>
+          A Unity Game that leverages OpenAI capabilities to create an NPC which interacts with the player and uses VR to immerse the player in cool scenery. Still in the early stages, but I have a big vision for this.
+      </p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -8,30 +8,32 @@
 <style>
 .mySlides {display:none;}
 body {font-family: "Quicksand", Arial, sans-serif}
+.image-style {
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
 </style>
 <body>
     <div class="w3-content" style="max-width:1500px">
-
-        <!-- Header -->
         <header class="w3-container w3-xlarge w3-padding-24">
             <a href="#" class="w3-left w3-button w3-white" style="font-family:Playfair Display">Projects | The Olympic Games </a>
             <a href="../../index.html" class="w3-right w3-button w3-white" style="font-family:Playfair Display">Home</a>
         </header>
-<!-- <h2 class="w3-center">The Olympic Games</h2> -->
 
 <div class="w3-content w3-display-container">
-  <img class="mySlides" src="../../images/Olympic_Games/olympicpic4.png" style="width:100%">
-  <img class="mySlides" src="../../images/Olympic_Games/olympicpic3.png" style="width:100%">
-  <img class="mySlides" src="../../images/Olympic_Games/olympicpic5.png" style="width:100%">
-  <img class="mySlides" src="../../images/Olympic_Games/olympicpic6.png" style="width:100%">
-  <img class="mySlides" src="../../images/Olympic_Games/olympicpic7.png" style="width:100%">
-  <img class="mySlides" src="../../images/Olympic_Games/olympicpic8.png" style="width:100%">
-  <img class="mySlides" src="../../images/Olympic_Games/olympicpic8.png" style="width:100%">
-  <img class="mySlides" src="../../images/Olympic_Games/olympicpic1.png" style="width:100%">
-  <img class="mySlides" src="../../images/Olympic_Games/olympicpic2.png" style="width:100%">
+  <img class="mySlides image-style" src="../../images/Olympic_Games/olympicpic4.png" style="width:100%">
+  <img class="mySlides image-style" src="../../images/Olympic_Games/olympicpic3.png" style="width:100%">
+  <img class="mySlides image-style" src="../../images/Olympic_Games/olympicpic5.png" style="width:100%">
+  <img class="mySlides image-style" src="../../images/Olympic_Games/olympicpic6.png" style="width:100%">
+  <img class="mySlides image-style" src="../../images/Olympic_Games/olympicpic7.png" style="width:100%">
+  <img class="mySlides image-style" src="../../images/Olympic_Games/olympicpic8.png" style="width:100%">
+  <img class="mySlides image-style" src="../../images/Olympic_Games/olympicpic8.png" style="width:100%">
+  <img class="mySlides image-style" src="../../images/Olympic_Games/olympicpic1.png" style="width:100%">
+  <img class="mySlides image-style" src="../../images/Olympic_Games/olympicpic2.png" style="width:100%">
 
-  <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+  <button class="w3-button w3-red w3-round-large w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="w3-button w3-red w3-round-large w3-display-right" onclick="plusDivs(1)">&#10095;</button>
 </div>
 
 <script>
@@ -55,18 +57,24 @@ function showDivs(n) {
 </script>
 </div>
 
-<!-- Footer / About Section -->
-<footer class="w3-light-grey w3-padding-64 w3-center" id="about">
-    <p><span><a href="https://gulnuravci.github.io/The-Olympic-Games-Web/"><b>Play Game</b></a></span></p>
-    <p><span><a href="https://youtu.be/4h7SwloKjRg"><b>Video Demo</b></a></span></p>
-    <p><span><a href="https://github.com/gulnuravci/The-Olympic-Games"><b>Github link</b></a></span></p>
-    <h2 style="font-family:Playfair Display">About</h2>
-    <p>A game resembling the Olympic Games built on Unity Game Engine in C#. The artwork for the
-      game was done by me using SketchUp and Blender modeling software. Process included learning
-      design concepts, storyboarding, and preparing documentation. Game incorporates educational
-      athletic knowledge with quizzes implemented in the game.</p>
-    <p><b>Technology Student Association 2019 PA Regional Conference 3rd Place</b></p>
-    <p><b>Technology Student Association 2019 PA State Conference Finalist</b></p>
+<footer class="w3-light-grey w3-padding-64" id="about" style="margin-top: 20px; text-align: left;">
+  <div style="max-width: 800px; margin: 0 auto;">
+      <a href="https://gulnuravci.github.io/The-Olympic-Games-Web" style="text-decoration: none; color: #007BFF; font-weight: bold;">Play Game</a>
+      <br>
+      <a href="https://youtu.be/4h7SwloKjRg" style="text-decoration: none; color: #007BFF; font-weight: bold;">Video Demo</a>
+      <br>
+      <a href="https://github.com/gulnuravci/The-Olympic-Games" style="text-decoration: none; color: #007BFF; font-weight: bold;">Github link</a>
+      <br>
+      <h2 style="font-family: 'Playfair Display'; color: #333; margin-top: 20px;">About</h2>
+      <p>A game resembling the Olympic Games built on Unity Game Engine in C#. The artwork for the game was done by me using SketchUp and Blender modeling software. Process included learning design concepts, storyboarding, and preparing documentation. Game incorporates educational athletic knowledge with quizzes implemented in the game.</p>
+      <h4 style="font-family: 'Playfair Display'; color: #333;">Awards</h4>
+      <ul>
+        <li>Technology Student Association 2019 PA Regional Conference - 3rd Place</li>
+        <li>Technology Student Association 2019 PA State Conference - Finalist</li>
+      </ul>
+  </div>
 </footer>
+
+
 </body>
 </html>

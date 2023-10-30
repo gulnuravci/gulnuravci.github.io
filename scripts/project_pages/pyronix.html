@@ -8,24 +8,26 @@
 <style>
 .mySlides {display:none;}
 body {font-family: "Quicksand", Arial, sans-serif}
+.image-style {
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
 </style>
 <body>
     <div class="w3-content" style="max-width:1500px">
-
-        <!-- Header -->
         <header class="w3-container w3-xlarge w3-padding-24">
             <a href="#" class="w3-left w3-button w3-white" style="font-family:Playfair Display">Projects | The Olympic Games </a>
             <a href="../../index.html" class="w3-right w3-button w3-white" style="font-family:Playfair Display">Home</a>
         </header>
-<!-- <h2 class="w3-center">The Olympic Games</h2> -->
 
 <div class="w3-content w3-display-container">
-    <img class="mySlides" src="../../images/Pyronix/pyronix_img1.png" style="width:100%">
-    <img class="mySlides" src="../../images/Pyronix/pyronix_img2.jpg" style="width:100%">
-    <img class="mySlides" src="../../images/Pyronix/pyronix_img3.png" style="width:100%">
+    <img class="mySlides image-style" src="../../images/Pyronix/pyronix_img1.png" style="width:100%">
+    <img class="mySlides image-style" src="../../images/Pyronix/pyronix_img2.jpg" style="width:100%">
+    <img class="mySlides image-style" src="../../images/Pyronix/pyronix_img3.png" style="width:100%">
 
-  <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+    <button class="w3-button w3-red w3-round-large w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+    <button class="w3-button w3-red w3-round-large w3-display-right" onclick="plusDivs(1)">&#10095;</button>
 </div>
 
 <script>
@@ -49,11 +51,14 @@ function showDivs(n) {
 </script>
 </div>
 
-<!-- Footer / About Section -->
-<footer class="w3-light-grey w3-padding-64 w3-center" id="about">
-    <h2 style="font-family:Playfair Display">About</h2>
-    <p> Worked with a team to create a company. Contributed by building the company website, designing logo, and doing market research. Designed and prototyped the PyroSleeve-a battery-powered, insulated heating sleeve that fits over any standard cup. Secured a $4500 grant towards the company.
-    </p>
+<footer class="w3-light-grey w3-padding-64" id="about" style="margin-top: 20px; text-align: left;">
+  <div style="max-width: 800px; margin: 0 auto;">
+      <h2 style="font-family: 'Playfair Display'; color: #333;">About</h2>
+      <p>
+          Worked with a team to create a company. Contributed by building the company website, designing a logo, and doing market research. Designed and prototyped the PyroSleeve, a battery-powered, insulated heating sleeve that fits over any standard cup. Secured a $4,500 grant toward the company.
+      </p>
+  </div>
 </footer>
+
 </body>
 </html>

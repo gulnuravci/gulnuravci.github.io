@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<title>Gulnur Avci | Projects | SpongeBob Character Identifier</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
+<style>
+.mySlides {display:none;}
+body {font-family: "Quicksand", Arial, sans-serif}
+.image-style {
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+</style>
+  
+<body>
+    <div class="w3-content" style="max-width:1500px">
+
+        <!-- Header -->
+        <header class="w3-container w3-xlarge w3-padding-24">
+            <a href="#" class="w3-left w3-button w3-white" style="font-family:Playfair Display">Projects | Spongebob Character Identifier </a>
+            <a href="../../index.html" class="w3-right w3-button w3-white" style="font-family:Playfair Display">Home</a>
+        </header>
+
+<div class="w3-content w3-display-container">
+    <img class="mySlides image-style" src="../../images/Spongebob_Identifier/predictions.png">
+    <img class="mySlides image-style" src="../../images/Spongebob_Identifier/loss_graph_b0_b2.png">
+    <img class="mySlides image-style" src="../../images/Spongebob_Identifier/confusion_matrix.png">
+    <img class="mySlides image-style" src="../../images/Spongebob_Identifier/transformed_images.png">
+    <img class="mySlides image-style" src="../../images/Spongebob_Identifier/loss_acc_curves_b2.png">
+
+    <button class="w3-button w3-yellow w3-round-large w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+    <button class="w3-button w3-yellow w3-round-large w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+
+</div>
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+</script>
+</div>
+
+<footer class="w3-light-grey w3-padding-64" id="about" style="margin-top: 20px; text-align: left;">
+    <div style="max-width: 800px; margin: 0 auto;">
+        <a href="https://github.com/gulnuravci/spongebob_character_identifier" style="text-decoration: none; color: #007BFF; font-weight: bold;">Github link</a>
+        <h2 style="font-family: 'Playfair Display'; color: #333; margin-top: 20px;">About</h2>
+        <p>
+            Completed a 24-hour <a href="https://www.youtube.com/watch?v=Z_ikDlimN6A&list=PLkGONtlaHAExMoTcyQqqFpZAMkODP4gLc&index=1&pp=gAQBiAQB" style="text-decoration: none; color: #007BFF;">Deep Learning with PyTorch</a> course by <b>David Bourke</b>, along with additional lessons on their <a href="https://www.learnpytorch.io" style="text-decoration: none; color: #007BFF;">website</a>. This course included the following topics:
+        </p>
+        <ul style="margin-left: 20px;">
+            <li>PyTorch Fundamentals</li>
+            <li>PyTorch Workflow Fundamentals</li>
+            <li>Neural Network Classification</li>
+            <li>Computer Vision</li>
+            <li>Custom Datasets</li>
+            <li>Going Modular</li>
+            <li>Transfer Learning</li>
+            <li>Experiment Tracking</li>
+            <li>Paper Replicating</li>
+            <li>Model Deployment</li>
+        </ul>
+        <p>With the skills I gained from this course, I developed my first PyTorch model. The model's purpose was to differentiate between various SpongeBob Squarepants characters, starting with a dataset containing 10 different characters.</p>
+        <p>I began by experimenting with different versions of the existing <a href="https://poloclub.github.io/cnn-explainer/">Tiny VGG</a>, which is a lightweight convolutional neural network architecture. During these experiments, I made changes to parameters like the number of CNN layers, hidden layers, training epochs, learning rates, and dataset size.</p>
+        <p>With these initial methods, I achieved an accuracy of approximately 70%. The likely reason for this is that I had to manually collect my training data. This process involved watching SpongeBob episodes to observe the evolving styles of character drawings across various seasons. I took screenshots from different angles and situations in the episodes. Given the time-consuming nature of this task, I've managed to gather only 120 images per character thus far.</p>
+        <p>I needed either a much larger dataset, or needed to use transfer learning. Transfer learning is a suitable approach for this problem because the initial training on a vast dataset using a much more complex architecture equips the model with a general understanding of what different images look like. This understanding remains valuable, even when your dataset is relatively unrelated to the training data they initially used. By adding an additional classifier layer on top of the pre-trained model, you can quickly fine-tune the model to differentiate between specific classes, even with a smaller dataset, as was the case for me. Using transfer learning, my model was able to achieve an accuracy of over 98%.</p>
+        <p>In the process of creating my first model, I conducted experiments using PyTorch's pre-trained classification models 'EfficientNet_B0' and 'EfficientNet_B2.' Through these experiments, I observed that 'EfficientNet_B2' exhibited higher efficiency. This observation is supported by the loss curve, as indicated in the figure above, where the 'EfficientNet_B2' model achieved lower loss within the same training period. Notably, 'EfficientNet_B2' features a larger parameter count and was trained on a more extensive dataset.</p>
+        <p>Now that I've established a solid base model for my application, my next steps involve deploying the model for public access. I'm also considering expanding the number of characters I can classify, leveraging the benefits of transfer learning, which allows me to work with smaller datasets per character.</p>
+    </div>
+</footer>
+
+</body>
+</html>
+

@@ -8,6 +8,11 @@
 <style>
 .mySlides {display:none;}
 body {font-family: "Quicksand", Arial, sans-serif}
+.image-style {
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
 </style>
 <body>
     <div class="w3-content" style="max-width:1500px">
@@ -20,20 +25,20 @@ body {font-family: "Quicksand", Arial, sans-serif}
 <!-- <h2 class="w3-center">The Olympic Games</h2> -->
 
     <div class="w3-content w3-display-container">
-        <img class="mySlides" src="../../images/Dissolving_Memories/memories_thumbnail.png" style="width:100%">
-        <img class="mySlides" src="../../images/Dissolving_Memories/memories_img1.png" style="width:100%">
-        <img class="mySlides" src="../../images/Dissolving_Memories/memories_img2.png" style="width:100%">
-        <img class="mySlides" src="../../images/Dissolving_Memories/memories_img3.png" style="width:100%">
-        <img class="mySlides" src="../../images/Dissolving_Memories/memories_img4.png" style="width:100%">
-        <img class="mySlides" src="../../images/Dissolving_Memories/memories_img5.png" style="width:100%">
-        <img class="mySlides" src="../../images/Dissolving_Memories/memories_img6.png" style="width:100%">
-        <img class="mySlides" src="../../images/Dissolving_Memories/memories_img7.png" style="width:100%">
-        <img class="mySlides" src="../../images/Dissolving_Memories/memories_img8.png" style="width:100%">
-        <img class="mySlides" src="../../images/Dissolving_Memories/memories_img9.png" style="width:100%">
-        <img class="mySlides" src="../../images/Dissolving_Memories/memories_img10.png" style="width:100%">
+        <img class="mySlides image-style" src="../../images/Dissolving_Memories/memories_thumbnail.png" style="width:100%">
+        <img class="mySlides image-style" src="../../images/Dissolving_Memories/memories_img1.png" style="width:100%">
+        <img class="mySlides image-style" src="../../images/Dissolving_Memories/memories_img2.png" style="width:100%">
+        <img class="mySlides image-style" src="../../images/Dissolving_Memories/memories_img3.png" style="width:100%">
+        <img class="mySlides image-style" src="../../images/Dissolving_Memories/memories_img4.png" style="width:100%">
+        <img class="mySlides image-style" src="../../images/Dissolving_Memories/memories_img5.png" style="width:100%">
+        <img class="mySlides image-style" src="../../images/Dissolving_Memories/memories_img6.png" style="width:100%">
+        <img class="mySlides image-style" src="../../images/Dissolving_Memories/memories_img7.png" style="width:100%">
+        <img class="mySlides image-style" src="../../images/Dissolving_Memories/memories_img8.png" style="width:100%">
+        <img class="mySlides image-style" src="../../images/Dissolving_Memories/memories_img9.png" style="width:100%">
+        <img class="mySlides image-style" src="../../images/Dissolving_Memories/memories_img10.png" style="width:100%">
 
-        <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-        <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+        <button class="w3-button w3-light-blue w3-round-large w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="w3-button w3-light-blue w3-round-large w3-display-right" onclick="plusDivs(1)">&#10095;</button>
     </div>
 
 <script>
@@ -57,15 +62,25 @@ function showDivs(n) {
 </script>
 </div>
 
-<!-- Footer / About Section -->
-<footer class="w3-light-grey w3-padding-64 w3-center" id="about">
-    <p><span><a href="https://gulnuravci.github.io/Dissolving-Memories-Web/"><b>Play Game</b></a></span></p>
-    <p><span><a href="https://youtu.be/o2pRtUCobMI"><b>Video Demo</b></a></span></p>
-    <p><span><a href="https://github.com/gulnuravci/Dissolving-Memories"><b>Github link</b></a></span></p>
-    <h2 style="font-family:Playfair Display">About</h2>
-    <p><q>Dissolving Memories</q> is a 2D side-scroller game, derived from a game called Flappy Bird built by Vietnamese developer Dong Nguyen. This widely known game was downloaded over 50 million times in the span of a few months after its release and held the number one position on the App Store in 53 countries. The appeal this game format has on the public is proven and makes it a suitable option to educate the public on an issue as critical as climate change. How is climate change affecting sites of historical, social, cultural, and religious significance? What are the natural and man-made factors that influence these changes? What challenges do locals face as a result of detoriariting sites? How is world heritage being lost to climate change?</p>
-    <p>Five sites that are inscribed on the UNESCO (United Nations Educational, Scientific, and Cultural Organization) World Heritage list were chosen to be featured in this game. The object of the game is to navigate the player through pipes that approach the player from the right. The only movement available to the player is jumping with the click of the computer mouse or the space button on the keyboard. The gaps between the pipes which the player must navigate through get smaller as the player progresses in the game. The difficulty of the game can be adjusted in the settings on the main menu page. The locations appear as <q>themes</q> at certain intervals throughout the game. The background and pipes reflect the location of the current theme. Once the player surpasses a certain amount of pipes dedicated to the theme, a popup dialogue starts where a local from that location provides educational facts about the effects of climate change on that location accompanied by useful images. At the conclusion of the dialogue, a new theme is loaded and the player can continue playing. The resources for the assets and the content in the game are listed in an informational window on the main menu. The game was built on the Unity game engine and programmed in C#.</p>
-    <p>The name of the game, <q>Dissolving Memories</q>, reflects the somber feeling that comes with the potential erasure of these locations that are a reflection of human history. Dealing with the consequences of climate change has been left up to our generation. As such, the purpose of this project is to find new ways to communicate the urgency of climate change to the audience of our modern age.</p>
+<footer class="w3-light-grey w3-padding-64" id="about" style="margin-top: 20px; text-align: left;">
+  <div style="max-width: 800px; margin: 0 auto;">
+      <a href="https://gulnuravci.github.io/Dissolving-Memories-Web/" style="text-decoration: none; color: #007BFF; font-weight: bold;">Play Game</a>
+      <br>
+      <a href="https://youtu.be/o2pRtUCobMI" style="text-decoration: none; color: #007BFF; font-weight: bold;">Video Demo</a>
+      <br>
+      <a href="https://github.com/gulnuravci/Dissolving-Memories" style="text-decoration: none; color: #007BFF; font-weight: bold;">Github link</a>
+      <h2 style="font-family: 'Playfair Display'; color: #333; margin-top: 20px;">About</h2>
+      <p>
+          <q>Dissolving Memories</q> is a 2D side-scroller game, derived from a game called Flappy Bird built by Vietnamese developer Dong Nguyen. This widely known game was downloaded over 50 million times in the span of a few months after its release and held the number one position on the App Store in 53 countries. The appeal this game format has on the public is proven and makes it a suitable option to educate the public on an issue as critical as climate change. How is climate change affecting sites of historical, social, cultural, and religious significance? What are the natural and man-made factors that influence these changes? What challenges do locals face as a result of deteriorating sites? How is world heritage being lost to climate change?
+      </p>
+      <p>
+          Five sites that are inscribed on the UNESCO (United Nations Educational, Scientific, and Cultural Organization) World Heritage list were chosen to be featured in this game. The object of the game is to navigate the player through pipes that approach the player from the right. The only movement available to the player is jumping with the click of the computer mouse or the space button on the keyboard. The gaps between the pipes which the player must navigate through get smaller as the player progresses in the game. The difficulty of the game can be adjusted in the settings on the main menu page. The locations appear as <q>themes</q> at certain intervals throughout the game. The background and pipes reflect the location of the current theme. Once the player surpasses a certain amount of pipes dedicated to the theme, a popup dialogue starts where a local from that location provides educational facts about the effects of climate change on that location accompanied by useful images. At the conclusion of the dialogue, a new theme is loaded, and the player can continue playing. The resources for the assets and the content in the game are listed in an informational window on the main menu. The game was built on the Unity game engine and programmed in C#.
+      </p>
+      <p>
+          The name of the game, <q>Dissolving Memories</q>, reflects the somber feeling that comes with the potential erasure of these locations that are a reflection of human history. Dealing with the consequences of climate change has been left up to our generation. As such, the purpose of this project is to find new ways to communicate the urgency of climate change to the audience of our modern age.
+      </p>
+  </div>
 </footer>
+
 </body>
 </html>
