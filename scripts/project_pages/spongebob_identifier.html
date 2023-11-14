@@ -118,7 +118,13 @@
 
     <footer class="w3-light-grey w3-padding-64" id="about" style="margin-top: 20px; text-align: left;">
         <div style="max-width: 800px; margin: 0 auto;">
-            <a href="https://huggingface.co/spaces/gulnuravci/spongebob_character_identifier" style="text-decoration: none; color: #007BFF; font-weight: bold;">Interact with the Deployed Model!</a>
+            <script
+                type="module"
+                src="https://gradio.s3-us-west-2.amazonaws.com/4.3.0/gradio.js"
+            ></script>
+
+            <gradio-app src="https://gulnuravci-spongebob-character-identifier.hf.space"></gradio-app>
+            <a href="https://huggingface.co/spaces/gulnuravci/spongebob_character_identifier" style="text-decoration: none; color: #007BFF; font-weight: bold;">Link to Deployed Model on Hugging Face</a>
             <br>
             <a href="https://github.com/gulnuravci/spongebob_character_identifier" style="text-decoration: none; color: #007BFF; font-weight: bold;">Github link</a>
             <h2 style="font-family: 'Playfair Display'; color: #333; margin-top: 20px;">About</h2>
@@ -154,8 +160,8 @@
             <p>While recreating the ViT architecture was highly educational, its performance was suboptimal compared to the original ViT model from the research paper, which was trained on a vast dataset, whereas mine was trained on just over a thousand pictures. For this reason, I found it beneficial to use PyTorch's pretrained ViT model implementation, which resulted in significantly improved accuracy.</p>
             <p>After experimenting with various models and techniques, I conducted experiment tracking to determine the most suitable model for my project. I imported my code into Google Colab to leverage GPU acceleration for efficient training and testing of both EfficientNet_B2 and ViT models, allowing for a detailed comparison.</p>
             <p>Figure 7 provides an overview of the experiment tracking parameters comparing ViT and EfficientNet_B2 models. While test loss and test accuracy show a close correlation, ViT's number of parameters and model size is approximately 11 times that of EfficientNet_B2. Additionally, the time per prediction is nearly five times longer for ViT. Given my intention to deploy the model on a mobile device for real-time predictions, it is essential to maintain low inference times. Consequently, EfficientNet_B2 emerges as the preferred model choice for my application, boasting an accuracy of 96.5% and an inference time of 0.14 seconds. It's worth noting that these predictions were made using Google Colab's CPU, which tends to be slower than other device CPUs, suggesting that inference times on other devices would likely be even faster. It's important to clarify that this choice doesn't imply that EfficientNet_B2 is inherently better than ViT; it simply suits our current use case. Different experiment results may arise under different conditions, such as larger datasets and longer training times, among other factors.</p>
-            <p>You can check out the deployed EfficientNet_B2 model here: <a href="https://huggingface.co/spaces/gulnuravci/spongebob_character_identifier">Enjoy!!!!!</a></p>
         </div>
+
     </footer>
 
 </body>
