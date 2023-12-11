@@ -32,32 +32,32 @@
 
         <div id="image_box">
             <img src="../../images/Spongebob_Identifier/transformed_images.png" class="image_box_overlay">
-            <p class="image_box_caption">Figure: Example image transformation prior to passing through model</p>
+            <p class="image_box_caption">Figure 1: Example image transformation prior to passing through model.</p>
         </div>
 
         <div id="image_box">
             <img src="../../images/Spongebob_Identifier/predictions.png" class="image_box_overlay">
-            <p class="image_box_caption">Figure: Example prediction testing</p>
+            <p class="image_box_caption">Figure 2: Example prediction testing.</p>
         </div>
 
         <div id="image_box">
             <img src="../../images/Spongebob_Identifier/confusion_matrix.png" class="image_box_overlay">
-            <p class="image_box_caption">Figure: Example confusion matrix</p>
+            <p class="image_box_caption">Figure 3: Example confusion matrix.</p>
         </div>
 
         <div id="text_box" class="background-2">
             <p class="text_overlay text_overlay_2">I needed either a much larger dataset, or needed to use transfer learning. Transfer learning is a suitable approach for this problem because the initial training on a vast dataset using a much more complex architecture equips the model with a general understanding of what different images look like. This understanding remains valuable, even when your dataset is relatively unrelated to the training data they initially used. By adding an additional classifier layer on top of the pre-trained model, you can quickly fine-tune the model to differentiate between specific classes, even with a smaller dataset, as was the case for me. Using transfer learning, my model was able to achieve an accuracy of over 98%.</p>
-            <p class="text_overlay text_overlay_2">In the process of creating my first model, I conducted experiments using PyTorch's pre-trained classification models 'EfficientNet_B0' and 'EfficientNet_B2' as well. Through these experiments, I observed that 'EfficientNet_B2' exhibited higher efficiency. This observation is supported by the loss curve, as indicated in the figure above, where the 'EfficientNet_B2' model achieved lower loss within the same training period. Notably, 'EfficientNet_B2' features a larger parameter count and was trained on a more extensive dataset.</p>
+            <p class="text_overlay text_overlay_2">In the process of creating my first model, I conducted experiments using PyTorch's pre-trained classification models 'EfficientNet_B0' and 'EfficientNet_B2' as well. Through these experiments, I observed that 'EfficientNet_B2' exhibited higher efficiency. This observation is supported by the loss curve, as indicated in the figure below, where the 'EfficientNet_B2' model achieved lower loss within the same training period. Notably, 'EfficientNet_B2' features a larger parameter count and was trained on a more extensive dataset.</p>
         </div>
 
         <div id="image_box">
             <img src="../../images/Spongebob_Identifier/loss_graph_b0_b2.png" class="image_box_overlay">
-            <p class="image_box_caption">Figure: Loss graph EfficientNet_B0 vs EfficientNet_B2.</p>
+            <p class="image_box_caption">Figure 4: Loss graph EfficientNet_B0 vs EfficientNet_B2.</p>
         </div>
 
         <div id="image_box">
             <img src="../../images/Spongebob_Identifier/loss_acc_curves_b2.png" class="image_box_overlay">
-            <p class="image_box_caption">Figure: Loss and accuracy curve of the results of EfficientNet_B2 testing..</p>
+            <p class="image_box_caption">Figure 5: Loss and accuracy curve of the results of EfficientNet_B2 testing.</p>
         </div>
 
         <div id="text_box" class="background-3">
@@ -67,7 +67,7 @@
         
         <div id="image_box">
             <img src="../../images/Spongebob_Identifier/ViT_paper_figure.png" class="image_box_overlay">
-            <p class="image_box_caption">Figure: Vision Transformer Model Overview</p>
+            <p class="image_box_caption">Figure 6: Vision Transformer Model Overview</p>
         </div>
 
         <div id="text_box" class="background-4">
@@ -85,21 +85,21 @@
 
         <div id="image_box">
             <img src="../../images/Spongebob_Identifier/pretrained_vit_loss.png" class="image_box_overlay">
-            <p class="image_box_caption">Figure: Loss and accuracy curve of the results of pretrained ViT testing.</p>
+            <p class="image_box_caption">Figure 7: Loss and accuracy curve of the results of pretrained ViT testing.</p>
         </div>
 
         <div id="image_box">
             <img src="../../images/Spongebob_Identifier/vit_vs_effnetb2.png" class="image_box_overlay">
-            <p class="image_box_caption">Figure: Experiment tracking parameters ViT vs EfficientNet_B2.</p>
+            <p class="image_box_caption">Figure 8: Experiment tracking parameters ViT vs EfficientNet_B2.</p>
         </div>
 
         <div id="image_box">
             <img src="../../images/Spongebob_Identifier/inference_speed_vs_performance.png" class="image_box_overlay">
-            <p class="image_box_caption">Figure: Inference Speed vs Performance for ViT vs EfficientNet_B2.</p>
+            <p class="image_box_caption">Figure 9: Inference Speed vs Performance for ViT vs EfficientNet_B2.</p>
         </div>
 
         <div id="text_box" class="background-2">
-            <p class="text_overlay text_overlay_2">Figure 7 provides an overview of the experiment tracking parameters comparing ViT and EfficientNet_B2 models. While test loss and test accuracy show a close correlation, ViT's number of parameters and model size is approximately 11 times that of EfficientNet_B2. Additionally, the time per prediction is nearly five times longer for ViT. Given my intention to deploy the model on a mobile device for real-time predictions, it is essential to maintain low inference times. Consequently, EfficientNet_B2 emerges as the preferred model choice for my application, boasting an accuracy of 96.5% and an inference time of 0.14 seconds. It's worth noting that these predictions were made using Google Colab's CPU, which tends to be slower than other device CPUs, suggesting that inference times on other devices would likely be even faster. It's important to clarify that this choice doesn't imply that EfficientNet_B2 is inherently better than ViT; it simply suits our current use case. Different experiment results may arise under different conditions, such as larger datasets and longer training times, among other factors.</p>
+            <p class="text_overlay text_overlay_2">Figure 8 provides an overview of the experiment tracking parameters comparing ViT and EfficientNet_B2 models. While test loss and test accuracy show a close correlation, ViT's number of parameters and model size is approximately 11 times that of EfficientNet_B2. Additionally, the time per prediction is nearly five times longer for ViT. Given my intention to deploy the model on a mobile device for real-time predictions, it is essential to maintain low inference times. Consequently, EfficientNet_B2 emerges as the preferred model choice for my application, boasting an accuracy of 96.5% and an inference time of 0.14 seconds. It's worth noting that these predictions were made using Google Colab's CPU, which tends to be slower than other device CPUs, suggesting that inference times on other devices would likely be even faster. It's important to clarify that this choice doesn't imply that EfficientNet_B2 is inherently better than ViT; it simply suits our current use case. Different experiment results may arise under different conditions, such as larger datasets and longer training times, among other factors.</p>
         </div>
 
         <img src="../../images/Spongebob_Identifier/links.png" class="heading_image">
