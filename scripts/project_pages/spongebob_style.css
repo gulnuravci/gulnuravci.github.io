@@ -1,0 +1,208 @@
+header {
+    position: relative;
+    text-align: center;
+    padding: 10px;
+}
+
+header img {
+    width: 600px;
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+}
+
+header img:hover {
+    transform: scale(1.05);
+}
+
+.back_home{
+    width: 100px;
+    height: auto;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+}
+
+.heading_image {
+    max-width: 100%;
+    width: 250px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.heading_image:hover {
+    animation: smooth-shake 0.5s ease-in-out; /* Apply the smooth-shake animation when hovered, no infinite loop */
+}
+
+@keyframes smooth-shake {
+    10%, 100% { transform: translateX(0); }
+    20%, 90% { transform: translateX(-2px); }
+    30%, 80% { transform: translateX(2px); }
+    40%, 70% { transform: translateX(-2px); }
+    50%, 60% { transform: translateX(2px); }
+}
+
+
+body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Hide horizontal overflow */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+.link {
+    display: block;
+    width: fit-content; /* Or a specific width if you prefer */
+    margin: auto; /* Centers the block element horizontally */
+    font-size: 25px;
+    font-family: "Courier", monospace;
+    color: white;
+}
+
+
+#image_box {
+    display: flex; /* Use flexbox to center content */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    margin: auto; /* Center the div itself if needed */
+    flex-direction: column; /* Stacks children vertically */
+    text-align: center; /* Ensures text within children is centered */
+    padding: 25px;
+}
+
+.image_box_overlay{
+    width:600px;
+    height:auto;
+}
+
+.image_box_caption{
+    color: white;
+    font-family: "Courier", monospace;
+    font-size: 20px;
+}
+
+#text_box {
+    background-size: contain; /* Cover the entire area of the div */
+    background-repeat: no-repeat;
+    max-width: 900px; /* Set your desired width */
+    height: 600px; /* Set your desired height */
+    display: flex; /* Use flexbox to center content */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    margin: auto; /* Center the div itself if needed */
+    flex-direction: column; /* Stacks children vertically */
+    text-align: center; /* Ensures text within children is centered */
+}
+
+.background-1 {
+    background-image: url('../../images/Spongebob_Identifier/text_box_1.png');
+}
+
+.background-2 {
+    background-image: url('../../images/Spongebob_Identifier/text_box_2.png');
+}
+
+.background-3 {
+    background-image: url('../../images/Spongebob_Identifier/text_box_3.png');
+}
+
+.background-4 {
+    background-image: url('../../images/Spongebob_Identifier/text_box_4.png');
+}
+
+.text_overlay {
+    font-family: "Courier", monospace;
+    margin: 10px 0; /* Adds space between paragraphs */
+}
+
+.text_overlay_1{
+    color: white;
+    font-size: 16px;
+    padding-left: 110px;
+    padding-right: 100px;
+}
+
+.text_overlay_2{
+    color: black;
+    font-size: 16px;
+    padding-left: 110px;
+    padding-right: 110px;
+}
+
+.text_overlay_3{
+    color: black;
+    font-size: 16px;
+    padding-left: 110px;
+    padding-right: 140px;
+}
+
+.text_overlay_4{
+    color: black;
+    font-size: 16px;
+    padding-left: 110px;
+    padding-right: 140px;
+}
+
+#flower_container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+}
+
+.flower {
+    position: absolute;
+    z-index: -2;
+}
+
+iframe {
+    max-width: 850px;
+    height: 750px; 
+    box-sizing: border-box;
+    border: 2px solid white;
+
+    display: block;
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+@media only screen and (max-width: 900px) {
+    iframe {
+        width: 85vw;
+        height: 600px;
+    }
+
+    header {
+        text-align: center;
+        padding: 10px;
+    }
+    
+    header img {
+        width: 90%;
+    }
+
+    #text_box {
+        width: auto; /* Make text_box full width on smaller screens */
+        height: auto; /* Adjust height as needed */
+        padding-top: 375px; /* Reduce padding on smaller screens */
+        padding-bottom: 375px;
+        background-size: 200%; /* Keep the original size of the background */
+        background-position: center; /* Center the background image */
+        background-repeat: no-repeat; /* Do not repeat the background image */
+    }
+
+    .text_overlay {
+        font-size: 2.75vw;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .image_box_overlay{
+        width: 90vw;
+        height:auto;
+    }
+}
