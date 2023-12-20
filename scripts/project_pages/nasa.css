@@ -1,38 +1,27 @@
-/* header{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 10%;
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-} */
+body {
+    background-color: #00065f;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
 
 header {
-    width: 100%;
-    height: 25%;
+    position: relative;
+    text-align: center;
+    padding: 10px;
+    max-height: 100px;
+
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    /* Removed position: absolute, top, left, and margin-top */
+    vertical-align: middle;
 }
 
 header img{
-    max-height: 100px;
+    max-height: 80px;
     width: auto;
-}
-
-body {
-    background-color: #00065f;
-    /* overflow: hidden; */
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 #sphere-container, #sphere-container-2 {
@@ -43,26 +32,21 @@ body {
     align-items: center; /* Centers vertically */
 }
 
-iframe {
-    align-self: center;
-    width: 80%; /* Adjusted for better visibility */
-    height: 80vh; /* Use viewport height to control the size */
-    border: 10px solid #fc3d21;
-    border-radius: 10px;
-    overflow: auto; /* Allow scrolling within the iframe */
-    -webkit-overflow-scrolling: touch; /* Improve scrolling on iOS */
-    transform: translateY(10%); /* Adjusted transform */
+#pdfcontainer{
+    display: flex; /* Use flexbox to center content */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    margin: auto; /* Center the div itself if needed */
+    height: 80vh;
+    margin-top:0px;
 }
 
-/* 
 iframe {
-    align-self: center;
-    width: 75%; 
-    height: 75%; 
+    width: 70vw;
+    height: 90%;
     border: 10px solid #fc3d21;
-    border-radius: 10px; 
-    transform: translate(0%, 5%);
-} */
+    border-radius: 10px;
+}
 
 /* This is good below this line. */
 #star-container {
@@ -87,5 +71,25 @@ iframe {
 @media (max-width: 450px) {
     #sphere-container, #sphere-container-2 {
         display: none;
+    }
+}
+
+@media (max-height: 844px) {
+    #pdfcontainer{
+        display: flex; /* Use flexbox to center content */
+        align-items: center; /* Center vertically */
+        justify-content: center; /* Center horizontally */
+        margin: auto; /* Center the div itself if needed */
+        height: 70vh;
+        margin-top: 25px;
+    }
+
+    iframe {
+        width: 80vw;
+        height: 95%;
+        border: 10px solid #fc3d21;
+        border-radius: 10px;
+        -webkit-overflow-scrolling: touch;
+        overflow-y: scroll;
     }
 }
