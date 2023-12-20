@@ -10,6 +10,7 @@ header {
     text-align: center;
     padding: 10px;
     max-height: 100px;
+    margin-top: 10px;
 
     display: flex;
     justify-content: center;
@@ -18,7 +19,7 @@ header {
 }
 
 header img{
-    max-height: 80px;
+    max-height: 100px;
     width: auto;
     padding-left: 50px;
     padding-right: 50px;
@@ -66,30 +67,4 @@ iframe {
     background: url('../../images/NASA/star.png') no-repeat center center;
     background-size: cover;
     opacity: 0;
-}
-
-@media (max-width: 450px) {
-    #sphere-container, #sphere-container-2 {
-        display: none;
-    }
-}
-
-@media (max-height: 844px) {
-    #pdfcontainer{
-        display: flex; /* Use flexbox to center content */
-        align-items: center; /* Center vertically */
-        justify-content: center; /* Center horizontally */
-        margin: auto; /* Center the div itself if needed */
-        height: 70vh;
-        margin-top: 25px;
-        -webkit-overflow-scrolling: touch;
-        overflow-y: scroll;
-    }
-
-    iframe {
-        width: 80vw;
-        height: 95%;
-        border: 10px solid #fc3d21;
-        border-radius: 10px;
-    }
 }
