@@ -20,8 +20,8 @@ header {
 header img{
     max-height: 80px;
     width: auto;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 #sphere-container, #sphere-container-2 {
@@ -37,7 +37,7 @@ header img{
     align-items: center; /* Center vertically */
     justify-content: center; /* Center horizontally */
     margin: auto; /* Center the div itself if needed */
-    height: 80vh;
+    height: 87vh;
     margin-top:0px;
 }
 
@@ -82,6 +82,8 @@ iframe {
         margin: auto; /* Center the div itself if needed */
         height: 70vh;
         margin-top: 25px;
+        -webkit-overflow-scrolling: touch;
+        overflow-y: scroll;
     }
 
     iframe {
@@ -89,7 +91,5 @@ iframe {
         height: 95%;
         border: 10px solid #fc3d21;
         border-radius: 10px;
-        -webkit-overflow-scrolling: touch;
-        overflow-y: scroll;
     }
 }

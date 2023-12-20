@@ -13,7 +13,7 @@ function init() {
     const light1 = new THREE.AmbientLight(0xffffff);
     scene1.add(light1);
 
-    const geometry1 = new THREE.SphereGeometry(1.1, 32, 32);
+    const geometry1 = new THREE.SphereGeometry(1, 32, 32);
     const texture1 = new THREE.TextureLoader().load('../../images/Work Experience Icons/nasa.png');
     texture1.wrapS = THREE.RepeatWrapping;
     texture1.wrapT = THREE.ClampToEdgeWrapping;
@@ -35,7 +35,7 @@ function init() {
     const light2 = new THREE.AmbientLight(0xffffff);
     scene2.add(light2);
 
-    const geometry2 = new THREE.SphereGeometry(1.1, 32, 32);
+    const geometry2 = new THREE.SphereGeometry(1, 32, 32);
     // Reuse the same texture or load a different one
     const material2 = new THREE.MeshBasicMaterial({ map: texture1 });
     sphere2 = new THREE.Mesh(geometry2, material2);
