@@ -1,8 +1,8 @@
 const flowerImages = [
-    '../../images/Spongebob_Identifier/flower_pink.png',
-    '../../images/Spongebob_Identifier/flower_orange.png',
-    '../../images/Spongebob_Identifier/flower_green.png',
-    '../../images/Spongebob_Identifier/flower_purple.png'
+    '../../../images/Spongebob_Identifier/flower_pink.png',
+    '../../../images/Spongebob_Identifier/flower_orange.png',
+    '../../../images/Spongebob_Identifier/flower_green.png',
+    '../../../images/Spongebob_Identifier/flower_purple.png'
 ];
 
 let flowerCount = 0;

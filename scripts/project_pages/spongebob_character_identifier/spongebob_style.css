@@ -99,19 +99,19 @@ body {
 }
 
 .background-1 {
-    background-image: url('../../images/Spongebob_Identifier/text_box_1.png');
+    background-image: url('../../../images/Spongebob_Identifier/text_box_1.png');
 }
 
 .background-2 {
-    background-image: url('../../images/Spongebob_Identifier/text_box_2.png');
+    background-image: url('../../../images/Spongebob_Identifier/text_box_2.png');
 }
 
 .background-3 {
-    background-image: url('../../images/Spongebob_Identifier/text_box_3.png');
+    background-image: url('../../../images/Spongebob_Identifier/text_box_3.png');
 }
 
 .background-4 {
-    background-image: url('../../images/Spongebob_Identifier/text_box_4.png');
+    background-image: url('../../../images/Spongebob_Identifier/text_box_4.png');
 }
 
 .text_overlay {
@@ -122,8 +122,8 @@ body {
 .text_overlay_1{
     color: white;
     font-size: 16px;
-    padding-left: 110px;
-    padding-right: 100px;
+    padding-left: 80px;
+    padding-right: 115px;
 }
 
 .text_overlay_2{
@@ -196,8 +196,26 @@ iframe {
         background-repeat: no-repeat; /* Do not repeat the background image */
     }
 
-    .text_overlay {
-        font-size: 2.75vw;
+    .text_overlay_1 {
+        font-size: 3vw;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .text_overlay_2 {
+        font-size: 3.2vw;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .text_overlay_3 {
+        font-size: 3.25vw;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .text_overlay_4 {
+        font-size: 3.3vw;
         padding-left: 10px;
         padding-right: 10px;
     }

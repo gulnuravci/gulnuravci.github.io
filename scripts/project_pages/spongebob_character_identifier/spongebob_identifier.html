@@ -8,14 +8,14 @@
 </head>
 <body>
     <header>
-        <img src="../../images/Spongebob_Identifier/spongebob_character_identifier_title.png">
+        <img src="../../../images/Spongebob_Identifier/spongebob_character_identifier_title.png">
     </header>
 
     <div id="flower_container">
-        <a  href="../../index.html">
-            <img class="back_home" src="../../images/Spongebob_Identifier/back_home.png">
+        <a  href="../../../index.html">
+            <img class="back_home" src="../../../images/Spongebob_Identifier/back_home.png">
         </a>
-        <img src="../../images/Spongebob_Identifier/try_it_here.png" class="heading_image">
+        <img src="../../../images/Spongebob_Identifier/try_it_here.png" class="heading_image">
         <iframe
             src="https://gulnuravci-spongebob-character-identifier.hf.space"
             frameborder="0"
@@ -31,17 +31,17 @@
         </div>
 
         <div id="image_box">
-            <img src="../../images/Spongebob_Identifier/transformed_images.png" class="image_box_overlay">
+            <img src="../../../images/Spongebob_Identifier/transformed_images.png" class="image_box_overlay">
             <p class="image_box_caption">Figure 1: Example image transformation prior to passing through model.</p>
         </div>
 
         <div id="image_box">
-            <img src="../../images/Spongebob_Identifier/predictions.png" class="image_box_overlay">
+            <img src="../../../images/Spongebob_Identifier/predictions.png" class="image_box_overlay">
             <p class="image_box_caption">Figure 2: Example prediction testing.</p>
         </div>
 
         <div id="image_box">
-            <img src="../../images/Spongebob_Identifier/confusion_matrix.png" class="image_box_overlay">
+            <img src="../../../images/Spongebob_Identifier/confusion_matrix.png" class="image_box_overlay">
             <p class="image_box_caption">Figure 3: Example confusion matrix.</p>
         </div>
 
@@ -51,12 +51,12 @@
         </div>
 
         <div id="image_box">
-            <img src="../../images/Spongebob_Identifier/loss_graph_b0_b2.png" class="image_box_overlay">
+            <img src="../../../images/Spongebob_Identifier/loss_graph_b0_b2.png" class="image_box_overlay">
             <p class="image_box_caption">Figure 4: Loss graph EfficientNet_B0 vs EfficientNet_B2.</p>
         </div>
 
         <div id="image_box">
-            <img src="../../images/Spongebob_Identifier/loss_acc_curves_b2.png" class="image_box_overlay">
+            <img src="../../../images/Spongebob_Identifier/loss_acc_curves_b2.png" class="image_box_overlay">
             <p class="image_box_caption">Figure 5: Loss and accuracy curve of the results of EfficientNet_B2 testing.</p>
         </div>
 
@@ -66,7 +66,7 @@
         </div>
         
         <div id="image_box">
-            <img src="../../images/Spongebob_Identifier/ViT_paper_figure.png" class="image_box_overlay">
+            <img src="../../../images/Spongebob_Identifier/ViT_paper_figure.png" class="image_box_overlay">
             <p class="image_box_caption">Figure 6: Vision Transformer Model Overview</p>
         </div>
 
@@ -84,17 +84,17 @@
         </div>
 
         <div id="image_box">
-            <img src="../../images/Spongebob_Identifier/pretrained_vit_loss.png" class="image_box_overlay">
+            <img src="../../../images/Spongebob_Identifier/pretrained_vit_loss.png" class="image_box_overlay">
             <p class="image_box_caption">Figure 7: Loss and accuracy curve of the results of pretrained ViT testing.</p>
         </div>
 
         <div id="image_box">
-            <img src="../../images/Spongebob_Identifier/vit_vs_effnetb2.png" class="image_box_overlay">
+            <img src="../../../images/Spongebob_Identifier/vit_vs_effnetb2.png" class="image_box_overlay">
             <p class="image_box_caption">Figure 8: Experiment tracking parameters ViT vs EfficientNet_B2.</p>
         </div>
 
         <div id="image_box">
-            <img src="../../images/Spongebob_Identifier/inference_speed_vs_performance.png" class="image_box_overlay">
+            <img src="../../../images/Spongebob_Identifier/inference_speed_vs_performance.png" class="image_box_overlay">
             <p class="image_box_caption">Figure 9: Inference Speed vs Performance for ViT vs EfficientNet_B2.</p>
         </div>
 
@@ -102,7 +102,7 @@
             <p class="text_overlay text_overlay_2">Figure 8 provides an overview of the experiment tracking parameters comparing ViT and EfficientNet_B2 models. While test loss and test accuracy show a close correlation, ViT's number of parameters and model size is approximately 11 times that of EfficientNet_B2. Additionally, the time per prediction is nearly five times longer for ViT. Given my intention to deploy the model on a mobile device for real-time predictions, it is essential to maintain low inference times. Consequently, EfficientNet_B2 emerges as the preferred model choice for my application, boasting an accuracy of 96.5% and an inference time of 0.14 seconds. It's worth noting that these predictions were made using Google Colab's CPU, which tends to be slower than other device CPUs, suggesting that inference times on other devices would likely be even faster. It's important to clarify that this choice doesn't imply that EfficientNet_B2 is inherently better than ViT; it simply suits our current use case. Different experiment results may arise under different conditions, such as larger datasets and longer training times, among other factors.</p>
         </div>
 
-        <img src="../../images/Spongebob_Identifier/links.png" class="heading_image">
+        <img src="../../../images/Spongebob_Identifier/links.png" class="heading_image">
         <a href="https://huggingface.co/spaces/gulnuravci/spongebob_character_identifier" class="link">Link to Deployed Model on Hugging Face</a>
         <br>
         <a href="https://github.com/gulnuravci/spongebob_character_identifier" class="link">Github link</a>
