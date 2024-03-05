@@ -1,23 +1,128 @@
 body{
-    overflow:hidden;
     margin:0;
+    background-color: black;
+    background-image: url("../../../images/LED_display/smiley_face.png");
+    background-repeat: repeat;
+    background-size: 50px;
 }
 
 .background{
-    width: 100vw;
-    height: 100vh;
+    width: 1300px;
+    height: 900px;
+    z-index:-1;
 }
 
-@media (max-width: 1012px) {
+.slide img {
+    position:absolute;
+    top: 80px;
+    left: 170px;
+    width: 700px;
+    height:auto;
+    z-index:-2;
+}
+
+.slide h2{
+    position:absolute;
+    top:585px;
+    left:255px;
+    color: white;
+    font-size:26px;
+    transform: rotate(-0.7deg);
+}
+
+.slide p {
+    position: absolute;
+    color: white;
+    font-size:18px;
+    transform: rotate(-0.7deg);
+    top: 650px;
+    left:255px;
+    width: 500px;
+}
+
+.prev {
+    position: absolute;
+    top: 550px;
+    left: 370px;
+    cursor: grab;
+}
+
+.next {
+    position: absolute;
+    top: 550px;
+    left: 535px;
+    cursor: grab;
+}
+
+/* @media (max-width: 700px) {
     .background{
-        width: 1012px;
+        margin-left: -60px;
+    }
+
+    .slide img {
+        margin-left: -60px;
+    }
+
+    .slide h2{
+        margin-left: -60px;
+    }
+
+    .slide p {
+        margin-left: -60px;
+    }
+
+    .prev {
+        margin-left: -60px;
+    }
+
+    .next {
         margin-left: -60px;
     }
 }
 
-@media (max-width: 575px) {
-    .background{
-        width: 1012px;
-        margin-left: -130px;
+@media (max-width: 600px) {
+    body{
+        overflow:scroll;
+        margin:0;
+        background-color: black;
+        background-image: url("../../../images/LED_display/smiley_face.png");
+        background-repeat: repeat;
+        background-size: 50px;
     }
+
+    .background{
+        height:100vh;
+        margin-left: -140px;
+    }
+
+    .slide img {
+        margin-left: -140px;
+    }
+
+    .slide h2{
+        top: 63.5%;
+        margin-left: -140px;
+    }
+
+    .slide p {
+        top: 71%;
+        margin-left: -140px;
+    }
+
+    .prev {
+        top: 61%;
+        margin-left: -140px;
+    }
+
+    .next {
+        top: 61%;
+        margin-left: -140px;
+    }
+
 }
+
+@media (max-height: 500px) {
+    body{
+        overflow:scroll;
+    }
+} */
