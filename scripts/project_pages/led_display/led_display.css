@@ -1,0 +1,23 @@
+body{
+    overflow:hidden;
+    margin:0;
+}
+
+.background{
+    width: 100vw;
+    height: 100vh;
+}
+
+@media (max-width: 1012px) {
+    .background{
+        width: 1012px;
+        margin-left: -60px;
+    }
+}
+
+@media (max-width: 575px) {
+    .background{
+        width: 1012px;
+        margin-left: -130px;
+    }
+}
