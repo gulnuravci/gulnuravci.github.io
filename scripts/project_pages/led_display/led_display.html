@@ -22,7 +22,7 @@
     <div class="slide">
         <img src="../../../images/LED_display/img2.jpeg">
         <h2>Initial stages</h2>
-        <p>I ordered two 16ft LED strips with 600 pixels in total and cut them into rows of 18 pixels, taped the strips on the table, and soldered the strips, paying mind to the correct input and output directions. To make sure I wasn't burning any connections, my intial testing method was to use an Arduino and a power supply to see if all of the pixels in a particular row could be addressed. </p>
+        <p>I ordered two 16ft LED strips with 600 pixels in total and cut them into rows of 18 pixels, taped the strips on the table, and soldered them together, paying mind to the correct input and output directions. To make sure I wasn't burning any connections, my initial testing method was to use an Arduino and a power supply to see if all of the pixels in a particular row could be addressed. </p>
     </div>
     <div class="slide">
         <img src="../../../images/LED_display/img3.jpeg">
@@ -32,7 +32,7 @@
     <div class="slide">
         <img src="../../../images/LED_display/img4.jpeg">
         <h2>Later testing</h2>
-        <p>As new rows were soldered on to the display, I checked connectivity between the pixels with a multimeter, and only when I was sure the connections were good did I test turning them on with the Arduino. I monitored the current draw at each step, and even when all of the 516 pixels were connected, the maximum draw was around 1.35A, safely lower than the 2A limit for the power supply. </p>
+        <p>As new rows were soldered on to the display, I checked connectivity between the pixels with a multimeter, and only when I was sure the connections were good did I test turning them on with the Arduino. I monitored the current draw at each step, and even when all of the 522 pixels were connected, the maximum draw was around 1.35A, safely lower than the 2A limit for the power supply. </p>
     </div>
     <div class="slide">
         <img src="../../../images/LED_display/img5.jpeg">
@@ -42,7 +42,7 @@
     <div class="slide">
         <img src="../../../images/LED_display/img6.jpeg">
         <h2>Knowing which pixels to address</h2>
-        <p>Before I show you the cool part, we need to talk about this. Because of the nature of the LED strips and their i/o connections, arranging them in rows causes there to be a zig zag pattern, where the pixels are numbered left to right on one row and right to left on the next. Note how the pixel 1 starts on the left of row 1, and pixel 19 starts on the right of row 2 above row 1. This meant that I had to create a chart like the one above and manually color the appropriate pixels. </p>
+        <p>Because of the nature of the LED strips and their i/o connections, arranging them in rows causes there to be a zig zag pattern, where the pixels are numbered left to right on one row and right to left on the next. Note how pixel 1 starts on the left of row 1, and pixel 19 starts on the right of row 2 above row 1. This meant that I had to create a chart like the one above and manually color the appropriate pixels. </p>
     </div>
     <div class="slide">
         <img src="../../../images/LED_display/img7.png">
@@ -66,7 +66,7 @@
     </div>
     <div class="slide">
         <img src="../../../images/LED_display/img11.gif">
-        <h2> Raspberry Pi and roadblocks pt2</h2>
+        <h2> Raspberry Pi and roadblocks pt 2</h2>
         <p> Additionally, the Raspberry Pi works with 3.3V logic while the LED strips require 5V logic, so I needed to use a level shifter to be able to control the display using the Raspberry Pi. </p>
     </div>
     <div class="slide">
@@ -81,8 +81,8 @@
     </div>
     <div class="slide">
         <img src="../../../images/LED_display/img14.gif">
-        <h2> Generating frames with Python </h2>
-        <p> After a frame is complete, the user can select 'Generate List' (the buttons are cut out from the picture displayed above), and all the colors and their corresponding pixels are displayed, along with a complete dictionary which the user can directly copy from this program and paste in the Raspberry Pi code to add the frame to the animation. This allows you to quickly make cute little animations like these :D</p>
+        <h2> Making animations!!! </h2>
+        <p> This allows you to quickly make cute little animations like these :D</p>
     </div>
     <div class="slide">
         <img src="../../../images/LED_display/img15.jpeg">
