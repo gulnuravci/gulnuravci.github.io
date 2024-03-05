@@ -6,28 +6,50 @@ body{
     background-size: 50px;
 }
 
+.home_button {
+    position: absolute;
+    margin-top: -10px;
+    width: 150px;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.home_button:hover {
+    animation: shiver 0.5s ease-in-out;
+}
+
+@keyframes shiver {
+    0% { transform: translateX(-2px) rotate(-2deg); }
+    25% { transform: translateX(2px) rotate(2deg); }
+    50% { transform: translateX(-2px) rotate(-2deg); }
+    75% { transform: translateX(2px) rotate(2deg); }
+    100% { transform: translateX(0) rotate(0); }
+}
+
 .background{
     width: 1300px;
-    height: 900px;
+    height: 910px;
     z-index:-1;
 }
 
 .slide img {
     position:absolute;
     top: 80px;
-    left: 170px;
-    width: 700px;
+    left: 150px;
+    width: 600px;
     height:auto;
     z-index:-2;
 }
 
 .slide h2{
     position:absolute;
-    top:585px;
-    left:255px;
+    top:590px;
+    left:265px;
+    white-space: nowrap;
     color: white;
-    font-size:26px;
+    font-size: 25px;
     transform: rotate(-0.7deg);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .slide p {
@@ -36,93 +58,40 @@ body{
     font-size:18px;
     transform: rotate(-0.7deg);
     top: 650px;
-    left:255px;
+    left:265px;
     width: 500px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.button {
+display: inline-block;
+padding: 8px 25px;
+font-size: 20px;
+text-align: center;
+color: #fff;
+background-color: #04AA6D;
+border-radius: 10px;
+box-shadow: 0 5px #999;
+}
+
+.button:hover {background-color: hsl(312, 100%, 50%)}
+
+.button:active {
+background-color: #001aff;
+box-shadow: 0 5px #013116;
+transform: translateY(4px);
 }
 
 .prev {
     position: absolute;
-    top: 550px;
-    left: 370px;
+    top: 543px;
+    left: 350px;
     cursor: grab;
 }
 
 .next {
     position: absolute;
-    top: 550px;
-    left: 535px;
+    top: 543px;
+    left: 515px;
     cursor: grab;
 }
-
-/* @media (max-width: 700px) {
-    .background{
-        margin-left: -60px;
-    }
-
-    .slide img {
-        margin-left: -60px;
-    }
-
-    .slide h2{
-        margin-left: -60px;
-    }
-
-    .slide p {
-        margin-left: -60px;
-    }
-
-    .prev {
-        margin-left: -60px;
-    }
-
-    .next {
-        margin-left: -60px;
-    }
-}
-
-@media (max-width: 600px) {
-    body{
-        overflow:scroll;
-        margin:0;
-        background-color: black;
-        background-image: url("../../../images/LED_display/smiley_face.png");
-        background-repeat: repeat;
-        background-size: 50px;
-    }
-
-    .background{
-        height:100vh;
-        margin-left: -140px;
-    }
-
-    .slide img {
-        margin-left: -140px;
-    }
-
-    .slide h2{
-        top: 63.5%;
-        margin-left: -140px;
-    }
-
-    .slide p {
-        top: 71%;
-        margin-left: -140px;
-    }
-
-    .prev {
-        top: 61%;
-        margin-left: -140px;
-    }
-
-    .next {
-        top: 61%;
-        margin-left: -140px;
-    }
-
-}
-
-@media (max-height: 500px) {
-    body{
-        overflow:scroll;
-    }
-} */
