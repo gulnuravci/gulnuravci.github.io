@@ -1,9 +1,14 @@
+html, body {
+    overflow-x: hidden;
+}
+
 .navbars {
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
+    overflow-x: hidden;
 }
 .top-navbar {
     display: flex;
@@ -147,6 +152,7 @@
     border-left-color: rgb(204, 204, 204);
     border-left-style: solid;
     border-left-width: 1px;
+    overflow-x: hidden;
 }
 
 .post {
