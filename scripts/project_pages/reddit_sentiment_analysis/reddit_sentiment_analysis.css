@@ -210,7 +210,7 @@ html, body {
     font-family: verdana, arial, helvetica, sans-serif;font-size: 16px;
     font-stretch: 100%;
     font-weight: 400;
-    width: 80vw;
+    width: 73vw;
 }
 
 .post-content img {
@@ -256,6 +256,8 @@ html, body {
     font-size: 14px;
     font-stretch: 100%;
     font-weight: 400;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .post-content-description ol {
@@ -269,11 +271,11 @@ html, body {
 
 @media (max-width: 999px) {
     .post-content img {
-        width: 75vw;
+        width: 70vw;
     }
 
     .post-content-description {
-        width: 70vw;
+        width: 65vw;
     }
 
     .post-content-iframe {
