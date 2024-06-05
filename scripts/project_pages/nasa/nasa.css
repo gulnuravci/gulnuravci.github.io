@@ -64,7 +64,7 @@ iframe {
     position: absolute;
     width: 20px; /* Adjust to the size of your image */
     height: 20px;
-    background: url('../../images/NASA/star.png') no-repeat center center;
+    background: url('../../../images/NASA/star.png') no-repeat center center;
     background-size: cover;
     opacity: 0;
 }
