@@ -1,0 +1,178 @@
+body{
+    background-image: url(../../images/Fashion/closet-background.jpg);
+    background-repeat:no-repeat;
+    background-position: center center;
+    background-size: cover; /* This ensures the image covers the entire screen */
+    height: 101vh;
+    width: 100%; /* Width is automatically scaled proportionally */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+}
+
+#title{
+    width: 700px;
+    margin-top: 50px;
+    animation: sway 2s infinite alternate ease-in-out;
+}
+
+@keyframes sway {
+    0% {
+        transform: rotateY(-15deg);
+    }
+    100% {
+        transform: rotateY(10deg);
+    }
+}
+
+#product_page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 30px;
+    margin-top: 50px;
+    padding: 10px;
+}
+
+#product_page p{
+    color: #ffffff;
+    font-size: 27px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
+    width: 50vw;
+    margin: 10px;
+    text-align: center;
+}
+
+#product_images{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#product_view{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#model {
+    height: 50vh;
+    width: 40vw;
+}
+
+.product_image{
+    width: 20vw;
+}
+
+.hanger{
+    width: 10vw;
+}
+
+#buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.left_button{
+    width: 15vw;
+    margin: 10px;
+}
+
+.right_button{
+    width: 17vw;
+    margin: 10px;
+}
+
+/* Mobile */
+@media only screen and (max-width: 725px){
+    #title{
+        width: 80vw;
+        margin-top: 20px;
+    }
+
+    #product_page{
+        margin-top: 20px;
+        padding: 5px;
+    }
+
+    #product_page p{
+        font-size: 15px;
+        width: 70vw;
+    }
+
+    #product_images{
+        flex-direction: column;
+    }
+
+    #model{
+        width: 50vw;
+        height: 25vh;
+    }
+
+    .product_image{
+        width: 40vw;
+    }
+    
+    .hanger{
+        width: 15vw;
+    }
+
+    .left_button{
+        width: 25vw;
+        margin: 10px;
+    }
+    
+    .right_button{
+        width: 30vw;
+        margin: 10px;
+    }
+}
+
+@media only screen and (min-width: 725px) and (max-width: 1000px){    
+    .left_button{
+        width: 30vw;
+    }
+    
+    .right_button{
+        width: 35vw;
+    }
+}
+
+@media only screen and (min-height: 1500px){
+    #title{
+        width: 900px;
+    }
+
+    #product_page p{
+        font-size: 40px;
+    }
+}
+
+@media only screen and (min-width: 1500px){
+    #title{
+        width: 900px;
+    }
+
+    #product_page p{
+        font-size: 30px;
+    }
+
+    #model{
+        width: 30vw;
+        height: 35vh;
+    }
+}
