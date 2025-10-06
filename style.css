@@ -1,22 +1,21 @@
 @font-face {
     font-family: 'WebsiteFont';
-    src: url('website_font.ttf') format('truetype');
+    src: url('fonts/website_font.ttf') format('truetype');
 }
 
 body {
     background-color: #000000;
     color: #ff69b4;
     font-family: 'WebsiteFont', Arial, sans-serif;
-    font-size: 3vw;
     margin: 5vw;
     padding: 0;
     min-height: 100vh;
 }
 
-.cat_image {
+.header-image {
     margin-left: 10px;
-    height: 100px;
-    width: 100px;
+    height: 10vw;
+    width: 10vw;
     align-items: center;
 }
 
@@ -31,4 +30,87 @@ a:hover {
 
 a:visited {
     color: #ffff00;  /* Keep yellow even after visiting */
+}
+
+/* Murals page styling */
+.murals-image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.murals-image-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.murals-image-grid img:hover {
+    transform: scale(1.05);
+}
+
+/* Landscape images span full width */
+.murals-image-grid img.landscape {
+    grid-column: 1 / -1;
+    max-width: 100%;
+}
+
+/* Photography page styling */
+.photography-image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.photography-image-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.photography-image-grid img:hover {
+    transform: scale(1.05);
+}
+
+/* Landscape images span full width for photography */
+.photography-image-grid img.landscape {
+    grid-column: 1 / -1;
+    max-width: 100%;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .murals-image-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .photography-image-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .murals-image-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .photography-image-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 10px;
+    }
 }
