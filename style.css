@@ -15,8 +15,10 @@ body {
 .header-image {
     margin-left: 10px;
     height: 10vw;
-    width: 10vw;
+    width: auto;
     align-items: center;
+    object-fit: contain;
+    object-position: center;
 }
 
 /* Style hyperlinks */
