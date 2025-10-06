@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'WebsiteFont';
+    src: url('website_font.ttf') format('truetype');
+}
+
+body {
+    background-color: #000000;
+    color: #ff69b4;
+    font-family: 'WebsiteFont', Arial, sans-serif;
+    font-size: 3vw;
+    margin: 5vw;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.cat_image {
+    margin-left: 10px;
+    height: 100px;
+    width: 100px;
+    align-items: center;
+}
+
+/* Style hyperlinks */
+a {
+    color: #ffff00;  /* Yellow color */
+}
+
+a:hover {
+    color: #ffcc00;  /* Slightly darker yellow on hover */
+}
+
+a:visited {
+    color: #ffff00;  /* Keep yellow even after visiting */
+}
