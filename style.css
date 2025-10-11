@@ -104,6 +104,10 @@ a:visited {
 }
 
 @media (max-width: 480px) {
+    .header-image {
+        height: 20vw;
+    }
+    
     .murals-image-grid {
         grid-template-columns: 1fr;
         gap: 10px;
