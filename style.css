@@ -88,6 +88,13 @@ a:visited {
     max-width: 100%;
 }
 
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
     .murals-image-grid {
