@@ -444,6 +444,7 @@
     </style>
 </head>
 <body>
+    <a href="../../index.html" style="display:inline-block;margin-bottom:16px;font-family:'Roboto Mono',monospace;font-size:1rem;letter-spacing:3px;text-transform:uppercase;color:#ffb30099;text-decoration:none;">← Back</a>
     <h1>Phonetic Alphabet</h1>
     <p class="subtitle">ATC Communications Trainer</p>
 
@@ -557,7 +558,9 @@
 
         function nextL1() {
             clearInterval(l1HintTimer);
-            l1Current = letters[Math.floor(Math.random() * letters.length)];
+            let l1Pick;
+            do { l1Pick = letters[Math.floor(Math.random() * letters.length)]; } while (l1Pick === l1Current);
+            l1Current = l1Pick;
             l1Answered = false;
             l1Revealed = [];
 
@@ -669,7 +672,9 @@
         let current = '', score = 0, attempts = 0, streak = 0, answered = false;
 
         function nextCard() {
-            current = letters[Math.floor(Math.random() * letters.length)];
+            let pick;
+            do { pick = letters[Math.floor(Math.random() * letters.length)]; } while (pick === current);
+            current = pick;
             const card = document.getElementById('card');
             card.textContent = current;
             card.classList.remove('shake');
@@ -743,7 +748,9 @@
         }
 
         function nextL3() {
-            l3Plate = generatePlate();
+            let newPlate;
+            do { newPlate = generatePlate(); } while (newPlate === l3Plate);
+            l3Plate = newPlate;
             l3Answered = false;
 
             document.getElementById('plate-number').textContent = l3Plate;
