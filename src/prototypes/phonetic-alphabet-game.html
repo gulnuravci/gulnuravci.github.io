@@ -20,7 +20,7 @@
             min-height: 100vh;
             font-family: 'Roboto Mono', monospace;
             color: #e0d5b0;
-            padding: 24px 16px;
+            padding: 16px 16px;
             overflow-x: hidden;
         }
 
@@ -38,28 +38,13 @@
 
         .subtitle {
             text-align: center;
-            color: #ffb30077;
-            font-size: 0.75rem;
+            color: #ffb300bb;
+            font-size: 0.85rem;
             letter-spacing: 4px;
             text-transform: uppercase;
-            margin-bottom: 28px;
+            margin-bottom: 14px;
+            font-weight: 700;
         }
-
-        /* ── Callsign bar ── */
-        .callsign-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid #ffb30033;
-            background: #ffb30008;
-            padding: 6px 16px;
-            margin-bottom: 20px;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            color: #ffb30099;
-        }
-
-        .callsign-bar .callsign-val { color: #ffb300; }
 
         .game-container {
             max-width: 520px;
@@ -72,7 +57,7 @@
             display: flex;
             gap: 0;
             justify-content: center;
-            margin-bottom: 24px;
+            margin-bottom: 14px;
             border: 1px solid #ffb30044;
         }
 
@@ -102,14 +87,14 @@
 
         /* ── Instrument display card ── */
         .card-wrap {
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
 
         .card {
             background: #050807;
             border: 1px solid #ffb30066;
             border-radius: 4px;
-            padding: 48px 40px;
+            padding: 28px 40px;
             font-family: 'Exo 2', sans-serif;
             font-size: 7rem;
             font-weight: 900;
@@ -165,11 +150,12 @@
 
         /* ── ATC prompt label ── */
         .atc-prompt {
-            font-size: 0.7rem;
+            font-size: 0.85rem;
             letter-spacing: 3px;
-            color: #ffb30077;
+            color: #ffb300bb;
             text-transform: uppercase;
             margin-bottom: 12px;
+            font-weight: 700;
         }
 
         /* ── Input ── */
@@ -250,7 +236,7 @@
         .feedback {
             font-size: 0.9rem;
             letter-spacing: 2px;
-            min-height: 1.8em;
+            min-height: 0;
             margin-bottom: 12px;
             text-transform: uppercase;
         }
@@ -268,12 +254,13 @@
 
         .score-pill {
             background: #050807;
-            border: 1px solid #ffb30044;
+            border: 1px solid #ffb30066;
             padding: 6px 20px;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             letter-spacing: 2px;
-            color: #ffb30077;
+            color: #ffb300bb;
             text-transform: uppercase;
+            font-weight: 700;
         }
 
         .score-pill span { color: #ffb300; }
@@ -310,11 +297,12 @@
         }
 
         .hint-label {
-            font-size: 0.7rem;
+            font-size: 0.85rem;
             letter-spacing: 3px;
-            color: #ffb30066;
+            color: #ffb300bb;
             text-transform: uppercase;
             margin-bottom: 20px;
+            font-weight: 700;
         }
 
         /* ── Streak ── */
@@ -324,8 +312,104 @@
             letter-spacing: 2px;
             color: #ffb300;
             text-shadow: 0 0 8px #ffb30088;
-            min-height: 1.4em;
+            min-height: 0;
             margin-bottom: 4px;
+        }
+
+        /* ── Level 4: mic ── */
+        .mic-btn {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 18px 40px;
+            border-radius: 2px;
+            border: 2px solid #ff4444;
+            background: #ff444411;
+            color: #ff4444;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto 12px;
+            transition: all 0.15s;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .mic-btn:hover { background: #ff444422; }
+        .mic-btn.listening {
+            background: #ff4444;
+            color: #0a0c0f;
+            box-shadow: 0 0 24px #ff444488, 0 0 60px #ff444433;
+            animation: micPulse 1s ease-in-out infinite;
+        }
+        .mic-btn:disabled { opacity: 0.3; cursor: default; animation: none; }
+
+        @keyframes micPulse {
+            0%, 100% { box-shadow: 0 0 24px #ff444488, 0 0 60px #ff444433; }
+            50%       { box-shadow: 0 0 40px #ff4444cc, 0 0 80px #ff444466; }
+        }
+
+        .mic-status {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: #ffb30077;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .transcript-box {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1rem;
+            color: #ffb300;
+            background: #050807;
+            border: 1px solid #ffb30033;
+            padding: 10px 16px;
+            margin-bottom: 12px;
+            min-height: 2.4em;
+            letter-spacing: 1px;
+            font-style: italic;
+        }
+
+        @media (max-width: 480px) and (max-height: 900px) {
+            body { padding: 12px 12px; }
+
+            h1 { font-size: 1.1rem; margin-bottom: 2px; }
+            .subtitle { font-size: 0.7rem; margin-bottom: 12px; letter-spacing: 2px; }
+
+            .level-select { margin-bottom: 12px; }
+            .level-btn { font-size: 0.65rem; padding: 8px 0; letter-spacing: 2px; }
+
+            .atc-prompt { font-size: 0.7rem; margin-bottom: 8px; }
+
+            /* Shorter flashcard */
+            .card-wrap { margin-bottom: 12px; }
+            .card { padding: 24px 20px; font-size: 5rem; }
+
+            /* Level 1 blanks */
+            .blanks { font-size: 1.6rem; letter-spacing: 6px; margin-bottom: 8px; }
+            .hint-label { font-size: 0.7rem; margin-bottom: 10px; }
+
+            /* Inputs */
+            .answer-input { padding: 8px 16px; font-size: 1rem; margin-bottom: 10px; }
+            .l3-answer-input { padding: 8px 16px; font-size: 0.9rem; margin-bottom: 10px; }
+
+            /* Buttons */
+            .submit-btn { padding: 10px 28px; font-size: 0.85rem; margin-bottom: 12px; }
+            .next-btn { padding: 8px 20px; font-size: 0.7rem; }
+
+            /* Feedback */
+            .feedback { font-size: 0.8rem; min-height: 1.4em; margin-bottom: 8px; }
+
+            /* Score */
+            .score-row { gap: 8px; margin-top: 8px; }
+            .score-pill { font-size: 0.75rem; padding: 4px 12px; }
+
+            /* Level 3 transponder */
+            .transponder { padding: 12px 28px; margin-bottom: 12px; }
+            .transponder-label { font-size: 0.6rem; margin-bottom: 4px; }
+            .plate-number { font-size: 2.2rem; letter-spacing: 6px; }
+            .plate-hint { font-size: 0.7rem; margin-bottom: 4px; }
         }
 
         /* ── Level 3: Transponder display ── */
@@ -363,9 +447,10 @@
 
         .transponder-label {
             font-family: 'Exo 2', sans-serif;
-            font-size: 0.55rem;
+            font-size: 0.75rem;
+            font-weight: 700;
             letter-spacing: 5px;
-            color: #ffb30055;
+            color: #ffb300aa;
             text-transform: uppercase;
             margin-bottom: 8px;
         }
@@ -380,18 +465,11 @@
             text-shadow: 0 0 20px #ffb300cc, 0 0 60px #ffb30055;
         }
 
-        .transponder-sub {
-            font-family: 'Roboto Mono', monospace;
-            font-size: 0.6rem;
-            letter-spacing: 4px;
-            color: #ffb30044;
-            margin-top: 8px;
-        }
-
         .plate-hint {
-            font-size: 0.7rem;
+            font-size: 0.85rem;
+            font-weight: 700;
             letter-spacing: 2px;
-            color: #ffb30066;
+            color: #ffb300bb;
             text-transform: uppercase;
             margin-bottom: 8px;
         }
@@ -449,15 +527,12 @@
     <p class="subtitle">ATC Communications Trainer</p>
 
     <div class="game-container">
-        <div class="callsign-bar">
-            <span>CALLSIGN</span>
-            <span class="callsign-val" id="callsign-display">CESSNA 47 BRAVO</span>
-            <span>READY</span>
-        </div>
+
         <div class="level-select">
             <button class="level-btn active" onclick="setLevel(1)">Level 01</button>
             <button class="level-btn" onclick="setLevel(2)">Level 02</button>
             <button class="level-btn" onclick="setLevel(3)">Level 03</button>
+            <button class="level-btn" onclick="setLevel(4)">Level 04</button>
         </div>
 
         <!-- ── Level 1: hint reveal ── -->
@@ -500,15 +575,40 @@
             </div>
         </div>
 
+        <!-- ── Level 4: speak it ── -->
+        <div id="level4-area" style="display:none;">
+            <p class="atc-prompt">Tower: Read back tail number aloud<br><span style="font-size:0.75em;opacity:0.7;">(all US aircraft are N-numbers)</span></p>
+            <div class="transponder">
+                <div class="transponder-label">FAA TAIL NUMBER</div>
+                <div class="plate-number" id="plate-number-l4">N482KX</div>
+            </div>
+            <p class="plate-hint" id="plate-example-l4"></p>
+
+            <button class="mic-btn" id="mic-btn" onclick="toggleListening()">
+                <span id="mic-icon">🎙️</span> <span id="mic-label">Tap to Transmit</span>
+            </button>
+            <div class="mic-status" id="mic-status">Tap to begin transmission</div>
+            <div class="transcript-box" id="transcript-box"></div>
+
+            <div class="feedback" id="feedback-l4"></div>
+            <div class="token-row" id="token-row-l4"></div>
+            <button class="next-btn" id="next-btn-l4" onclick="nextL4()">Next Transmission →</button>
+            <div class="streak" id="streak-l4"></div>
+            <div class="score-row" style="margin-top:16px;">
+                <div class="score-pill">Score: <span id="score-val-4">0</span></div>
+                <div class="score-pill">Attempts: <span id="attempts-val-4">0</span></div>
+            </div>
+        </div>
+
         <!-- ── Level 3: transponder ── -->
         <div id="level3-area" style="display:none;">
             <p class="atc-prompt">Tower: Read back tail number —</p>
             <div class="transponder">
                 <div class="transponder-label">FAA N-Number</div>
                 <div class="plate-number" id="plate-number">N482KX</div>
-                <div class="transponder-sub">Squawk · Ident · Readback</div>
             </div>
-            <p class="plate-hint">Letters → phonetic &nbsp;|&nbsp; Digits → say as-is</p>
+            <p class="plate-hint">Letters → phonetic</p>
+            <p class="plate-hint">Digits → say as-is</p>
             <p class="plate-hint" id="plate-example"></p>
             <input class="l3-answer-input" id="answer-l3" type="text"
                 placeholder="e.g. November 4 8 2 Kilo X-ray"
@@ -539,17 +639,6 @@
         const letters = Object.keys(phonetic);
         let currentLevel = 1;
 
-        // ── Callsign ──
-        const callsignTypes = ['Cessna','Piper','Beechcraft','Cirrus','Mooney'];
-        const callsignLetters = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
-        function randomCallsign() {
-            const type = callsignTypes[Math.floor(Math.random() * callsignTypes.length)];
-            const num = Math.floor(10 + Math.random() * 90);
-            const l1 = callsignLetters[Math.floor(Math.random() * callsignLetters.length)];
-            const l2 = callsignLetters[Math.floor(Math.random() * callsignLetters.length)];
-            return `${type} ${num} ${l1}${l2}`;
-        }
-        document.getElementById('callsign-display').textContent = randomCallsign();
 
         // ── Level 1 state ──
         let l1Current = '', l1Score = 0, l1Attempts = 0, l1Streak = 0;
@@ -832,6 +921,204 @@
             document.getElementById('next-btn-l3').style.display = 'inline-block';
         }
 
+        // ── Level 4: voice readback ──
+        let l4Plate = '', l4Score = 0, l4Attempts = 0, l4Streak = 0, l4Answered = false;
+        let recognition = null;
+
+        // close-enough phonetic aliases the speech API commonly returns
+        const aliases = {
+            'alfa': 'alpha', 'juliet': 'juliet', 'niner': '9', 'nine': '9',
+            'zero': '0', 'one': '1', 'two': '2', 'three': '3', 'four': '4',
+            'five': '5', 'six': '6', 'seven': '7', 'eight': '8',
+            'x-ray': 'x-ray', 'xray': 'x-ray', 'ex-ray': 'x-ray', 'x ray': 'x-ray',
+            // common speech-API misheards
+            'vermont': 'victor', 'viktor': 'victor', 'vick': 'victor', 'vicker': 'victor',
+            'tango': 'tango', 'india': 'india', 'foxtrot': 'foxtrot',
+            'november': 'november', 'noviembre': 'november',
+            'kilo': 'kilo', 'kilowatt': 'kilo',
+            'oscar': 'oscar', 'whiskey': 'whiskey', 'whisky': 'whiskey',
+            'uniform': 'uniform', 'you uniform': 'uniform',
+            'yankee': 'yankee', 'yanky': 'yankee',
+            'zulu': 'zulu', 'sierra': 'sierra', 'romeo': 'romeo',
+            'quebec': 'quebec', 'papa': 'papa', 'lima': 'lima',
+            'golf': 'golf', 'hotel': 'hotel', 'india': 'india',
+            'juliette': 'juliet', 'juliet': 'juliet',
+            'mike': 'mike', 'bravo': 'bravo', 'charlie': 'charlie',
+            'delta': 'delta', 'echo': 'echo', 'foxtrot': 'foxtrot',
+        };
+
+        function normalise(word) {
+            const w = word.toLowerCase().trim();
+            return aliases[w] || w;
+        }
+
+        function nextL4() {
+            let newPlate;
+            do { newPlate = generatePlate(); } while (newPlate === l4Plate);
+            l4Plate = newPlate;
+            l4Answered = false;
+
+            document.getElementById('plate-number-l4').textContent = l4Plate;
+            document.getElementById('plate-number-l4').classList.remove('shake');
+            document.getElementById('plate-number-l4').classList.add('pop');
+            document.getElementById('plate-number-l4').addEventListener('animationend',
+                () => document.getElementById('plate-number-l4').classList.remove('pop'), { once: true });
+
+            const tokens = plateToPhonetic(l4Plate);
+            document.getElementById('plate-example-l4').textContent = `Say: "${tokens.join(' ')}"`;
+
+            clearTimeout(l4HardStopTimer);
+            l4LastTranscript = '';
+            document.getElementById('transcript-box').textContent = '';
+            document.getElementById('feedback-l4').textContent = '';
+            document.getElementById('feedback-l4').className = 'feedback';
+            document.getElementById('token-row-l4').innerHTML = '';
+            document.getElementById('next-btn-l4').style.display = 'none';
+            l4Listening = false;
+            document.getElementById('mic-btn').disabled = false;
+            document.getElementById('mic-btn').classList.remove('listening');
+            document.getElementById('mic-label').textContent = 'Tap to Transmit';
+            document.getElementById('mic-status').textContent = 'Tap to begin transmission';
+        }
+
+        let l4LastTranscript = '';
+
+        function initRecognition() {
+            const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SR) return null;
+            const r = new SR();
+            r.continuous = true;
+            r.interimResults = true;
+            r.lang = 'en-US';
+            r.onresult = e => {
+                const transcript = Array.from(e.results)
+                    .map(res => res[0].transcript).join(' ');
+                l4LastTranscript = transcript;
+                document.getElementById('transcript-box').textContent = transcript;
+            };
+            r.onerror = e => {
+                document.getElementById('mic-status').textContent = `Error: ${e.error}`;
+                document.getElementById('mic-btn').classList.remove('listening');
+            };
+            r.onend = () => {
+                l4Listening = false;
+                document.getElementById('mic-btn').classList.remove('listening');
+                document.getElementById('mic-label').textContent = 'Tap to Transmit';
+                if (!l4Answered && l4LastTranscript) gradeL4(l4LastTranscript);
+            };
+            return r;
+        }
+
+        let l4Listening = false;
+        let l4HardStopTimer = null;
+        const L4_MAX_SECONDS = 15;
+
+        function toggleListening() {
+            if (l4Answered) return;
+            if (l4Listening) {
+                clearTimeout(l4HardStopTimer);
+                l4Listening = false;
+                document.getElementById('mic-btn').classList.remove('listening');
+                document.getElementById('mic-label').textContent = 'Tap to Transmit';
+                document.getElementById('mic-status').textContent = 'Processing...';
+                setTimeout(() => {
+                    if (recognition) try { recognition.stop(); } catch(e) {}
+                }, 700);
+            } else {
+                if (!recognition) recognition = initRecognition();
+                if (!recognition) {
+                    document.getElementById('mic-status').textContent = 'Speech not supported in this browser';
+                    return;
+                }
+                l4Listening = true;
+                l4LastTranscript = '';
+                document.getElementById('mic-btn').classList.add('listening');
+                document.getElementById('mic-label').textContent = 'Tap to Stop';
+                document.getElementById('mic-status').textContent = '🔴 Transmitting...';
+                document.getElementById('transcript-box').textContent = '';
+                try { recognition.start(); } catch(e) {}
+
+                l4HardStopTimer = setTimeout(() => {
+                    if (l4Listening) {
+                        document.getElementById('mic-status').textContent = 'Max transmission time reached.';
+                        toggleListening();
+                    }
+                }, L4_MAX_SECONDS * 1000);
+            }
+        }
+
+        function gradeL4(transcript) {
+            if (l4Answered) return;
+            l4Answered = true;
+            l4Attempts++;
+
+            const expected = plateToPhonetic(l4Plate);
+            // expand digit-run tokens like "031" → ["0","3","1"]
+            const rawTokens = transcript.trim().split(/\s+/);
+            const expanded = [];
+            rawTokens.forEach(t => {
+                if (/^\d+$/.test(t)) { t.split('').forEach(d => expanded.push(d)); }
+                else { expanded.push(t); }
+            });
+            const given = expanded.map(normalise);
+            const expNorm = expected.map(normalise);
+
+            // greedy alignment: walk expected in order, consume matching given tokens
+            const matched = new Array(given.length).fill(false);
+            const results = []; // [{exp, got, ok}]
+            let gi = 0;
+            for (let ei = 0; ei < expNorm.length; ei++) {
+                // scan forward in given for a match, skipping at most 2 extras
+                let found = -1;
+                for (let look = gi; look < Math.min(gi + 3, given.length); look++) {
+                    if (given[look] === expNorm[ei]) { found = look; break; }
+                }
+                if (found !== -1) {
+                    results.push({ exp: expected[ei], got: given[found], ok: true });
+                    matched[found] = true;
+                    gi = found + 1;
+                } else {
+                    results.push({ exp: expected[ei], got: given[gi] || null, ok: false });
+                    if (gi < given.length) gi++;
+                }
+            }
+
+            let correct = results.filter(r => r.ok).length;
+            const tokenRow = document.getElementById('token-row-l4');
+            tokenRow.innerHTML = '';
+            results.forEach(r => {
+                const span = document.createElement('span');
+                span.className = `token ${r.ok ? 'ok' : 'wrong'}`;
+                span.textContent = r.ok ? r.exp : `${r.got || '?'} (${r.exp})`;
+                tokenRow.appendChild(span);
+            });
+
+            const allCorrect = correct === expNorm.length;
+            const feedback = document.getElementById('feedback-l4');
+
+            if (allCorrect) {
+                l4Score++;
+                l4Streak++;
+                feedback.textContent = 'Readback correct. Cleared for takeoff.';
+                feedback.className = 'feedback correct';
+                spawnConfetti();
+            } else {
+                l4Streak = 0;
+                feedback.textContent = `Say again. ${correct}/${expNorm.length} correct — check tokens.`;
+                feedback.className = 'feedback incorrect';
+                document.getElementById('plate-number-l4').classList.add('shake');
+                document.getElementById('plate-number-l4').addEventListener('animationend',
+                    () => document.getElementById('plate-number-l4').classList.remove('shake'), { once: true });
+            }
+
+            document.getElementById('streak-l4').textContent = l4Streak >= 3 ? `🔥 ${l4Streak} in a row!` : '';
+            document.getElementById('score-val-4').textContent = l4Score;
+            document.getElementById('attempts-val-4').textContent = l4Attempts;
+            document.getElementById('mic-btn').disabled = true;
+            document.getElementById('mic-status').textContent = '';
+            document.getElementById('next-btn-l4').style.display = 'inline-block';
+        }
+
         // ── Shared ──
         function setLevel(n) {
             clearInterval(l1HintTimer);
@@ -840,6 +1127,7 @@
             document.getElementById('level1-area').style.display = n === 1 ? 'block' : 'none';
             document.getElementById('level2-area').style.display = n === 2 ? 'block' : 'none';
             document.getElementById('level3-area').style.display = n === 3 ? 'block' : 'none';
+            document.getElementById('level4-area').style.display = n === 4 ? 'block' : 'none';
 
             if (n === 1) {
                 l1Score = 0; l1Attempts = 0; l1Streak = 0;
@@ -852,11 +1140,16 @@
                 document.getElementById('attempts-val').textContent = '0';
                 document.getElementById('streak').textContent = '';
                 nextCard();
-            } else {
+            } else if (n === 3) {
                 l3Score = 0; l3Attempts = 0; l3Streak = 0;
                 document.getElementById('score-val-3').textContent = '0';
                 document.getElementById('attempts-val-3').textContent = '0';
                 nextL3();
+            } else {
+                l4Score = 0; l4Attempts = 0; l4Streak = 0;
+                document.getElementById('score-val-4').textContent = '0';
+                document.getElementById('attempts-val-4').textContent = '0';
+                nextL4();
             }
         }
 
@@ -882,8 +1175,10 @@
                 if (l1Answered) nextL1(); else submitL1();
             } else if (currentLevel === 2) {
                 if (answered) nextCard(); else checkAnswer();
-            } else {
+            } else if (currentLevel === 3) {
                 if (l3Answered) nextL3(); else submitL3();
+            } else {
+                if (l4Answered) nextL4();
             }
         });
 
