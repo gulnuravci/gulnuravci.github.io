@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phonetic Alphabet Game</title>
+    <link rel="icon" type="image/png" href="../../../images/favicon/star-favicon.png">
+    <link rel="shortcut icon" href="../../../images/favicon/star-favicon.png">
+    <link rel="apple-touch-icon" href="../../../images/favicon/star-favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/levels.css">
+</head>
+<body>
+    <a href="../../../index.html" style="display:inline-block;margin-bottom:16px;font-family:'Roboto Mono',monospace;font-size:1rem;letter-spacing:3px;text-transform:uppercase;color:#ffb30099;text-decoration:none;">← Back</a>
+    <h1>Phonetic Alphabet</h1>
+    <p class="subtitle">ATC Communications Trainer</p>
+
+    <div class="game-container">
+        <div class="level-select">
+            <button class="level-btn active" onclick="setLevel(1)">Level 01</button>
+            <button class="level-btn" onclick="setLevel(2)">Level 02</button>
+            <button class="level-btn" onclick="setLevel(3)">Level 03</button>
+            <button class="level-btn" onclick="setLevel(4)">Level 04</button>
+        </div>
+
+        <!-- Level 1: hint reveal -->
+        <div id="level1-area" style="display:none;">
+            <p class="atc-prompt">Tower: Say phonetic for —</p>
+            <div class="card-wrap">
+                <div class="card" id="card-l1">A</div>
+            </div>
+            <div class="hint-label" id="hint-label">Hints transmitting in 2s...</div>
+            <div class="blanks" id="blanks"></div>
+            <input class="answer-input" id="answer-l1" type="text"
+                placeholder="Readback..." autocomplete="off" autocorrect="off" spellcheck="false"/>
+            <button class="submit-btn" id="submit-btn-l1" onclick="submitL1()">Transmit</button>
+            <div class="feedback" id="feedback-l1"></div>
+            <button class="next-btn" id="next-btn-l1" onclick="nextL1()">Next Transmission →</button>
+            <div class="streak" id="streak-l1"></div>
+            <div class="score-row" style="margin-top:16px;">
+                <div class="score-pill">Score: <span id="score-val-1">0</span></div>
+                <div class="score-pill">Attempts: <span id="attempts-val-1">0</span></div>
+            </div>
+        </div>
+
+        <!-- Level 2: flashcard -->
+        <div id="level2-area" style="display:none;">
+            <p class="atc-prompt">Tower: Say phonetic for —</p>
+            <div class="card-wrap">
+                <div class="card" id="card-l2">A</div>
+            </div>
+            <input class="answer-input" id="answer-l2" type="text"
+                placeholder="Readback..." autocomplete="off" autocorrect="off" spellcheck="false"/>
+            <button class="submit-btn" id="submit-btn-l2" onclick="checkAnswer()">Transmit</button>
+            <div class="feedback" id="feedback-l2"></div>
+            <button class="next-btn" id="next-btn-l2" onclick="nextCard()">Next Transmission →</button>
+            <div class="streak" id="streak-l2"></div>
+            <div class="score-row">
+                <div class="score-pill">Score: <span id="score-val-2">0</span></div>
+                <div class="score-pill">Attempts: <span id="attempts-val-2">0</span></div>
+            </div>
+        </div>
+
+        <!-- Level 3: type tail number -->
+        <div id="level3-area" style="display:none;">
+            <p class="atc-prompt">Tower: Read back tail number —</p>
+            <div class="transponder">
+                <div class="transponder-label">FAA N-Number</div>
+                <div class="plate-number" id="plate-number">N482KX</div>
+            </div>
+            <p class="plate-hint">Letters → phonetic</p>
+            <p class="plate-hint">Digits → say as-is</p>
+            <p class="plate-hint" id="plate-example"></p>
+            <input class="l3-answer-input" id="answer-l3" type="text"
+                placeholder="e.g. November 4 8 2 Kilo X-ray"
+                autocomplete="off" autocorrect="off" spellcheck="false"/>
+            <button class="submit-btn" id="submit-btn-l3" onclick="submitL3()">Transmit</button>
+            <div class="feedback" id="feedback-l3"></div>
+            <div class="token-row" id="token-row-l3"></div>
+            <button class="next-btn" id="next-btn-l3" onclick="nextL3()">Next Transmission →</button>
+            <div class="streak" id="streak-l3"></div>
+            <div class="score-row" style="margin-top:16px;">
+                <div class="score-pill">Score: <span id="score-val-3">0</span></div>
+                <div class="score-pill">Attempts: <span id="attempts-val-3">0</span></div>
+            </div>
+        </div>
+
+        <!-- Level 4: voice readback -->
+        <div id="level4-area" style="display:none;">
+            <p class="atc-prompt">Tower: Read back tail number aloud<br>
+                <span style="font-size:0.75em;opacity:0.7;">(all US aircraft are N-numbers)</span></p>
+            <div class="transponder">
+                <div class="transponder-label">FAA TAIL NUMBER</div>
+                <div class="plate-number" id="plate-number-l4">N482KX</div>
+            </div>
+            <p class="plate-hint" id="plate-example-l4"></p>
+            <button class="mic-btn" id="mic-btn" onclick="toggleListening()">
+                <span id="mic-icon">🎙️</span> <span id="mic-label">Tap to Transmit</span>
+            </button>
+            <div class="mic-status" id="mic-status">Tap to begin transmission</div>
+            <div class="transcript-box" id="transcript-box"></div>
+            <div class="feedback" id="feedback-l4"></div>
+            <div class="token-row" id="token-row-l4"></div>
+            <button class="next-btn" id="next-btn-l4" onclick="nextL4()">Next Transmission →</button>
+            <div class="streak" id="streak-l4"></div>
+            <div class="score-row" style="margin-top:16px;">
+                <div class="score-pill">Score: <span id="score-val-4">0</span></div>
+                <div class="score-pill">Attempts: <span id="attempts-val-4">0</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/level1.js"></script>
+    <script src="js/level2.js"></script>
+    <script src="js/level3.js"></script>
+    <script src="js/level4.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
