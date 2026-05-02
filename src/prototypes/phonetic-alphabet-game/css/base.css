@@ -1,0 +1,128 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: #0a0c0f;
+    background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 40px, #ffffff03 40px, #ffffff03 41px),
+        repeating-linear-gradient(90deg, transparent, transparent 40px, #ffffff03 40px, #ffffff03 41px),
+        radial-gradient(ellipse at 50% 0%, #1a2a1a 0%, transparent 60%);
+    min-height: 100vh;
+    font-family: 'Roboto Mono', monospace;
+    color: #e0d5b0;
+    padding: 16px 16px;
+    overflow-x: hidden;
+}
+
+/* ── Header ── */
+h1 {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1.6rem;
+    text-align: center;
+    color: #ffb300;
+    text-shadow: 0 0 16px #ffb30088, 0 0 40px #ffb30044;
+    margin-bottom: 4px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    text-align: center;
+    color: #ffb300bb;
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-weight: 700;
+}
+
+.game-container {
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* ── Level tabs ── */
+.level-select {
+    display: flex;
+    gap: 0;
+    justify-content: center;
+    margin-bottom: 14px;
+    border: 1px solid #ffb30044;
+}
+
+.level-btn {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.7rem;
+    padding: 10px 24px;
+    border: none;
+    border-right: 1px solid #ffb30044;
+    background: transparent;
+    color: #ffb30066;
+    cursor: pointer;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    flex: 1;
+}
+
+.level-btn:last-child { border-right: none; }
+.level-btn:hover { background: #ffb30015; color: #ffb300; }
+.level-btn.active {
+    background: #ffb30022;
+    color: #ffb300;
+    text-shadow: 0 0 10px #ffb30088;
+    box-shadow: inset 0 -2px 0 #ffb300;
+}
+
+/* ── Instrument display card ── */
+.card-wrap { margin-bottom: 12px; }
+
+.card {
+    background: #050807;
+    border: 1px solid #ffb30066;
+    border-radius: 4px;
+    padding: 28px 40px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 7rem;
+    font-weight: 900;
+    color: #ffb300;
+    text-shadow: 0 0 20px #ffb300cc, 0 0 60px #ffb30066;
+    box-shadow: 0 0 30px #ffb30011, inset 0 0 60px #000000aa;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, #00000022 2px, #00000022 4px);
+    pointer-events: none;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid #ffb30022;
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+.card.pop { animation: cardPop 0.25s ease; }
+
+@keyframes cardPop {
+    0%   { opacity: 0; transform: scale(0.9); }
+    60%  { transform: scale(1.04); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.card.shake { animation: shake 0.4s ease; }
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%       { transform: translateX(-10px); }
+    40%       { transform: translateX(10px); }
+    60%       { transform: translateX(-8px); }
+    80%       { transform: translateX(8px); }
+}
