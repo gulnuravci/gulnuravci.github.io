@@ -281,8 +281,12 @@ a {
 }
 
 .stage {
-    position: relative;
     height: 160vh;
+}
+
+.stage,
+.sample {
+    position: relative;
     background:
         radial-gradient(120% 80% at 20% 10%, var(--bg-a) 0%, transparent 60%),
         radial-gradient(90% 90% at 90% 90%, color-mix(in srgb, var(--bg-a) 70%, #000) 0%, transparent 70%),
@@ -291,7 +295,8 @@ a {
 }
 
 /* Topographic contour texture, like fabric seen up close */
-.stage::before {
+.stage::before,
+.sample::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -481,6 +486,97 @@ a {
     outline-offset: 2px;
 }
 
+/* ---------- Real run sample ---------- */
+.sample {
+    --bg-a: #1b2c3e;
+    --bg-b: #06080c;
+    --panel: #0b0d12;
+    padding: 16vh 0;
+}
+
+.sample .card {
+    position: relative;
+    top: 0;
+}
+
+/* Blurred copy of the footage fills the space beside the vertical video */
+.sample-visual::before {
+    content: "";
+    position: absolute;
+    inset: -40px;
+    background: url("../../../images/Ski_Form/sample_run_poster.jpg") center / cover;
+    filter: blur(28px) brightness(0.45);
+}
+
+.sample-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 10px;
+    margin: 0;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+}
+
+.stats dt {
+    font-size: 10px;
+}
+
+.stats dd {
+    margin: 4px 0 0;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+}
+
+.turn-strip {
+    position: relative;
+    height: 30px;
+    border-radius: 3px;
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+}
+
+.turn-mark {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    display: grid;
+    place-items: center;
+    width: 20px;
+    margin-left: -10px;
+    border-radius: 2px;
+    background: #2a2930;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 9px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.turn-mark.is-current {
+    background: var(--lime);
+    color: var(--ink);
+}
+
+.turn-head {
+    position: absolute;
+    top: -3px;
+    bottom: -3px;
+    width: 2px;
+    margin-left: -1px;
+    background: var(--text);
+}
+
+.turn-now {
+    color: var(--text);
+}
+
 /* ---------- Outro ---------- */
 .outro {
     padding: 22vh 4vw 12vh;
@@ -605,6 +701,10 @@ a {
 
     .card-visual {
         aspect-ratio: 10 / 7;
+    }
+
+    .sample-visual {
+        aspect-ratio: 4 / 5;
     }
 
     .skills {

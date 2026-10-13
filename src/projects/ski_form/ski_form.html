@@ -197,12 +197,12 @@
                         <p class="card-label mono">06 &mdash; HARDWARE</p>
                     </div>
                     <div class="card-visual">
-                        <svg class="viz" data-viz="pod" viewBox="0 0 600 420" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Illustration: an abstract sensor pod streams motion data"></svg>
+                        <svg class="viz" data-viz="pod" viewBox="0 0 600 420" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Illustration: a ski boot with two candidate sensor-pod positions, on the cuff power strap and on the lower shell, streaming motion data"></svg>
                         <span class="viz-tag mono">CONCEPT</span>
                     </div>
                     <div class="card-right">
                         <h3>Boot Pod</h3>
-                        <p class="card-body">A camera sees the body, but it cannot feel the ski. A small motion-sensor pod on each boot will record what the video misses, synced to the footage so both views line up turn by turn.</p>
+                        <p class="card-body">A camera sees the body, but it cannot feel the ski. A small motion-sensor pod on each boot will record what the video misses, synced to the footage. Two mount positions are under test: the cuff power strap and the lower shell.</p>
                         <div class="card-meta"><span class="status"><i class="dot dot-rnd"></i>In R&amp;D</span><span class="mono muted">HARDWARE</span></div>
                         <div class="chips"><span class="chip chip-light">IMU</span><span class="chip">BLE</span><span class="chip">Firmware</span><span class="chip">Sensor fusion</span></div>
                         <div class="card-foot"><span class="stage-dots" aria-hidden="true"></span><span class="mono muted">STAGE <b>06 OF 06</b></span></div>
@@ -210,6 +210,32 @@
                 </article>
             </section>
         </div>
+
+        <!-- Real pipeline output -->
+        <section class="sample" id="real-run">
+            <article class="card">
+                <div class="card-left">
+                    <h2>From a real run.</h2>
+                    <p class="card-label mono">SAMPLE &mdash; PIPELINE OUTPUT</p>
+                </div>
+                <div class="card-visual sample-visual">
+                    <video class="sample-video" src="../../../images/Ski_Form/sample_run.mp4" poster="../../../images/Ski_Form/sample_run_poster.jpg" muted loop playsinline preload="metadata" aria-label="Night ski run with the pipeline overlay: a tracking box, a pose skeleton, the center of mass and turn labels"></video>
+                    <span class="viz-tag mono">REAL OUTPUT</span>
+                </div>
+                <div class="card-right">
+                    <h3>Night Run Overlay</h3>
+                    <p class="card-body">A 29-second night run, filmed on a 360&deg; camera. The pipeline tracked the skier through the run, drew the pose skeleton and the center of mass, and split the run into turns. The clip shows 16 seconds of it.</p>
+                    <dl class="stats">
+                        <div><dt class="mono muted">TURNS FOUND</dt><dd>9</dd></div>
+                        <div><dt class="mono muted">DURATION</dt><dd>29 s</dd></div>
+                        <div><dt class="mono muted">FRAMES</dt><dd>871</dd></div>
+                        <div><dt class="mono muted">AVG. CONFIDENCE</dt><dd>0.90</dd></div>
+                    </dl>
+                    <div class="turn-strip" aria-hidden="true"><i class="turn-head"></i></div>
+                    <div class="card-foot"><span class="mono muted">NOW</span><span class="mono turn-now">&mdash;</span></div>
+                </div>
+            </article>
+        </section>
 
         <!-- Closing -->
         <section class="outro">

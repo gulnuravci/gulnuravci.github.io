@@ -419,59 +419,74 @@ const visuals = {
     },
 
     pod(svg) {
-        const cx = 300, cy = 140;
-        const podG = svgEl('g', {}, svg);
-        svgEl('rect', { x: -96, y: -56, width: 192, height: 112, rx: 34, fill: INK }, podG);
-        svgEl('rect', { x: -84, y: -44, width: 168, height: 88, rx: 26, fill: 'none', stroke: '#2a2930', 'stroke-dasharray': '3 4' }, podG);
-        svgEl('rect', { x: -20, y: -20, width: 40, height: 40, rx: 4, fill: '#1c1b21', stroke: LIME, 'stroke-width': 1.2 }, podG);
-        for (let i = 0; i < 5; i++) {
-            const o = -14 + i * 7;
-            svgEl('line', { x1: o, x2: o, y1: -26, y2: -20, stroke: LIME, 'stroke-opacity': 0.6 }, podG);
-            svgEl('line', { x1: o, x2: o, y1: 20, y2: 26, stroke: LIME, 'stroke-opacity': 0.6 }, podG);
-        }
-        const axes = svgEl('g', { stroke: INK, 'stroke-width': 1.6, fill: 'none' }, podG);
-        svgEl('path', { d: 'M0 0 L150 0 M142 -5 L150 0 L142 5' }, axes);
-        svgEl('path', { d: 'M0 0 L0 -96 M-5 -88 L0 -96 L5 -88' }, axes);
-        svgEl('path', { d: 'M0 0 L-118 62 M-108 62 L-118 62 L-113 53' }, axes);
-        svgText(podG, 156, 4, 'X');
-        svgText(podG, 6, -100, 'Y');
-        svgText(podG, -134, 72, 'Z');
+        // Side view of a ski boot, toe to the right, with the two mount positions under test.
+        const boot = svgEl('g', {}, svg);
+        svgEl('rect', { x: 26, y: 364, width: 292, height: 8, rx: 3, fill: INK }, boot);
+        svgEl('rect', { x: 46, y: 344, width: 52, height: 20, rx: 3, fill: '#2a2930' }, boot);
+        svgEl('rect', { x: 232, y: 346, width: 44, height: 18, rx: 3, fill: '#2a2930' }, boot);
+        svgEl('rect', { x: 60, y: 338, width: 214, height: 12, rx: 2, fill: INK }, boot);
+        svgEl('path', { d: 'M70 340 L64 262 C64 248 80 240 98 238 L150 236 C190 240 232 282 262 318 C270 328 274 336 270 340 Z', fill: '#1c1b21' }, boot);
+        svgEl('path', { d: 'M66 270 L72 92 C72 84 78 80 86 80 L178 80 C186 80 190 86 189 94 L186 214 C186 226 176 236 160 238 L98 240 Z', fill: '#26252c' }, boot);
+        svgEl('path', { d: 'M152 82 L184 82 C188 82 190 88 189 94 L186 214 C186 226 176 236 160 238 L150 237 Z', fill: '#33323a' }, boot);
+        svgEl('path', { d: 'M70 100 L190 95 L190 115 L70 120 Z', fill: '#121116' }, boot);
+        [[176, 150, -4], [178, 196, -4], [196, 258, 40], [222, 290, 46]].forEach(([x, y, r]) => {
+            svgEl('rect', { x: -11, y: -4, width: 22, height: 8, rx: 2, fill: 'none', stroke: '#55545e', 'stroke-width': 1.5, transform: `translate(${x} ${y}) rotate(${r})` }, boot);
+        });
 
-        const arcs = [0, 1, 2].map(i => svgEl('path', {
-            d: `M${cx + 110 + i * 10} ${cy - 70 - i * 10} a ${18 + i * 12} ${18 + i * 12} 0 0 1 ${18 + i * 12} ${18 + i * 12}`,
-            fill: 'none', stroke: INK, 'stroke-width': 1.6, 'stroke-linecap': 'round',
-        }, svg));
+        const mounts = [
+            { x: 160, y: 106, w: 30, h: 22, label: 'A · CUFF POWER STRAP', lx: 214, ly: 64, lead: 'M176 96 L208 68' },
+            { x: 110, y: 296, w: 34, h: 22, label: 'B · LOWER SHELL', lx: 156, ly: 404, lead: 'M120 308 L152 394' },
+        ].map(m => {
+            const ring = svgEl('rect', { fill: 'none', stroke: LIME, 'stroke-width': 1.5, rx: 10 }, svg);
+            svgEl('rect', { x: m.x - m.w / 2, y: m.y - m.h / 2, width: m.w, height: m.h, rx: 6, fill: INK, stroke: LIME, 'stroke-width': 1.6 }, svg);
+            svgEl('circle', { cx: m.x, cy: m.y, r: 3, fill: LIME }, svg);
+            svgEl('path', { d: m.lead, fill: 'none', stroke: INK, 'stroke-width': 1 }, svg);
+            svgText(svg, m.lx, m.ly, m.label, { 'font-size': 9.5 });
+            return { ...m, ring };
+        });
 
-        svgText(svg, 14, 24, 'BOOT POD · CONCEPT');
+        svgText(svg, 14, 24, 'PLACEMENT UNDER TEST');
         svgText(svg, 586, 24, 'SYNCED TO VIDEO', { 'text-anchor': 'end' });
 
         // Streams: video frames on top, motion channels below.
-        const x0 = 70, x1 = 586;
-        svgText(svg, 14, 258, 'VIDEO', { 'font-size': 9 });
-        const frames = svgEl('g', {}, svg);
+        const x0 = 380, x1 = 586;
+        const clipRect = svgEl('rect', { x: x0, y: 0, width: x1 - x0, height: 420 }, svgEl('clipPath', { id: 'pod-streams' }, svgEl('defs', {}, svg)));
+        const streams = svgEl('g', { 'clip-path': 'url(#pod-streams)' }, svg);
+        svgText(svg, 334, 152, 'VIDEO', { 'font-size': 9 });
         const frameRects = [];
-        for (let i = 0; i < 26; i++) frameRects.push(svgEl('rect', { y: 248, width: 16, height: 12, rx: 1.5, fill: INK, 'fill-opacity': 0.75 }, frames));
+        for (let i = 0; i < 12; i++) frameRects.push(svgEl('rect', { y: 142, width: 16, height: 12, rx: 1.5, fill: INK, 'fill-opacity': 0.75 }, streams));
         const channels = [
-            { name: 'ACC', y: 298, f: [2.1, 5.3], a: 14 },
-            { name: 'GYR', y: 338, f: [1.3, 7.7], a: 12 },
-            { name: 'ORI', y: 378, f: [0.7, 2.9], a: 10 },
+            { name: 'ACC', y: 200, f: [2.1, 5.3], a: 14 },
+            { name: 'GYR', y: 250, f: [1.3, 7.7], a: 12 },
+            { name: 'ORI', y: 300, f: [0.7, 2.9], a: 10 },
         ].map(ch => {
-            svgText(svg, 14, ch.y + 4, ch.name, { 'font-size': 9 });
+            svgText(svg, 334, ch.y + 4, ch.name, { 'font-size': 9 });
             svgEl('line', { x1: x0, x2: x1, y1: ch.y, y2: ch.y, stroke: INK, 'stroke-opacity': 0.15 }, svg);
-            return { ...ch, path: svgEl('path', { fill: 'none', stroke: INK, 'stroke-width': 1.5 }, svg) };
+            return { ...ch, path: svgEl('path', { fill: 'none', stroke: INK, 'stroke-width': 1.5 }, streams) };
         });
-        const sync = svgEl('line', { y1: 240, y2: 394, stroke: '#ffffff', 'stroke-width': 1.5, 'stroke-dasharray': '3 3' }, svg);
+        const sync = svgEl('line', { y1: 132, y2: 320, stroke: '#ffffff', 'stroke-width': 1.5, 'stroke-dasharray': '3 3' }, svg);
+        const links = [
+            svgEl('path', { d: 'M176 106 C 260 106, 270 200, 326 200', fill: 'none', stroke: INK, 'stroke-width': 1.2, 'stroke-dasharray': '2 5', 'stroke-opacity': 0.6 }, svg),
+            svgEl('path', { d: 'M128 296 C 230 296, 250 250, 326 250', fill: 'none', stroke: INK, 'stroke-width': 1.2, 'stroke-dasharray': '2 5', 'stroke-opacity': 0.6 }, svg),
+        ];
 
         return t => {
-            const tilt = 6 * Math.sin(t * 1.4);
-            podG.setAttribute('transform', `translate(${cx} ${cy}) rotate(${tilt})`);
-            arcs.forEach((a, i) => a.setAttribute('stroke-opacity', 0.25 + 0.75 * Math.max(0, Math.sin(t * 3 - i * 0.7))));
+            mounts.forEach((m, i) => {
+                const k = (t * 0.8 + i * 0.5) % 1;
+                const pad = 4 + k * 12;
+                m.ring.setAttribute('x', m.x - m.w / 2 - pad);
+                m.ring.setAttribute('y', m.y - m.h / 2 - pad);
+                m.ring.setAttribute('width', m.w + pad * 2);
+                m.ring.setAttribute('height', m.h + pad * 2);
+                m.ring.setAttribute('stroke-opacity', 1 - k);
+            });
+            links.forEach(l => l.setAttribute('stroke-dashoffset', -t * 20));
 
             const shift = (t * 40) % 20;
             frameRects.forEach((r, i) => r.setAttribute('x', x0 + i * 20 - shift));
             channels.forEach((ch, c) => {
                 let d = '';
-                for (let x = x0; x <= x1; x += 4) {
+                for (let x = x0; x <= x1 + 4; x += 4) {
                     const u = (x + t * 60) / 100;
                     const v = Math.sin(u * ch.f[0] + c) * 0.7 + Math.sin(u * ch.f[1]) * 0.3;
                     d += `${d ? 'L' : 'M'}${x} ${(ch.y - v * ch.a).toFixed(1)}`;
@@ -564,6 +579,72 @@ if (reduceMotion) {
 } else {
     requestAnimationFrame(frame);
 }
+
+/* ---------- Real run sample ---------- */
+
+// Turn events from the real run, in seconds from the start of the full run.
+// The clip on the page starts 1.6 s into the run.
+const SAMPLE_START = 1.6;
+const SAMPLE_TURNS = [
+    [0.4, 'left'], [2.1, 'right'], [5.8, 'left'], [9.6, 'right'], [13.9, 'left'],
+    [17.3, 'right'], [20.9, 'left'], [24.3, 'right'], [27.9, 'left'],
+];
+
+function sampleRun() {
+    const video = document.querySelector('.sample-video');
+    const strip = document.querySelector('.turn-strip');
+    const now = document.querySelector('.turn-now');
+    if (!video || !strip) return;
+    const head = strip.querySelector('.turn-head');
+    let marks = [];
+
+    function build() {
+        const end = SAMPLE_START + video.duration;
+        marks = SAMPLE_TURNS.map(([t, dir], i) => ({ t: t - SAMPLE_START, dir, n: i + 1 }))
+            .filter(m => m.t >= 0 && m.t + SAMPLE_START <= end)
+            .map(m => {
+                const el = document.createElement('i');
+                el.className = 'turn-mark';
+                el.textContent = m.dir === 'left' ? 'L' : 'R';
+                el.style.left = `${(m.t / video.duration) * 100}%`;
+                strip.appendChild(el);
+                return { ...m, el };
+            });
+    }
+
+    function update() {
+        if (!marks.length || !video.duration) return;
+        head.style.left = `${(video.currentTime / video.duration) * 100}%`;
+        let current = null;
+        marks.forEach(m => { if (m.t <= video.currentTime) current = m; });
+        marks.forEach(m => m.el.classList.toggle('is-current', m === current));
+        now.textContent = current
+            ? `TURN ${String(current.n).padStart(2, '0')} OF ${String(SAMPLE_TURNS.length).padStart(2, '0')} · ${current.dir.toUpperCase()}`
+            : '—';
+    }
+
+    if (video.readyState >= 1) build();
+    else video.addEventListener('loadedmetadata', build, { once: true });
+    video.addEventListener('timeupdate', update);
+    // timeupdate fires only a few times per second; follow frames while playing.
+    function tick() {
+        update();
+        if (!video.paused) requestAnimationFrame(tick);
+    }
+    video.addEventListener('play', () => requestAnimationFrame(tick));
+
+    if (reduceMotion) {
+        video.controls = true;
+        return;
+    }
+    // Only play while the clip is on screen.
+    new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) video.play().catch(() => { video.controls = true; });
+        else video.pause();
+    }, { threshold: 0.25 }).observe(video);
+}
+
+sampleRun();
 
 const smallScreen = window.matchMedia('(max-width: 720px)');
 
