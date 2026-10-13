@@ -31,46 +31,12 @@
     <main id="top">
         <!-- Hero -->
         <section class="hero">
-            <svg class="hero-bg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-                <defs>
-                    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0" stop-color="#5d6b78"/>
-                        <stop offset="0.55" stop-color="#9aa6af"/>
-                        <stop offset="1" stop-color="#c9d0d4"/>
-                    </linearGradient>
-                    <linearGradient id="ridgeFar" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0" stop-color="#6e7a86"/>
-                        <stop offset="1" stop-color="#8e9aa4"/>
-                    </linearGradient>
-                    <linearGradient id="ridgeMid" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0" stop-color="#e8edf0"/>
-                        <stop offset="0.5" stop-color="#b9c3ca"/>
-                        <stop offset="1" stop-color="#4a3f3a"/>
-                    </linearGradient>
-                    <linearGradient id="slope" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0" stop-color="#7f97a6"/>
-                        <stop offset="0.6" stop-color="#a9bcc7"/>
-                        <stop offset="1" stop-color="#d7e1e6"/>
-                    </linearGradient>
-                    <filter id="fog" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur stdDeviation="40"/>
-                    </filter>
-                </defs>
-                <rect width="1600" height="1000" fill="url(#sky)"/>
-                <path d="M0 520 L180 430 L320 470 L470 360 L600 420 L760 300 L900 380 L1050 290 L1220 400 L1380 330 L1600 420 L1600 1000 L0 1000 Z" fill="url(#ridgeFar)" opacity="0.8"/>
-                <path d="M520 1000 L780 520 L860 560 L960 420 L1060 500 L1140 460 L1320 640 L1600 700 L1600 1000 Z" fill="url(#ridgeMid)"/>
-                <path d="M960 420 L1000 470 L980 520 L1030 560 L1010 620 L1060 500 Z" fill="#3a302c" opacity="0.55"/>
-                <path d="M1140 460 L1180 520 L1160 580 L1230 600 L1320 640 Z" fill="#3a302c" opacity="0.45"/>
-                <ellipse cx="1150" cy="330" rx="420" ry="120" fill="#ffffff" opacity="0.5" filter="url(#fog)"/>
-                <ellipse cx="300" cy="600" rx="380" ry="110" fill="#ffffff" opacity="0.35" filter="url(#fog)"/>
-                <path d="M0 0 L760 0 L1250 1000 L0 1000 Z" fill="url(#slope)"/>
-                <g class="hero-tracks" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="2">
-                    <path d="M420 -20 C 560 40, 440 110, 600 160 S 700 260, 690 400"/>
-                    <path d="M436 -20 C 576 40, 456 110, 616 160 S 716 260, 706 400"/>
-                </g>
-                <g id="hero-skier" transform="translate(560 170) scale(2.6)"></g>
-            </svg>
+            <video class="hero-video-bg" src="../../../images/Ski_Form/sample_run.mp4" poster="../../../images/Ski_Form/sample_run_poster.jpg" muted loop playsinline preload="auto" data-autoplay aria-hidden="true"></video>
             <div class="hero-shade" aria-hidden="true"></div>
+            <figure class="hero-video">
+                <video class="run-video" src="../../../images/Ski_Form/sample_run.mp4" poster="../../../images/Ski_Form/sample_run_poster.jpg" muted loop playsinline preload="auto" data-autoplay aria-label="Night ski run with the pipeline overlay: a tracking box, a pose skeleton, the center of mass and turn labels"></video>
+                <figcaption class="mono">REAL OUTPUT &middot; NIGHT RUN</figcaption>
+            </figure>
 
             <div class="hero-card">
                 <div class="hero-card-top">
@@ -80,12 +46,53 @@
                 </div>
                 <div class="hero-card-body">
                     <h1>Computer vision<br>meets the<br>fall line.</h1>
-                    <a class="cta" href="#capture">
+                    <a class="cta" href="#real-run">
                         <span>SEE HOW<br>IT WORKS</span>
                         <span aria-hidden="true">&darr;</span>
                     </a>
                 </div>
             </div>
+        </section>
+
+        <!-- Real pipeline output -->
+        <section class="sample" id="real-run">
+            <article class="card">
+                <div class="card-left">
+                    <h2>From a real run.</h2>
+                    <p class="card-label mono">SAMPLE &mdash; PIPELINE OUTPUT</p>
+                </div>
+                <div class="card-visual turn-frames">
+                    <figure class="turn-frame" data-turn="2">
+                        <img src="../../../images/Ski_Form/turn_02.jpg" alt="Turn 2, a right turn, with the pose overlay" loading="lazy">
+                        <figcaption class="mono">T02 &middot; RIGHT</figcaption>
+                    </figure>
+                    <figure class="turn-frame" data-turn="3">
+                        <img src="../../../images/Ski_Form/turn_03.jpg" alt="Turn 3, a left turn, with the pose overlay" loading="lazy">
+                        <figcaption class="mono">T03 &middot; LEFT</figcaption>
+                    </figure>
+                    <figure class="turn-frame" data-turn="4">
+                        <img src="../../../images/Ski_Form/turn_04.jpg" alt="Turn 4, a right turn, with the pose overlay" loading="lazy">
+                        <figcaption class="mono">T04 &middot; RIGHT</figcaption>
+                    </figure>
+                    <figure class="turn-frame" data-turn="5">
+                        <img src="../../../images/Ski_Form/turn_05.jpg" alt="Turn 5, a left turn, with the pose overlay" loading="lazy">
+                        <figcaption class="mono">T05 &middot; LEFT</figcaption>
+                    </figure>
+                    <span class="viz-tag mono">REAL OUTPUT</span>
+                </div>
+                <div class="card-right">
+                    <h3>Night Run Overlay</h3>
+                    <p class="card-body">A 29-second night run, filmed on a 360&deg; camera. The pipeline tracked the skier through the run, drew the pose skeleton and the center of mass, and split the run into turns. The clip above shows 16 seconds of it, and these frames are the turns in that clip.</p>
+                    <dl class="stats">
+                        <div><dt class="mono muted">TURNS FOUND</dt><dd>9</dd></div>
+                        <div><dt class="mono muted">DURATION</dt><dd>29 s</dd></div>
+                        <div><dt class="mono muted">FRAMES</dt><dd>871</dd></div>
+                        <div><dt class="mono muted">AVG. CONFIDENCE</dt><dd>0.90</dd></div>
+                    </dl>
+                    <div class="turn-strip" aria-hidden="true"><i class="turn-head"></i></div>
+                    <div class="card-foot"><span class="mono muted">NOW</span><span class="mono turn-now">&mdash;</span></div>
+                </div>
+            </article>
         </section>
 
         <!-- Pipeline stages -->
@@ -210,32 +217,6 @@
                 </article>
             </section>
         </div>
-
-        <!-- Real pipeline output -->
-        <section class="sample" id="real-run">
-            <article class="card">
-                <div class="card-left">
-                    <h2>From a real run.</h2>
-                    <p class="card-label mono">SAMPLE &mdash; PIPELINE OUTPUT</p>
-                </div>
-                <div class="card-visual sample-visual">
-                    <video class="sample-video" src="../../../images/Ski_Form/sample_run.mp4" poster="../../../images/Ski_Form/sample_run_poster.jpg" muted loop playsinline preload="metadata" aria-label="Night ski run with the pipeline overlay: a tracking box, a pose skeleton, the center of mass and turn labels"></video>
-                    <span class="viz-tag mono">REAL OUTPUT</span>
-                </div>
-                <div class="card-right">
-                    <h3>Night Run Overlay</h3>
-                    <p class="card-body">A 29-second night run, filmed on a 360&deg; camera. The pipeline tracked the skier through the run, drew the pose skeleton and the center of mass, and split the run into turns. The clip shows 16 seconds of it.</p>
-                    <dl class="stats">
-                        <div><dt class="mono muted">TURNS FOUND</dt><dd>9</dd></div>
-                        <div><dt class="mono muted">DURATION</dt><dd>29 s</dd></div>
-                        <div><dt class="mono muted">FRAMES</dt><dd>871</dd></div>
-                        <div><dt class="mono muted">AVG. CONFIDENCE</dt><dd>0.90</dd></div>
-                    </dl>
-                    <div class="turn-strip" aria-hidden="true"><i class="turn-head"></i></div>
-                    <div class="card-foot"><span class="mono muted">NOW</span><span class="mono turn-now">&mdash;</span></div>
-                </div>
-            </article>
-        </section>
 
         <!-- Closing -->
         <section class="outro">

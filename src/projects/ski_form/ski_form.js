@@ -499,30 +499,6 @@ const visuals = {
     },
 };
 
-/* ---------- Hero skier ---------- */
-
-function heroSkier() {
-    const g = document.getElementById('hero-skier');
-    if (!g) return null;
-    const skier = createSkeleton(g, { headFill: '#a9bcc7', width: 1.2, r: 1.5 });
-    const svg = g.ownerSVGElement;
-    const box = cornerBrackets(svg, { stroke: LIME, 'stroke-width': 3 });
-    const label = svgEl('g', {}, svg);
-    svgEl('rect', { width: 150, height: 26, rx: 3, fill: LIME }, label);
-    const text = svgText(label, 10, 17.5, '', { 'font-size': 13 });
-    const [tx, ty, s] = [560, 170, 2.6];
-
-    return t => {
-        const p = poseAt(t * 0.9);
-        skier.set(p);
-        const b = poseBounds(p);
-        const x0 = tx + b.x0 * s, y0 = ty + b.y0 * s;
-        setBrackets(box, x0, y0, tx + b.x1 * s, ty + b.y1 * s, 20);
-        label.setAttribute('transform', `translate(${x0} ${y0 - 36})`);
-        text.textContent = `SKIER · ${(0.96 + 0.02 * Math.sin(t * 5)).toFixed(2)}`;
-    };
-}
-
 /* ---------- Wiring ---------- */
 
 const stages = [...document.querySelectorAll('.stage')];
@@ -549,8 +525,6 @@ stages.forEach((stage, i) => {
 const thumbLinks = [...thumbs.children];
 
 const renderers = [];
-const hero = heroSkier();
-if (hero) renderers.push({ el: document.querySelector('.hero'), draw: hero, visible: true, start: 0 });
 document.querySelectorAll('.viz').forEach(svg => {
     const make = visuals[svg.dataset.viz];
     if (make) renderers.push({ el: svg, draw: make(svg), visible: false, start: 0 });
@@ -591,9 +565,10 @@ const SAMPLE_TURNS = [
 ];
 
 function sampleRun() {
-    const video = document.querySelector('.sample-video');
+    const video = document.querySelector('.run-video');
     const strip = document.querySelector('.turn-strip');
     const now = document.querySelector('.turn-now');
+    const frames = [...document.querySelectorAll('.turn-frame')];
     if (!video || !strip) return;
     const head = strip.querySelector('.turn-head');
     let marks = [];
@@ -618,6 +593,7 @@ function sampleRun() {
         let current = null;
         marks.forEach(m => { if (m.t <= video.currentTime) current = m; });
         marks.forEach(m => m.el.classList.toggle('is-current', m === current));
+        frames.forEach(f => f.classList.toggle('is-current', current && Number(f.dataset.turn) === current.n));
         now.textContent = current
             ? `TURN ${String(current.n).padStart(2, '0')} OF ${String(SAMPLE_TURNS.length).padStart(2, '0')} · ${current.dir.toUpperCase()}`
             : '—';
@@ -632,17 +608,25 @@ function sampleRun() {
         if (!video.paused) requestAnimationFrame(tick);
     }
     video.addEventListener('play', () => requestAnimationFrame(tick));
+}
 
+// Clips play only while they are on screen, and never on their own with reduced motion.
+document.querySelectorAll('video[data-autoplay]').forEach(video => {
     if (reduceMotion) {
-        video.controls = true;
+        if (!video.hasAttribute('aria-hidden')) video.controls = true;
         return;
     }
-    // Only play while the clip is on screen.
-    new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) video.play().catch(() => { video.controls = true; });
+    // The real-run card follows the hero clip, so keep the clip playing while either is on screen.
+    const targets = [video];
+    if (video.classList.contains('run-video')) targets.push(document.getElementById('real-run'));
+    const onScreen = new Set();
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => (e.isIntersecting ? onScreen.add(e.target) : onScreen.delete(e.target)));
+        if (onScreen.size) video.play().catch(() => { video.controls = true; });
         else video.pause();
-    }, { threshold: 0.25 }).observe(video);
-}
+    }, { threshold: 0.1 });
+    targets.filter(Boolean).forEach(t => io.observe(t));
+});
 
 sampleRun();
 
