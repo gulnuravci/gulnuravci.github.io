@@ -8,46 +8,108 @@
     <link rel="shortcut icon" href="images/favicon/star-favicon.png">
     <link rel="apple-touch-icon" href="images/favicon/star-favicon.png">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
-    <img class = "header-image" src="gifs/cute_cat.webp"> 
-    <h1>Gülnur Zehra Avcı</h1>
-    <p>Columbia University 2023 - B.S Electrical Engineering</p>
-    <p>Product Engineer at <a href="https://www.qawolf.com/">QA Wolf</a></p>
-    <h2>Projects</h3>
-    <ul>
-        <li><a href="src/projects/flight_logger/flight_logger.html">Flight Logger (in development)</a></li>
-        <li><a href="src/projects/ski_form/ski_form.html">Ski Form (in development)</a></li>
-        <li><a href="https://www.meta.com/experiences/jolleen/30343173325327721/">🌟Jolleen🌟</a></li>
-        <li><a href="src/projects/reddit_sentiment_analysis/reddit_sentiment_analysis.html">Reddit Sentiment Analysis</a></li>
-        <li><a href="src/projects/led_display/led_display.html">LED Display</a></li>
-        <li><a href="src/projects/spongebob_character_classifier/spongebob_classifier.html">Spongebob Character Classifier</a></li>
-    </ul>
-    <h2>Art</h2>
-    <ul>
-        <li><a href="src/art/closet/">My Closet</a></li>
-        <li><a href="src/art/photography/photography.html">Photography</a></li>
-        <li><a href="src/art/murals.html">Murals</a></li>
-        <li><a href="src/art/sewing/sewing.html">Sewing</a></li>
-    </ul>
-    <h2>Idea Prototypes</h2>
-    <ul>
-        <li><a href="src/prototypes/phonetic-alphabet-game/">Phonetic Alphabet Game</a></li>
-    </ul>
-    <h2>Publications</h2>
-    <ul>
-        <li><a href="pdfs/research-paper.pdf">Outdoor-to-Indoor 28 GHz Wireless Measurements in Manhattan: Path Loss, Environmental Effects, and 90% Coverage</a></li>
-    </ul>
-    <h2>Internships</h2>
-    <ul>
-        <li><a href="pdfs/nasa-final-report.pdf">NASA Glenn Research Center</a></li>
-        <li>HRL Laboratories - RF and mmWave Systems</a></li>
-    </ul>
-    <h2>Links</h2>
-    <ul>
-        <li><a href="https://www.linkedin.com/in/gulnuravci/">Linkedin</a></li>
-        <li><a href="https://github.com/gulnuravci">GitHub</a></li>
-        <li><a href="https://motley-tennis-c9a.notion.site/Competitive-Programmer-s-Handbook-25bef85555a9807c8d22d25b3fd24f42?source=copy_link">DSA Guide</a></li>
-    </ul>
+    <main class="home">
+        <header class="intro">
+            <img class="header-image" src="gifs/cute_cat.webp" alt="">
+            <div>
+                <h1>Gülnur Zehra Avcı</h1>
+                <p>Columbia University 2023 - B.S Electrical Engineering</p>
+                <p>Product Engineer at <a href="https://www.qawolf.com/">QA Wolf</a></p>
+            </div>
+        </header>
+
+        <h2 class="section-label">Featured</h2>
+        <section class="featured">
+            <a class="feature-card" href="src/projects/flight_logger/flight_logger.html">
+                <div class="feature-media">
+                    <img src="images/Flight_Logger/flight_logger_cover.jpg" alt="A small trainer airplane over the words: Glass cockpits record every flight. The trainers students rent do not.">
+                    <span class="feature-tag">IN DEVELOPMENT</span>
+                </div>
+                <div class="feature-body">
+                    <h3>Flight Logger</h3>
+                    <p>An automatic flight coach for student pilots.</p>
+                </div>
+            </a>
+            <a class="feature-card" href="src/projects/ski_form/ski_form.html">
+                <div class="feature-media">
+                    <video src="images/Ski_Form/sample_run.mp4" poster="images/Ski_Form/sample_run_poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Night ski run with a pose skeleton overlay"></video>
+                    <span class="feature-tag">IN DEVELOPMENT</span>
+                </div>
+                <div class="feature-body">
+                    <h3>Ski Form</h3>
+                    <p>Computer vision that turns ski footage into technique feedback.</p>
+                </div>
+            </a>
+            <a class="feature-card" href="https://www.meta.com/experiences/jolleen/30343173325327721/">
+                <div class="feature-media">
+                    <img src="images/Jolleen/jolleen_cover.jpg" alt="Jolleen, a green elf, in a sky of low-poly clouds">
+                    <span class="feature-tag">ON META QUEST</span>
+                </div>
+                <div class="feature-body">
+                    <h3>🌟Jolleen🌟</h3>
+                    <p>Talk to an AI friend in a peaceful VR forest.</p>
+                </div>
+            </a>
+            <a class="feature-card" href="src/art/closet/">
+                <div class="feature-media">
+                    <img src="images/Fashion/closet_card.jpg" alt="Camo pleated mini skirt on the 3D dress form">
+                    <span class="feature-tag">3D &middot; DRAG TO SPIN</span>
+                </div>
+                <div class="feature-body">
+                    <h3>My Closet</h3>
+                    <p>Things I made, on a dress form you can spin.</p>
+                </div>
+            </a>
+        </section>
+
+        <div class="index-grid">
+            <section>
+                <h2>Projects</h2>
+                <ul>
+                    <li><a href="src/projects/flight_logger/flight_logger.html">Flight Logger (in development)</a></li>
+                    <li><a href="src/projects/ski_form/ski_form.html">Ski Form (in development)</a></li>
+                    <li><a href="https://www.meta.com/experiences/jolleen/30343173325327721/">🌟Jolleen🌟</a></li>
+                    <li><a href="src/projects/reddit_sentiment_analysis/reddit_sentiment_analysis.html">Reddit Sentiment Analysis</a></li>
+                    <li><a href="src/projects/led_display/led_display.html">LED Display</a></li>
+                    <li><a href="src/projects/spongebob_character_classifier/spongebob_classifier.html">Spongebob Character Classifier</a></li>
+                </ul>
+            </section>
+            <section>
+                <h2>Art</h2>
+                <ul>
+                    <li><a href="src/art/closet/">My Closet</a></li>
+                    <li><a href="src/art/photography/photography.html">Photography</a></li>
+                    <li><a href="src/art/murals.html">Murals</a></li>
+                    <li><a href="src/art/sewing/sewing.html">Sewing</a></li>
+                </ul>
+                <h2>Idea Prototypes</h2>
+                <ul>
+                    <li><a href="src/prototypes/phonetic-alphabet-game/">Phonetic Alphabet Game</a></li>
+                </ul>
+            </section>
+            <section>
+                <h2>Internships</h2>
+                <ul>
+                    <li><a href="pdfs/nasa-final-report.pdf">NASA Glenn Research Center</a></li>
+                    <li>HRL Laboratories - RF and mmWave Systems</li>
+                </ul>
+                <h2>Links</h2>
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/gulnuravci/">Linkedin</a></li>
+                    <li><a href="https://github.com/gulnuravci">GitHub</a></li>
+                    <li><a href="https://motley-tennis-c9a.notion.site/Competitive-Programmer-s-Handbook-25bef85555a9807c8d22d25b3fd24f42?source=copy_link">DSA Guide</a></li>
+                </ul>
+            </section>
+            <section class="wide">
+                <h2>Publications</h2>
+                <ul>
+                    <li><a href="pdfs/research-paper.pdf">Outdoor-to-Indoor 28 GHz Wireless Measurements in Manhattan: Path Loss, Environmental Effects, and 90% Coverage</a></li>
+                </ul>
+            </section>
+        </div>
+    </main>
 </body>
 </html>
