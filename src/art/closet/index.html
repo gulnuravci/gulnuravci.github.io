@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Closet</title>
+    <link rel="icon" type="image/png" href="../../../images/favicon/star-favicon.png">
+    <link rel="shortcut icon" href="../../../images/favicon/star-favicon.png">
+    <link rel="apple-touch-icon" href="../../../images/favicon/star-favicon.png">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="stylesheet" href="css/closet.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <a class="back-link" href="../../../index.html">← Back</a>
+    <img class="header-image" src="../../../gifs/sewing.webp" alt="">
+    <h1>My Closet</h1>
+    <p class="closet-intro">Things I made. Pick something off the rail, then drag the dress form to spin it. Flick it hard (or hit twirl) to see the fabric fly.</p>
+
+    <main class="closet">
+        <section class="stage" id="stage">
+            <canvas id="stage-canvas" tabindex="0" aria-label="3D dress form. Drag or use the arrow keys to spin it."></canvas>
+            <p class="stage-hint" id="stage-hint">⟵ drag to spin ⟶</p>
+            <p class="stage-status" id="stage-status" hidden></p>
+            <button class="twirl-button" id="twirl" type="button">Twirl!</button>
+        </section>
+
+        <aside class="tag" id="tag" aria-live="polite">
+            <h2 id="tag-name"></h2>
+            <p class="tag-details" id="tag-details"></p>
+            <p id="tag-description"></p>
+        </aside>
+
+        <section class="rail-wrap" aria-label="Clothing rail">
+            <ul class="rail" id="rail"></ul>
+        </section>
+    </main>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
