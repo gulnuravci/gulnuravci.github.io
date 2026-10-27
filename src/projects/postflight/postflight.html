@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gulnur Avci | Projects | Postflight</title>
+    <meta name="description" content="Postflight: an automatic flight coach for student pilots. A small box on the glare shield records the flight, and the phone grades it against FAA training standards. In development.">
+    <link rel="icon" type="image/png" href="../../../images/favicon/star-favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="postflight.css">
+</head>
+<body>
+
+    <!-- Floating pill navigation -->
+    <header class="nav" id="nav">
+        <button class="nav-menu" id="menu-toggle" aria-expanded="false" aria-controls="drawer">
+            <span class="nav-menu-icon" aria-hidden="true"><span></span><span></span></span>
+            <span class="nav-menu-label">Menu</span>
+        </button>
+        <a class="nav-mark" href="#top" aria-label="Postflight, back to top">
+            <svg viewBox="0 0 32 20" aria-hidden="true"><path d="M2 14 L16 4 L30 14" /><path d="M9 16 L16 11 L23 16" /></svg>
+            <span>Postflight</span>
+        </a>
+        <a class="nav-link" href="../../../index.html">Portfolio <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <!-- Drawer navigation -->
+    <div class="drawer" id="drawer" aria-hidden="true">
+        <div class="drawer-bands" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="drawer-panel">
+            <div class="drawer-small">
+                <a href="../../../index.html">Portfolio</a>
+                <a href="https://github.com/gulnuravci">GitHub</a>
+                <a href="https://www.linkedin.com/in/gulnuravci/">LinkedIn</a>
+                <p class="drawer-note">Temporary preview. Full site in development.</p>
+            </div>
+            <nav class="drawer-big" aria-label="Sections">
+                <a href="#problem">The problem</a>
+                <a href="#how">How it works</a>
+                <a href="#debrief">The debrief</a>
+                <a href="#engineering">Engineering</a>
+                <a href="#roadmap">Roadmap</a>
+            </nav>
+        </div>
+    </div>
+
+    <main id="top">
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="sky" aria-hidden="true">
+                <div class="cloud c1"></div>
+                <div class="cloud c2"></div>
+                <div class="cloud c3"></div>
+                <svg class="hero-track" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+                    <path id="hero-path" d="M-60 720 C 220 690, 380 560, 620 520 S 1040 470, 1200 330 S 1500 160, 1700 140" />
+                    <circle r="5" class="hero-dot">
+                        <animateMotion dur="14s" repeatCount="indefinite" rotate="auto"><mpath href="#hero-path" /></animateMotion>
+                    </circle>
+                </svg>
+                <div class="grain"></div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-left">
+                    <p class="tag"><span class="tag-dot"></span>In development</p>
+                    <h1>Every lesson,<br>debriefed.</h1>
+                    <div class="pills">
+                        <a class="pill pill-light" href="#how">See how it works</a>
+                        <a class="pill pill-ghost" href="#debrief">The debrief</a>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <p><strong>An automatic flight coach for student pilots.</strong> A small box on the glare shield records the flight. After landing, your phone grades it against the FAA's own training standards.</p>
+                    <dl class="hud" aria-label="Simulated live readout">
+                        <div><dt>ALT</dt><dd id="hud-alt">3,500</dd><span>ft</span></div>
+                        <div><dt>GS</dt><dd id="hud-gs">98</dd><span>kt</span></div>
+                        <div><dt>HDG</dt><dd id="hud-hdg">240</dd><span>°</span></div>
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem: scroll-reveal statement + stats -->
+        <section class="section problem" id="problem">
+            <div class="rule-label"><span>The problem</span></div>
+            <p class="statement" data-reveal-words>Learning to fly is expensive, and most of the feedback after a lesson is the instructor's memory of the flight. A student hears “your turns were a bit sloppy” but cannot see which turns, by how much, or whether they are getting better.</p>
+
+            <div class="stats">
+                <div class="stat">
+                    <p class="stat-label">Things it records</p>
+                    <p class="stat-value"><span data-count="5">5</span></p>
+                    <p class="stat-note">Motion, altitude, heading, GPS position, nearby traffic</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-label">ACS altitude standard it grades against</p>
+                    <p class="stat-value">±<span data-count="100">100</span><small>ft</small></p>
+                    <p class="stat-note">FAA Airman Certification Standards</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-label">Wires to the airplane</p>
+                    <p class="stat-value"><span data-count="0">0</span></p>
+                    <p class="stat-note">Battery powered. Works in any airplane.</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-label">Internet needed at the airport</p>
+                    <p class="stat-value"><span data-count="0">0</span></p>
+                    <p class="stat-note">The box makes its own Wi-Fi network</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The gap: sky band -->
+        <section class="gap" aria-labelledby="gap-title">
+            <div class="gap-sky" aria-hidden="true">
+                <svg class="trainer" viewBox="0 0 120 44">
+                    <!-- generic high-wing trainer, side view -->
+                    <path d="M8 22 L14 21 L40 20 L52 18 L88 18 L104 20 L112 24 L104 27 L80 29 L40 28 L14 26 Z" />
+                    <path d="M40 18 L46 15 L92 15 L94 18 Z" />
+                    <path d="M6 22 L2 10 L10 10 L18 21 Z" />
+                    <path d="M60 28 L58 38 M84 28 L86 38 M70 19 L64 15" class="trainer-line" />
+                    <circle cx="58" cy="39" r="2.5" /><circle cx="86" cy="39" r="2.5" />
+                </svg>
+                <div class="grain"></div>
+            </div>
+            <div class="gap-row">
+                <p class="gap-kicker"><span class="num-dot">1</span>The gap</p>
+                <h2 id="gap-title">Glass cockpits record every flight. The trainers students rent do not.</h2>
+                <p class="gap-body">Newer airplanes can log flight data. The older trainers that flight schools rent out, the ones students can afford to fly, have no such instrumentation. Postflight closes that gap with a low-cost box that works in any airplane.</p>
+            </div>
+        </section>
+
+        <!-- How it works: pinned scroll -->
+        <section class="features" id="how" style="--steps: 3">
+            <div class="features-sticky">
+                <div class="features-progress" aria-hidden="true">
+                    <span class="active"></span><span></span><span></span>
+                </div>
+
+                <div class="features-media">
+                    <!-- 01 In the cockpit: form factor, side view -->
+                    <figure class="panel active" data-step="0">
+                        <svg viewBox="0 0 600 640" preserveAspectRatio="xMidYMid meet" class="cockpit-svg">
+                            <rect x="0" y="430" width="600" height="210" class="glare" />
+                            <line x1="20" y1="450" x2="430" y2="50" class="windshield" />
+                            <line x1="560" y1="200" x2="40" y2="335" class="sightline" />
+                            <circle cx="560" cy="200" r="6" class="eye" />
+                            <g class="sky-rays">
+                                <line x1="205" y1="350" x2="160" y2="250" />
+                                <line x1="225" y1="350" x2="190" y2="240" />
+                                <line x1="245" y1="350" x2="220" y2="232" />
+                            </g>
+                            <rect x="160" y="356" width="240" height="74" rx="12" class="device" />
+                            <rect x="190" y="351" width="60" height="5" rx="2" class="gps" />
+                            <line x1="384" y1="356" x2="384" y2="262" class="whip" />
+                            <circle cx="384" cy="262" r="3.5" class="whip-tip" />
+                            <circle cx="372" cy="398" r="4" class="led" />
+                            <text x="230" y="400" class="svg-label start">Postflight</text>
+                            <text x="300" y="470" class="svg-label start">Glare shield</text>
+                            <text x="246" y="148" class="svg-label start" transform="rotate(-44 246 148)">Windshield</text>
+                            <text x="96" y="236" class="svg-label start">Sky view for GPS</text>
+                            <text x="396" y="290" class="svg-label start">ADS-B antenna</text>
+                            <text x="470" y="180" class="svg-label start">Pilot's view</text>
+                        </svg>
+                        <figcaption>Fig. 2.1 &nbsp; On the glare shield, side view. Not to scale.</figcaption>
+                    </figure>
+                    <!-- 02 After landing: phone debrief -->
+                    <figure class="panel" data-step="1">
+                        <svg viewBox="0 0 600 640" preserveAspectRatio="xMidYMid meet" class="phone-svg">
+                            <rect x="170" y="40" width="260" height="560" rx="38" class="phone" />
+                            <line x1="270" y1="64" x2="330" y2="64" class="phone-notch" />
+                            <text x="194" y="112" class="ph-title">Pattern work, RWY 24</text>
+                            <text x="194" y="134" class="ph-meta">30 min · 1,440 ft · 99 kt · 16 turns</text>
+                            <g class="grade" transform="translate(194 160)">
+                                <rect width="212" height="96" rx="12" />
+                                <text x="16" y="28" class="ph-label">Altitude keeping</text>
+                                <text x="16" y="72" class="ph-value">±23 ft</text>
+                                <rect x="150" y="14" width="46" height="20" rx="10" class="pill-pass" />
+                                <text x="173" y="28" class="ph-pill">Pass</text>
+                            </g>
+                            <g class="grade" transform="translate(194 270)">
+                                <rect width="212" height="96" rx="12" />
+                                <text x="16" y="28" class="ph-label">Coordinated turns</text>
+                                <text x="16" y="72" class="ph-value">86%</text>
+                                <rect x="138" y="14" width="58" height="20" rx="10" class="pill-warn" />
+                                <text x="167" y="28" class="ph-pill dark">Review</text>
+                            </g>
+                            <g class="grade" transform="translate(194 380)">
+                                <rect width="212" height="96" rx="12" />
+                                <text x="16" y="28" class="ph-label">Smoothness</text>
+                                <text x="16" y="72" class="ph-value">8.4/10</text>
+                                <rect x="150" y="14" width="46" height="20" rx="10" class="pill-pass" />
+                                <text x="173" y="28" class="ph-pill">Pass</text>
+                            </g>
+                            <path d="M194 540 C 240 500, 280 560, 320 520 S 380 500, 406 530" class="ph-track" />
+                            <g class="wifi" transform="translate(500 120)">
+                                <path d="M-22 -6 a 32 32 0 0 1 44 0" /><path d="M-14 3 a 20 20 0 0 1 28 0" /><circle cx="0" cy="12" r="3" />
+                            </g>
+                            <text x="500" y="160" class="svg-label">Device Wi-Fi</text>
+                        </svg>
+                        <figcaption>Fig. 2.2 &nbsp; Debrief from a simulated pattern flight</figcaption>
+                    </figure>
+                    <!-- 03 Over time: progress -->
+                    <figure class="panel" data-step="2">
+                        <svg viewBox="0 0 600 640" preserveAspectRatio="xMidYMid meet" class="trend-svg">
+                            <g class="trend" transform="translate(80 80)">
+                                <rect width="440" height="140" rx="14" />
+                                <text x="22" y="34" class="ph-label">Coordinated turns</text>
+                                <text x="22" y="92" class="ph-value">72% → 86%</text>
+                                <polyline points="270,110 300,96 330,100 360,74 390,66 418,44" class="spark up" />
+                            </g>
+                            <g class="trend" transform="translate(80 250)">
+                                <rect width="440" height="140" rx="14" />
+                                <text x="22" y="34" class="ph-label">Altitude keeping</text>
+                                <text x="22" y="92" class="ph-value">±61 → ±23 ft</text>
+                                <polyline points="270,50 300,62 330,58 360,84 390,92 418,106" class="spark" />
+                            </g>
+                            <g class="trend" transform="translate(80 420)">
+                                <rect width="440" height="140" rx="14" />
+                                <text x="22" y="34" class="ph-label">Clean level-offs</text>
+                                <text x="22" y="92" class="ph-value">1 of 3 → 3 of 3</text>
+                                <polyline points="270,104 300,104 330,80 360,80 390,56 418,46" class="spark up" />
+                            </g>
+                            <text x="80" y="600" class="svg-label start">Lesson 1</text>
+                            <text x="520" y="600" class="svg-label end">Lesson 6</text>
+                        </svg>
+                        <figcaption>Fig. 2.3 &nbsp; Progress across lessons. Illustrative.</figcaption>
+                    </figure>
+                </div>
+
+                <p class="features-kicker">How it works</p>
+
+                <div class="features-copy">
+                    <article class="step active" data-step="0">
+                        <p class="step-num">01 &nbsp; In the cockpit</p>
+                        <h2>Set it on the glare shield. Fly the lesson.</h2>
+                        <p class="step-body">Press one button and fly. The box records how the airplane moves, its altitude, heading and GPS position, and the other aircraft nearby. It needs nothing from the airplane: no power, no wiring, no modification.</p>
+                    </article>
+                    <article class="step" data-step="1">
+                        <p class="step-num">02 &nbsp; After landing</p>
+                        <h2>Debrief on the ramp.</h2>
+                        <p class="step-body">Your phone joins the box's own Wi-Fi, copies the flight and grades it against the FAA's training standards. Did you hold altitude within 100 feet? Were your turns coordinated? Did you level off cleanly? No internet at the airport required.</p>
+                    </article>
+                    <article class="step" data-step="2">
+                        <p class="step-num">03 &nbsp; Over time</p>
+                        <h2>See yourself get better.</h2>
+                        <p class="step-body">Flights go to your account when the phone has a connection. Track whether your coordination, altitude control and landings improve across weeks of training. Instructors can follow all of their students.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- The debrief: tabs + aviation figures -->
+        <section class="section technical" id="debrief">
+            <div class="rule-label section-head"><span>The debrief</span></div>
+            <h2 class="section-title">Graded the way a checkride is graded.</h2>
+            <div class="tech-grid">
+                <div class="tech-tabs" role="tablist" aria-label="Debrief">
+                    <button role="tab" aria-selected="true" aria-controls="tp-0" id="tab-0">Altitude</button>
+                    <button role="tab" aria-selected="false" aria-controls="tp-1" id="tab-1" tabindex="-1">Coordination</button>
+                    <button role="tab" aria-selected="false" aria-controls="tp-2" id="tab-2" tabindex="-1">Level-offs</button>
+                    <button role="tab" aria-selected="false" aria-controls="tp-3" id="tab-3" tabindex="-1">Pattern</button>
+                    <button role="tab" aria-selected="false" aria-controls="tp-4" id="tab-4" tabindex="-1">Traffic</button>
+                </div>
+
+                <!-- Altitude -->
+                <div class="tech-panel active" role="tabpanel" id="tp-0" aria-labelledby="tab-0">
+                    <p class="fig-caption"><span>Fig. 3.1</span>Altitude keeping in cruise, simplified</p>
+                    <svg class="blueprint" viewBox="0 0 800 420">
+                        <rect x="80" y="130" width="680" height="160" class="band-fill" />
+                        <path class="draw dashed" pathLength="1" d="M80 130 H760 M80 290 H760" />
+                        <path class="draw" pathLength="1" d="M80 210 H760" />
+                        <text x="70" y="134" class="bp-sub end">+100 ft</text>
+                        <text x="70" y="214" class="bp-label end">Target</text>
+                        <text x="70" y="294" class="bp-sub end">−100 ft</text>
+                        <path class="draw thick" pathLength="1" d="M80 214 C 120 196, 150 190, 190 205 S 250 232, 290 220 S 350 180, 400 196 S 470 240, 500 262 S 540 312, 566 300 S 610 240, 650 214 S 720 196, 760 208" />
+                        <circle cx="552" cy="306" r="18" class="draw" pathLength="1" />
+                        <text x="580" y="350" class="bp-label start">Worst moment, shown on the map</text>
+                        <path class="draw" pathLength="1" d="M80 380 H760" />
+                        <text x="760" y="404" class="bp-sub end">time →</text>
+                    </svg>
+                    <table class="spec">
+                        <tr><th>Standard</th><td>FAA ACS: hold altitude within ±100 ft</td></tr>
+                        <tr><th>Measured with</th><td>Barometer, set to the local altimeter setting from the airport's weather report</td></tr>
+                        <tr><th>In the debrief</th><td>Deviation over the flight, and the worst moment on the map</td></tr>
+                        <tr><th>Example</th><td>±23 ft, Pass</td></tr>
+                    </table>
+                </div>
+
+                <!-- Coordination: turn coordinator -->
+                <div class="tech-panel" role="tabpanel" id="tp-1" aria-labelledby="tab-1" hidden>
+                    <p class="fig-caption"><span>Fig. 3.2</span>The turn coordinator: keep the ball centered</p>
+                    <svg class="blueprint" viewBox="0 0 800 420">
+                        <circle class="draw" pathLength="1" cx="400" cy="210" r="180" />
+                        <circle class="draw faint" pathLength="1" cx="400" cy="210" r="164" />
+                        <path class="draw" pathLength="1" d="M248 210 H272 M528 210 H552 M254 252 L277 246 M546 252 L523 246" />
+                        <text x="262" y="196" class="bp-sub">L</text>
+                        <text x="538" y="196" class="bp-sub">R</text>
+                        <g class="bank">
+                            <path class="draw thick" pathLength="1" d="M296 222 L504 186" />
+                            <circle class="draw thick" pathLength="1" cx="400" cy="204" r="16" />
+                            <path class="draw thick" pathLength="1" d="M400 188 V170" />
+                        </g>
+                        <path class="draw" pathLength="1" d="M300 300 Q 400 350 500 300 M306 324 Q 400 374 494 324 M300 300 L306 324 M500 300 L494 324" />
+                        <path class="draw" pathLength="1" d="M386 318 V346 M414 318 V346" />
+                        <circle cx="400" cy="331" r="11" class="ball" />
+                        <text x="400" y="108" class="bp-sub">2 MIN</text>
+                        <text x="400" y="128" class="bp-sub">TURN COORDINATOR</text>
+                        <text x="640" y="320" class="bp-label start">Ball centered</text>
+                        <text x="640" y="340" class="bp-sub start">= coordinated turn</text>
+                        <path class="draw faint" pathLength="1" d="M420 331 H630" />
+                    </svg>
+                    <table class="spec">
+                        <tr><th>Standard</th><td>Coordinated flight: the ball stays centered in every turn</td></tr>
+                        <tr><th>Measured with</th><td>Side force from the motion sensor</td></tr>
+                        <tr><th>In the debrief</th><td>Each turn graded. Left turns compared with right turns.</td></tr>
+                        <tr><th>Example</th><td>86% of turn time coordinated, Review</td></tr>
+                    </table>
+                </div>
+
+                <!-- Level-offs -->
+                <div class="tech-panel" role="tabpanel" id="tp-2" aria-labelledby="tab-2" hidden>
+                    <p class="fig-caption"><span>Fig. 3.3</span>Climb to a target altitude and level off</p>
+                    <svg class="blueprint" viewBox="0 0 800 420">
+                        <rect x="80" y="110" width="680" height="120" class="band-fill" />
+                        <path class="draw dashed" pathLength="1" d="M80 110 H760 M80 230 H760" />
+                        <path class="draw" pathLength="1" d="M80 170 H760" />
+                        <text x="70" y="174" class="bp-label end">Target</text>
+                        <path class="draw thick" pathLength="1" d="M80 370 C 200 330, 290 240, 360 150 S 430 118, 470 140 S 520 176, 560 172 S 680 169, 760 170" />
+                        <circle cx="430" cy="122" r="14" class="draw" pathLength="1" />
+                        <text x="430" y="90" class="bp-label">Overshoot</text>
+                        <path class="draw faint" pathLength="1" d="M560 200 V300" />
+                        <text x="570" y="296" class="bp-label start">Settled</text>
+                        <text x="120" y="320" class="bp-sub start">Climb</text>
+                        <path class="draw" pathLength="1" d="M80 380 H760" />
+                        <text x="760" y="404" class="bp-sub end">time →</text>
+                    </svg>
+                    <table class="spec">
+                        <tr><th>Standard</th><td>Level off at the target altitude, within ±100 ft</td></tr>
+                        <tr><th>Measured with</th><td>Barometer and motion sensor</td></tr>
+                        <tr><th>In the debrief</th><td>Each level-off: the overshoot and the time to settle</td></tr>
+                    </table>
+                </div>
+
+                <!-- Traffic pattern -->
+                <div class="tech-panel" role="tabpanel" id="tp-3" aria-labelledby="tab-3" hidden>
+                    <p class="fig-caption"><span>Fig. 3.4</span>Left traffic, runway 24. Each circuit is found automatically.</p>
+                    <svg class="blueprint" viewBox="0 0 800 420">
+                        <rect class="draw" pathLength="1" x="190" y="96" width="380" height="28" />
+                        <path class="draw faint" pathLength="1" d="M220 110 H540" />
+                        <text x="208" y="114" class="bp-sub" transform="rotate(90 208 110)">06</text>
+                        <text x="552" y="114" class="bp-sub" transform="rotate(-90 552 110)">24</text>
+                        <path class="draw thick" pathLength="1" d="M520 110 H170 Q 110 110 110 170 V 320 Q 110 380 170 380 H 640 Q 700 380 700 320 V 170 Q 700 110 640 110 H 530" />
+                        <path class="draw" pathLength="1" d="M340 104 L330 110 L340 116 M110 250 L104 240 M116 240 L110 250 M420 374 L430 380 L420 386 M700 240 L694 250 M706 250 L700 240" />
+                        <text x="360" y="88" class="bp-label">Upwind</text>
+                        <text x="96" y="250" class="bp-label end">Crosswind</text>
+                        <text x="405" y="410" class="bp-label">Downwind, 1,000 ft above the field</text>
+                        <text x="714" y="250" class="bp-label start">Base</text>
+                        <text x="640" y="96" class="bp-label">Final</text>
+                        <circle cx="520" cy="110" r="6" class="ball" />
+                        <text x="500" y="150" class="bp-sub">Touchdown</text>
+                    </svg>
+                    <table class="spec">
+                        <tr><th>Found automatically</th><td>Each circuit, from takeoff to touchdown</td></tr>
+                        <tr><th>In the debrief</th><td>Takeoff, pattern altitude, approach and landing for each circuit</td></tr>
+                        <tr><th>Context</th><td>Nearby airports and their traffic patterns, from FAA data</td></tr>
+                    </table>
+                </div>
+
+                <!-- Traffic -->
+                <div class="tech-panel" role="tabpanel" id="tp-4" aria-labelledby="tab-4" hidden>
+                    <p class="fig-caption"><span>Fig. 3.5</span>Aircraft heard by the onboard ADS-B receiver</p>
+                    <svg class="blueprint" viewBox="0 0 800 420">
+                        <circle class="draw faint" pathLength="1" cx="400" cy="210" r="60" />
+                        <circle class="draw" pathLength="1" cx="400" cy="210" r="120" />
+                        <circle class="draw faint" pathLength="1" cx="400" cy="210" r="180" />
+                        <text x="404" y="84" class="bp-sub start">2 NM</text>
+                        <text x="404" y="24" class="bp-sub start">3 NM</text>
+                        <path class="draw thick" pathLength="1" d="M400 196 L410 222 L400 216 L390 222 Z" />
+                        <text x="400" y="244" class="bp-sub">You</text>
+                        <g class="target"><path class="draw" pathLength="1" d="M300 130 L310 120 L320 130 L310 140 Z" /><text x="330" y="128" class="bp-label start">+500 ft ↓</text></g>
+                        <g class="target"><path class="draw" pathLength="1" d="M520 270 L530 260 L540 270 L530 280 Z" /><text x="550" y="268" class="bp-label start">−300 ft ↑</text><text x="550" y="286" class="bp-sub start">Closest, 1.3 NM</text></g>
+                        <g class="target"><path class="draw" pathLength="1" d="M210 300 L220 290 L230 300 L220 310 Z" /><text x="240" y="298" class="bp-label start">+1,200 ft</text></g>
+                        <g class="target"><path class="draw" pathLength="1" d="M560 90 L570 80 L580 90 L570 100 Z" /><text x="590" y="88" class="bp-label start">−800 ft</text></g>
+                    </svg>
+                    <table class="spec">
+                        <tr><th>Source</th><td>Onboard ADS-B receiver, the position broadcasts of other aircraft</td></tr>
+                        <tr><th>In the debrief</th><td>Who was in the pattern with you, and how close they came</td></tr>
+                        <tr><th>Purpose</th><td>Debrief context, not a live cockpit traffic display</td></tr>
+                    </table>
+                </div>
+
+                <div class="tech-dots" aria-hidden="true"><span class="active"></span><span></span><span></span><span></span><span></span></div>
+            </div>
+        </section>
+
+        <!-- Why: founder statement + positioning -->
+        <section class="section why" id="why">
+            <div class="rule-label"><span>Why I am building it</span></div>
+            <p class="statement" data-reveal-words>I am a student pilot. My debriefs were short, because my instructor had to get to the next student. Stress made me forget parts of the flight. Postflight is the debrief I wanted after every lesson.</p>
+
+            <div class="not">
+                <p class="not-head">What it is not</p>
+                <div class="not-cols">
+                    <div class="not-col">
+                        <h3>Not an electronic flight bag</h3>
+                        <p>Planning, charts and weather already belong to ForeFlight and Garmin Pilot. Postflight works after the flight, not before it.</p>
+                    </div>
+                    <div class="not-col">
+                        <h3>Not a live traffic display</h3>
+                        <p>Traffic is debrief context: who was in the pattern with you. Nothing competes for the pilot's attention in flight.</p>
+                    </div>
+                    <div class="not-col">
+                        <h3>Not a certified flight recorder</h3>
+                        <p>It is a coaching tool, at a price and setup an individual student or a small flight school can adopt.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dark statement band -->
+        <section class="band" aria-labelledby="band-title">
+            <svg class="rose" viewBox="-300 -300 600 600" aria-hidden="true">
+                <circle r="280" /><circle r="220" /><circle r="140" class="faint" />
+                <g class="rose-ticks"></g>
+                <g class="rose-labels">
+                    <text y="-240">N</text><text x="240" y="5">E</text><text y="250">S</text><text x="-240" y="5">W</text>
+                    <text x="170" y="-164" class="minor">3</text><text x="170" y="174" class="minor">12</text><text x="-170" y="174" class="minor">21</text><text x="-170" y="-164" class="minor">33</text>
+                </g>
+            </svg>
+            <div class="band-content">
+                <div>
+                    <h2 id="band-title">From solder<br>to cloud.</h2>
+                    <a class="pill pill-light" href="#engineering">See the engineering</a>
+                </div>
+                <ul class="band-specs">
+                    <li>Hardware and enclosure</li>
+                    <li>Embedded C firmware</li>
+                    <li>React Native iPhone app</li>
+                    <li>AWS backend</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Engineering -->
+        <section class="section engineering" id="engineering">
+            <div class="rule-label section-head"><span>Engineering</span></div>
+            <h2 class="section-title">One flight, three places.</h2>
+
+            <div class="eng-figure">
+                <p class="fig-caption"><span>Fig. 5.1</span>Store and forward. The phone carries each flight to the cloud.</p>
+                <svg class="blueprint" viewBox="0 0 1000 260" id="fig-system">
+                    <rect class="draw" pathLength="1" x="20" y="70" width="220" height="120" rx="8" />
+                    <text x="130" y="118" class="bp-title">Device</text>
+                    <text x="130" y="146" class="bp-sub">records</text>
+                    <rect class="draw" pathLength="1" x="390" y="70" width="220" height="120" rx="8" />
+                    <text x="500" y="118" class="bp-title">Phone</text>
+                    <text x="500" y="146" class="bp-sub">carries, grades, shows</text>
+                    <rect class="draw" pathLength="1" x="760" y="70" width="220" height="120" rx="8" />
+                    <text x="870" y="118" class="bp-title">Cloud</text>
+                    <text x="870" y="146" class="bp-sub">keeps every flight</text>
+                    <path class="draw" pathLength="1" d="M240 115 H390 M380 109 L390 115 L380 121 M610 115 H760 M750 109 L760 115 L750 121" />
+                    <path class="draw dashed" pathLength="1" d="M240 155 H390" />
+                    <text x="315" y="100" class="bp-sub">own Wi-Fi, no internet</text>
+                    <text x="315" y="178" class="bp-sub">Bluetooth pairing</text>
+                    <text x="685" y="100" class="bp-sub">any connection</text>
+                    <path class="draw faint" pathLength="1" d="M60 20 L100 70 M160 20 L130 70" />
+                    <text x="60" y="14" class="bp-sub">GPS satellites</text>
+                    <text x="170" y="14" class="bp-sub">Aircraft, 1090 MHz</text>
+                </svg>
+            </div>
+
+            <div class="eng-cols">
+                <div class="eng-col">
+                    <h3>Hardware</h3>
+                    <table class="spec">
+                        <tr><th>Sensors</th><td>Motion, pressure altitude, compass, GPS, ADS-B receiver</td></tr>
+                        <tr><th>Power</th><td>Rechargeable battery</td></tr>
+                        <tr><th>Enclosure</th><td>Designed around the antennas and sensors. Radio-transparent, heat-resistant plastic for a sunny glare shield.</td></tr>
+                        <tr><th>Controls</th><td>One recessed button and a status light</td></tr>
+                        <tr><th>Next</th><td>First custom circuit board, in KiCad</td></tr>
+                    </table>
+                </div>
+                <div class="eng-col">
+                    <h3>Firmware</h3>
+                    <table class="spec">
+                        <tr><th>Language</th><td>C, no RTOS, one cooperative loop</td></tr>
+                        <tr><th>Storage</th><td>Append-only flight index with CRC-32, safe through power loss</td></tr>
+                        <tr><th>Network</th><td>Own Wi-Fi access point, HTTP API, Bluetooth LE</td></tr>
+                        <tr><th>Robustness</th><td>Keeps recording when a sensor fails, and retries it</td></tr>
+                        <tr><th>Tests</th><td>63 host tests with address and UB sanitizers</td></tr>
+                    </table>
+                </div>
+                <div class="eng-col">
+                    <h3>App</h3>
+                    <table class="spec">
+                        <tr><th>Stack</th><td>React Native and TypeScript, on iPhone</td></tr>
+                        <tr><th>Data</th><td>SQLite on the phone, sync engine with an outbox</td></tr>
+                        <tr><th>Analysis</th><td>On the phone, with no network: phases, turns, level-offs, landings, wind</td></tr>
+                        <tr><th>Maps</th><td>Flight path, traffic, airports and patterns</td></tr>
+                        <tr><th>Tests</th><td>186 unit tests</td></tr>
+                    </table>
+                </div>
+                <div class="eng-col">
+                    <h3>Cloud</h3>
+                    <table class="spec">
+                        <tr><th>Infrastructure</th><td>AWS CDK, defined as code</td></tr>
+                        <tr><th>Accounts</th><td>Cognito sign-in for each pilot</td></tr>
+                        <tr><th>API</th><td>API Gateway and Lambda</td></tr>
+                        <tr><th>Storage</th><td>S3 for flight logs, DynamoDB for the flight list</td></tr>
+                        <tr><th>Sync</th><td>Each step repeatable, a flight ID never reused</td></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap: pinned timeline -->
+        <section class="timeline" id="roadmap" style="--steps: 4">
+            <div class="timeline-sticky">
+                <div class="timeline-bg" aria-hidden="true"><div class="grain"></div></div>
+                <div class="timeline-row">
+                    <p class="timeline-kicker">Roadmap</p>
+                    <div class="timeline-years">
+                        <ol>
+                            <li class="active">Now</li>
+                            <li>Next</li>
+                            <li>Then</li>
+                            <li>Later</li>
+                        </ol>
+                    </div>
+                    <div class="timeline-copy">
+                        <article class="active">
+                            <p class="timeline-status">Bench tested</p>
+                            <h3>Working prototype</h3>
+                            <p>A breadboard prototype records every sensor and the traffic nearby. The iPhone app copies flights from the box and grades them.</p>
+                        </article>
+                        <article>
+                            <p class="timeline-status">In progress</p>
+                            <h3>Circuit board and first flights</h3>
+                            <p>The first custom circuit board and enclosure. Then the box flies on my own lessons, and each debrief is compared with what my instructor saw.</p>
+                        </article>
+                        <article>
+                            <p class="timeline-status">Planned</p>
+                            <h3>AI debrief</h3>
+                            <p>The debrief a good instructor would give: a few plain sentences and one thing to focus on next flight. Ask “why was my second landing hard?” Every answer points back to the measured data.</p>
+                        </article>
+                        <article>
+                            <p class="timeline-status">Planned</p>
+                            <h3>Progress and instructors</h3>
+                            <p>Trends across weeks of training, a dashboard for instructors, a full replay of nearby traffic, and Apple Watch heart rate to show where workload peaks.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-small">
+                <p>Temporary preview of a project in active development.</p>
+                <p>Debrief values are from a simulated training flight.</p>
+                <p>© 2026 Gülnur Zehra Avcı</p>
+            </div>
+            <div class="footer-cols">
+                <div>
+                    <p class="footer-head">Explore</p>
+                    <a href="#problem">The problem</a>
+                    <a href="#how">How it works</a>
+                    <a href="#debrief">The debrief</a>
+                    <a href="#engineering">Engineering</a>
+                    <a href="#roadmap">Roadmap</a>
+                </div>
+                <div>
+                    <p class="footer-head">Connect</p>
+                    <a href="../../../index.html">Portfolio</a>
+                    <a href="https://github.com/gulnuravci">GitHub</a>
+                    <a href="https://www.linkedin.com/in/gulnuravci/">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <a class="footer-mark" href="#top">
+                <svg viewBox="0 0 32 20" aria-hidden="true"><path d="M2 14 L16 4 L30 14" /><path d="M9 16 L16 11 L23 16" /></svg>
+                Postflight
+            </a>
+            <div class="footer-cta">
+                <p>Full site coming soon</p>
+                <a href="https://www.linkedin.com/in/gulnuravci/">Get in touch <span aria-hidden="true">→</span></a>
+            </div>
+        </div>
+        <div class="footer-shapes" aria-hidden="true">
+            <span class="s-navy"></span><span class="s-orange"></span><span class="s-sky"></span>
+        </div>
+    </footer>
+
+    <script src="postflight.js"></script>
+</body>
+</html>
