@@ -3,7 +3,7 @@ let currentLevel = 1;
 function setLevel(n) {
     clearInterval(l1HintTimer);
     currentLevel = n;
-    document.querySelectorAll('.level-btn').forEach((b, i) => b.classList.toggle('active', i === n - 1));
+    document.querySelectorAll('.level-btn').forEach(b => b.classList.toggle('active', b.dataset.level === String(n)));
     document.getElementById('level1-area').style.display = n === 1 ? 'block' : 'none';
     document.getElementById('level2-area').style.display = n === 2 ? 'block' : 'none';
     document.getElementById('level3-area').style.display = n === 3 ? 'block' : 'none';
@@ -111,4 +111,6 @@ document.addEventListener('keydown', function(e) {
 });
 
 renderSoundBtn();
-setLevel(1);
+// Open on Voice, the most fun level. Browsers without speech input (e.g. Firefox) open on Tail numbers.
+const speechSupported = !!(window.SpeechRecognition || window.webkitSpeechRecognition);
+setLevel(speechSupported ? 4 : 3);
