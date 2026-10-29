@@ -33,21 +33,69 @@ function setLevel(n) {
     }
 }
 
-function spawnConfetti() {
-    const colors = ['#ff69b4', '#ffff00', '#00e5ff', '#00ff99', '#ff5555', '#ffcc00'];
-    for (let i = 0; i < 30; i++) {
-        const el = document.createElement('div');
-        el.className = 'confetti-piece';
-        el.style.left = Math.random() * 100 + 'vw';
-        el.style.top = '-20px';
-        el.style.background = colors[Math.floor(Math.random() * colors.length)];
-        el.style.animationDuration = (0.8 + Math.random() * 1.2) + 's';
-        el.style.animationDelay = (Math.random() * 0.3) + 's';
-        el.style.width = el.style.height = (6 + Math.random() * 8) + 'px';
-        document.body.appendChild(el);
-        el.addEventListener('animationend', () => el.remove());
+function animateAircraft(el, name) {
+    el.classList.remove('arrive', 'depart', 'shake');
+    void el.offsetWidth; // restart the animation
+    el.classList.add(name);
+    // "depart" stays on, so the airplane stays off screen until the next one arrives.
+    if (name !== 'depart') {
+        el.addEventListener('animationend', () => el.classList.remove(name), { once: true });
     }
 }
+
+// ── Sound: a short radio squelch, made with Web Audio ──
+let audioCtx = null;
+let soundOn = localStorage.getItem('phonetic-sound') !== 'off';
+
+function getAudio() {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return null;
+    if (!audioCtx) audioCtx = new AC();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+}
+
+function playSquelch() {
+    if (!soundOn) return;
+    const ctx = getAudio();
+    if (!ctx) return;
+    const t = ctx.currentTime;
+    const len = 0.22;
+
+    const buffer = ctx.createBuffer(1, Math.floor(ctx.sampleRate * len), ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
+
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+    const band = ctx.createBiquadFilter();
+    band.type = 'bandpass';
+    band.frequency.value = 1800;
+    band.Q.value = 0.7;
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.exponentialRampToValueAtTime(0.2, t + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + len);
+
+    noise.connect(band).connect(gain).connect(ctx.destination);
+    noise.start(t);
+    noise.stop(t + len);
+}
+
+function renderSoundBtn() {
+    document.getElementById('sound-btn').textContent = soundOn ? 'Sound on' : 'Sound off';
+}
+
+function toggleSound() {
+    soundOn = !soundOn;
+    localStorage.setItem('phonetic-sound', soundOn ? 'on' : 'off');
+    renderSoundBtn();
+}
+
+// Browsers only allow audio after a user gesture. Level 4 plays the sound
+// from a speech callback, so unlock audio on the first tap or key press.
+['pointerdown', 'keydown'].forEach(type =>
+    document.addEventListener(type, () => { if (soundOn) getAudio(); }, { once: true }));
 
 document.addEventListener('keydown', function(e) {
     if (e.key !== 'Enter') return;
@@ -62,4 +110,5 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
+renderSoundBtn();
 setLevel(1);

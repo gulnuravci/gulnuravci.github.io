@@ -1,128 +1,170 @@
+:root {
+    --bg: #f5f4f0;
+    --surface: #ffffff;
+    --text: #1d1d1f;
+    --muted: #6e6e73;
+    --border: #e3e1db;
+    --tab-active: #ffffff;
+    --accent: #1f3a5f;
+    --accent-text: #ffffff;
+    --correct: #1e7a3c;
+    --correct-bg: #e8f3ec;
+    --incorrect: #b3261e;
+    --incorrect-bg: #fbeceb;
+
+    /* B612 is the Airbus cockpit display font. It has only 400 and 700. */
+    --font-sans: "B612", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: "B612 Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #141414;
+        --surface: #1c1c1e;
+        --text: #ececec;
+        --muted: #9a9a9f;
+        --border: #2e2e31;
+        --tab-active: #3a3a3e;
+        --accent: #a9c4ec;
+        --accent-text: #141414;
+        --correct: #6fcf8e;
+        --correct-bg: #1b2a20;
+        --incorrect: #f08a82;
+        --incorrect-bg: #2e1c1b;
+    }
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    background: #0a0c0f;
-    background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 40px, #ffffff03 40px, #ffffff03 41px),
-        repeating-linear-gradient(90deg, transparent, transparent 40px, #ffffff03 40px, #ffffff03 41px),
-        radial-gradient(ellipse at 50% 0%, #1a2a1a 0%, transparent 60%);
+    background: var(--bg);
     min-height: 100vh;
-    font-family: 'Roboto Mono', monospace;
-    color: #e0d5b0;
-    padding: 16px 16px;
-    overflow-x: hidden;
-}
-
-/* ── Header ── */
-h1 {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 1.6rem;
-    text-align: center;
-    color: #ffb300;
-    text-shadow: 0 0 16px #ffb30088, 0 0 40px #ffb30044;
-    margin-bottom: 4px;
-    letter-spacing: 6px;
-    text-transform: uppercase;
-}
-
-.subtitle {
-    text-align: center;
-    color: #ffb300bb;
-    font-size: 0.85rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-    font-weight: 700;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text);
+    padding: 24px 16px 48px;
 }
 
 .game-container {
     max-width: 520px;
     margin: 0 auto;
+}
+
+.top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.back-link,
+.sound-btn {
+    font-size: 0.875rem;
+    color: var(--muted);
+    text-decoration: none;
+}
+
+.sound-btn {
+    font-family: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.back-link:hover,
+.sound-btn:hover { color: var(--text); }
+
+.credits {
+    margin-top: 16px;
+    font-size: 0.75rem;
+    color: var(--muted);
     text-align: center;
+}
+
+.credits a { color: inherit; }
+
+/* ── Header ── */
+.page-header { margin-bottom: 24px; }
+
+h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 0.95rem;
 }
 
 /* ── Level tabs ── */
 .level-select {
     display: flex;
-    gap: 0;
-    justify-content: center;
-    margin-bottom: 14px;
-    border: 1px solid #ffb30044;
+    gap: 4px;
+    padding: 4px;
+    margin-bottom: 16px;
+    background: var(--border);
+    border-radius: 10px;
 }
 
 .level-btn {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 0.7rem;
-    padding: 10px 24px;
-    border: none;
-    border-right: 1px solid #ffb30044;
-    background: transparent;
-    color: #ffb30066;
-    cursor: pointer;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    transition: all 0.2s;
     flex: 1;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 400;
+    padding: 8px 4px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
 }
 
-.level-btn:last-child { border-right: none; }
-.level-btn:hover { background: #ffb30015; color: #ffb300; }
+.level-btn:hover { color: var(--text); }
+
 .level-btn.active {
-    background: #ffb30022;
-    color: #ffb300;
-    text-shadow: 0 0 10px #ffb30088;
-    box-shadow: inset 0 -2px 0 #ffb300;
+    background: var(--tab-active);
+    color: var(--text);
+    font-weight: 700;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
-/* ── Instrument display card ── */
-.card-wrap { margin-bottom: 12px; }
+/* ── Panel ── */
+.panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px 20px;
+    text-align: center;
+}
 
+/* ── Letter card ── */
+/* Monospace so that I, l and 1 look different. */
 .card {
-    background: #050807;
-    border: 1px solid #ffb30066;
-    border-radius: 4px;
-    padding: 28px 40px;
-    font-family: 'Exo 2', sans-serif;
-    font-size: 7rem;
-    font-weight: 900;
-    color: #ffb300;
-    text-shadow: 0 0 20px #ffb300cc, 0 0 60px #ffb30066;
-    box-shadow: 0 0 30px #ffb30011, inset 0 0 60px #000000aa;
-    position: relative;
-    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: 6rem;
+    font-weight: 700;
+    line-height: 1;
+    margin: 8px 0 24px;
 }
 
-.card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, #00000022 2px, #00000022 4px);
-    pointer-events: none;
+.card.pop { animation: fadeIn 0.2s ease; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: none; }
 }
 
-.card::before {
-    content: '';
-    position: absolute;
-    inset: 6px;
-    border: 1px solid #ffb30022;
-    border-radius: 2px;
-    pointer-events: none;
-}
-
-.card.pop { animation: cardPop 0.25s ease; }
-
-@keyframes cardPop {
-    0%   { opacity: 0; transform: scale(0.9); }
-    60%  { transform: scale(1.04); }
-    100% { opacity: 1; transform: scale(1); }
-}
-
-.card.shake { animation: shake 0.4s ease; }
+.card.shake { animation: shake 0.3s ease; }
 
 @keyframes shake {
     0%, 100% { transform: translateX(0); }
-    20%       { transform: translateX(-10px); }
-    40%       { transform: translateX(10px); }
-    60%       { transform: translateX(-8px); }
-    80%       { transform: translateX(8px); }
+    25%       { transform: translateX(-4px); }
+    75%       { transform: translateX(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card.pop, .card.shake { animation: none; }
 }

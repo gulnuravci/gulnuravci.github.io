@@ -35,18 +35,18 @@ function checkAnswer() {
     if (input.toLowerCase() === correct.toLowerCase()) {
         l2Score++;
         l2Streak++;
-        feedback.textContent = `Readback correct. ${l2Current} = ${correct}`;
+        feedback.textContent = `Correct. ${l2Current} is ${correct}.`;
         feedback.className = 'feedback correct';
-        spawnConfetti();
+        playSquelch();
     } else {
         l2Streak = 0;
-        feedback.textContent = `Negative. ${l2Current} = ${correct}`;
+        feedback.textContent = `Not quite. ${l2Current} is ${correct}.`;
         feedback.className = 'feedback incorrect';
         card.classList.add('shake');
         card.addEventListener('animationend', () => card.classList.remove('shake'), { once: true });
     }
 
-    document.getElementById('streak-l2').textContent = l2Streak >= 3 ? `🔥 ${l2Streak} in a row!` : '';
+    document.getElementById('streak-l2').textContent = l2Streak >= 3 ? `${l2Streak} in a row` : '';
     document.getElementById('score-val-2').textContent = l2Score;
     document.getElementById('attempts-val-2').textContent = l2Attempts;
     document.getElementById('answer-l2').disabled = true;
