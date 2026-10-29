@@ -114,9 +114,12 @@ export function createDressForm() {
     });
     const wood = new THREE.MeshStandardMaterial({ color: 0x4a2f22, roughness: 0.45 });
 
-    // the torso and its neck cap turn; the stand stays put
+    // the torso and its neck cap turn; the stand stays put. Costumes scanned
+    // on a real dress form bring their own torso, so `body` can be hidden.
     const group = new THREE.Group();
-    group.add(new THREE.Mesh(torsoGeometry, linen));
+    const body = new THREE.Group();
+    body.add(new THREE.Mesh(torsoGeometry, linen));
+    group.add(body);
 
     const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.046, 0.046, 0.012, 32), wood);
     cap.position.y = 1.592;
@@ -126,11 +129,12 @@ export function createDressForm() {
     trim.rotation.x = Math.PI / 2;
     trim.scale.y = depthAt(0.675);
     trim.position.y = 0.675;
-    group.add(cap, knob, trim);
+    body.add(cap, knob, trim);
 
     const stand = new THREE.Group();
-    const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.013, 0.013, 0.56, 16), wood);
-    pole.position.y = 0.38;
+    // tall enough to reach inside a scanned form; the 3D torso hides the top
+    const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.013, 0.013, 0.8, 16), wood);
+    pole.position.y = 0.5;
     const collar = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.05, 24), wood);
     collar.position.y = 0.42;
     const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.032, 0.04, 0.05, 24), wood);
@@ -152,6 +156,7 @@ export function createDressForm() {
     const waistRadius = radiusAt(WAIST_Y);
     return {
         group,
+        body,
         stand,
         radiusAt,
         depthAt,
@@ -160,16 +165,11 @@ export function createDressForm() {
     };
 }
 
-// soft round shadow + pink spotlight pool on the floor
+// soft round shadow on the floor
 export function createFloor() {
     const canvas = document.createElement('canvas');
     canvas.width = canvas.height = 256;
     const ctx = canvas.getContext('2d');
-    const glow = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
-    glow.addColorStop(0, 'rgba(255, 105, 180, 0.35)');
-    glow.addColorStop(1, 'rgba(255, 105, 180, 0)');
-    ctx.fillStyle = glow;
-    ctx.fillRect(0, 0, 256, 256);
     const shadow = ctx.createRadialGradient(128, 128, 0, 128, 128, 40);
     shadow.addColorStop(0, 'rgba(0, 0, 0, 0.75)');
     shadow.addColorStop(1, 'rgba(0, 0, 0, 0)');

@@ -13,7 +13,17 @@
 //              gets opened up into a tube around the dress form
 //     flare:   extra hem width for flat scans (0.3 = 30% wider at the hem),
 //              since folds and pleats hide fabric when the piece lies flat
+//     scannedOnForm: true if it was scanned on a dress form (a whole costume).
+//              The scan's own form replaces the 3D one. If the scan reaches
+//              the floor, its own stand replaces the 3D stand too.
+//     height:  for scannedOnForm, the real height in cm of the whole scan,
+//              from its lowest point to its highest point (e.g. the wig)
+//     bottom:  for scannedOnForm, cm from the floor to the scan's lowest
+//              point. 0 (the default) if the scan reaches the floor.
+//     flowFrom: for scannedOnForm, cm below the top where the swaying
+//              starts (about the waist)
 //     flow:    0 (rigid) to 1 (very swishy)
+//     photos:  optional link to a page with photos of the piece
 //
 //   type: 'skirt' | 'dress' - simulated cloth, built from a sewing pattern.
 //     cut:     'circle' | 'half-circle' | 'a-line' | 'gathered'
@@ -29,8 +39,38 @@
 //              finish: 'matte' | 'satin' | 'velvet'
 
 const IMAGES = '../../../images/Fashion/';
+const SEWING = '../../../images/Sewing/';
 
 export const GARMENTS = [
+    {
+        id: 'purah-cosplay',
+        name: 'Purah',
+        type: 'scan',
+        model: SEWING + 'Purah Cosplay/purah.glb',
+        thumbnail: SEWING + 'Purah Cosplay/purah-thumb.png',
+        scannedOnForm: true,
+        height: 133,
+        bottom: 23,
+        flowFrom: 62,
+        flow: 0.6,
+        photos: '../sewing/purah-cosplay.html',
+        details: 'Cosplay · Zelda: Tears of the Kingdom',
+        description: 'Purah, from The Legend of Zelda: Tears of the Kingdom.',
+    },
+    {
+        id: 'jolyne-cujoh-cosplay',
+        name: 'Jolyne Cujoh',
+        type: 'scan',
+        model: SEWING + 'Jolyne Cujoh Cosplay/jolyne.glb',
+        thumbnail: SEWING + 'Jolyne Cujoh Cosplay/jolyne-thumb.png',
+        scannedOnForm: true,
+        height: 150,
+        flowFrom: 93,
+        flow: 0.3,
+        photos: '../sewing/jolyne-cujoh-cosplay.html',
+        details: "Cosplay · JoJo's Bizarre Adventure: Stone Ocean",
+        description: "Jolyne Cujoh, from JoJo's Bizarre Adventure: Stone Ocean.",
+    },
     {
         id: 'camo-skirt',
         name: 'Camo Pleated Mini',
@@ -44,41 +84,5 @@ export const GARMENTS = [
         flow: 0.7,
         details: 'Upcycled · Cotton twill · Pleated',
         description: 'I thrifted oversized military pants and reimagined them by bringing in the waist and creating pleats from the fabric from the legs. How cute!',
-    },
-    // The pieces below are cloth-simulation demos. Swap in your own fabric
-    // photos, names and stories.
-    {
-        id: 'gingham-circle-skirt',
-        name: 'Gingham Circle Skirt',
-        type: 'skirt',
-        cut: 'circle',
-        length: 50,
-        drape: 'flowy',
-        fabric: { pattern: 'gingham', colors: ['#ff69b4', '#fff6fa'], tile: 2.5, finish: 'matte' },
-        details: 'Circle skirt · Cotton lawn · Demo',
-        description: 'A full circle skirt. The gingham runs on the bias around the hem, just like it does on the real thing.',
-    },
-    {
-        id: 'satin-slip-dress',
-        name: 'Midnight Slip Dress',
-        type: 'dress',
-        cut: 'half-circle',
-        length: 72,
-        drape: 'flowy',
-        fabric: { pattern: 'solid', colors: ['#3a1a5c'], tile: 4, finish: 'satin' },
-        details: 'Bias slip · Satin · Demo',
-        description: 'A slinky satin slip dress with a half-circle skirt.',
-    },
-    {
-        id: 'polka-dot-midi',
-        name: 'Polka Dot Gathered Midi',
-        type: 'skirt',
-        cut: 'gathered',
-        gather: 1.8,
-        length: 64,
-        drape: 'medium',
-        fabric: { pattern: 'dots', colors: ['#ffe600', '#111111'], tile: 4, finish: 'matte' },
-        details: 'Gathered dirndl · Cotton · Demo',
-        description: 'Two rectangles of fabric gathered into a waistband.',
     },
 ];
