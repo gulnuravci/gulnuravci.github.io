@@ -1,0 +1,456 @@
+/* Seasonal touches. seasonal.js adds these elements; see the note at the top of that file. */
+
+.season-layer {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.season-hangers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.season-layer svg,
+.season-hangers svg,
+.season-perch svg,
+.season-egg svg {
+    display: block;
+}
+
+.season-tag {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 4px 8px;
+    background: #ffff00;
+    color: #000000;
+    font-size: 0.85em;
+}
+
+/* Two-frame sprites, like the bat wings */
+.season-frames {
+    position: relative;
+    display: block;
+}
+
+.season-frames > :first-child {
+    animation: season-frame-a 0.32s steps(1) infinite;
+}
+
+.season-frames > :last-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: season-frame-b 0.32s steps(1) infinite;
+}
+
+@keyframes season-frame-a {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@keyframes season-frame-b {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+.flicker {
+    animation: season-flicker 0.9s steps(1) infinite;
+}
+
+@keyframes season-flicker {
+    0% { opacity: 1; }
+    33% { opacity: 0.55; }
+    66% { opacity: 0.85; }
+}
+
+/* Falling and rising */
+.season-fall {
+    position: absolute;
+    top: 0;
+    left: var(--x);
+    animation: season-fall var(--dur) linear var(--delay) infinite;
+}
+
+.season-fall.rise {
+    animation-name: season-rise;
+}
+
+.season-sway {
+    animation: season-sway var(--sway-dur) ease-in-out infinite alternate;
+}
+
+@keyframes season-fall {
+    from { transform: translateY(-40px); }
+    to { transform: translateY(calc(100vh + 40px)); }
+}
+
+@keyframes season-rise {
+    from { transform: translateY(calc(100vh + 40px)); }
+    to { transform: translateY(-40px); }
+}
+
+@keyframes season-sway {
+    from { transform: translateX(calc(var(--amp) * -1)) rotate(calc(var(--spin) * -1)); }
+    to { transform: translateX(var(--amp)) rotate(var(--spin)); }
+}
+
+/* Crossing the screen: 60% of the loop in view, the rest waiting off screen */
+.season-fly {
+    position: absolute;
+    top: var(--y);
+    left: 0;
+    animation: season-fly var(--dur) linear var(--delay) infinite;
+}
+
+.season-fly.reverse {
+    animation-name: season-fly-reverse;
+}
+
+.season-fly.reverse .season-face {
+    transform: scaleX(-1);
+}
+
+.season-path {
+    animation: season-bob var(--bob) ease-in-out infinite alternate;
+}
+
+.season-fly.arc .season-path {
+    animation: season-arc var(--dur) var(--delay) infinite;
+}
+
+.season-fly.arc .season-face {
+    animation: season-tilt var(--dur) linear var(--delay) infinite;
+}
+
+.season-fly.arc.reverse .season-face {
+    animation-name: season-tilt-reverse;
+}
+
+.season-fly.hop .season-path {
+    animation: season-hop 0.7s infinite;
+}
+
+.season-fly.walk .season-path {
+    animation: none;
+}
+
+@keyframes season-fly {
+    0% { transform: translateX(calc(var(--edge) * -1)); }
+    60%, 100% { transform: translateX(calc(100vw + var(--edge))); }
+}
+
+@keyframes season-fly-reverse {
+    0% { transform: translateX(calc(100vw + var(--edge))); }
+    60%, 100% { transform: translateX(calc(var(--edge) * -1)); }
+}
+
+@keyframes season-hop {
+    0% { transform: translateY(0); animation-timing-function: ease-out; }
+    50% { transform: translateY(-40px); animation-timing-function: ease-in; }
+    100% { transform: translateY(0); }
+}
+
+/* Plane that tows a banner */
+.season-tow {
+    display: flex;
+    align-items: center;
+}
+
+.season-banner {
+    padding: 3px 10px;
+    background: #f4ecdf;
+    color: #000000;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.season-rope {
+    width: 36px;
+    height: 2px;
+    background: #9fa4ad;
+}
+
+@keyframes season-bob {
+    from { translate: 0 -14px; }
+    to { translate: 0 14px; }
+}
+
+@keyframes season-arc {
+    0% { transform: translateY(0); animation-timing-function: ease-out; }
+    30% { transform: translateY(-22vh); animation-timing-function: ease-in; }
+    60%, 100% { transform: translateY(0); }
+}
+
+@keyframes season-tilt {
+    0% { transform: rotate(-30deg); }
+    60%, 100% { transform: rotate(30deg); }
+}
+
+@keyframes season-tilt-reverse {
+    0% { transform: scaleX(-1) rotate(-30deg); }
+    60%, 100% { transform: scaleX(-1) rotate(30deg); }
+}
+
+/* Hanging from the top of the page */
+.season-hang {
+    position: absolute;
+    top: 0;
+    left: var(--x);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform-origin: top center;
+    animation: season-swing var(--dur) ease-in-out var(--delay) infinite alternate;
+}
+
+.season-hang::before {
+    content: "";
+    width: 2px;
+    height: var(--len);
+    background: var(--string);
+}
+
+.season-hang.bob {
+    animation-name: season-climb;
+}
+
+.season-hang.still {
+    animation: none;
+}
+
+.season-wire {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--string);
+}
+
+.season-bulb {
+    animation-name: season-blink;
+    animation-timing-function: steps(1);
+    animation-direction: normal;
+}
+
+@keyframes season-swing {
+    from { transform: rotate(-4deg); }
+    to { transform: rotate(4deg); }
+}
+
+@keyframes season-climb {
+    from { transform: translateY(calc(var(--len) * -0.7)); }
+    to { transform: translateY(0); }
+}
+
+@keyframes season-blink {
+    0% { opacity: 1; }
+    66% { opacity: 0.35; }
+}
+
+/* Stars and fireflies */
+.season-twinkle {
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    animation: season-twinkle var(--dur) ease-in-out var(--delay) infinite alternate;
+}
+
+.season-twinkle.drift {
+    animation:
+        season-twinkle var(--dur) ease-in-out var(--delay) infinite alternate,
+        season-drift var(--drift-dur) ease-in-out var(--delay) infinite alternate;
+}
+
+@keyframes season-twinkle {
+    from { opacity: 0.15; }
+    to { opacity: 1; }
+}
+
+@keyframes season-drift {
+    to { transform: translate(var(--dx), var(--dy)); }
+}
+
+/* Shooting stars: a quick dash, then a long wait */
+.season-meteor {
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    opacity: 0;
+    animation: season-meteor var(--dur) linear var(--delay) infinite;
+}
+
+@keyframes season-meteor {
+    0% { opacity: 1; transform: translate(0, 0); }
+    12% { opacity: 1; transform: translate(-30vh, 30vh); }
+    13%, 100% { opacity: 0; transform: translate(-30vh, 30vh); }
+}
+
+.season-canvas {
+    position: absolute;
+    inset: 0;
+}
+
+.season-pop {
+    position: absolute;
+}
+
+/* Corner sprite */
+.season-perch {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 60;
+    padding: 0;
+    border: 0;
+    background: none;
+    line-height: 0;
+    transition: transform 0.15s ease;
+}
+
+button.season-perch {
+    cursor: pointer;
+}
+
+button.season-perch:hover {
+    transform: translateY(-4px);
+}
+
+button.season-perch:active {
+    transform: translateY(2px);
+}
+
+.season-perch:focus-visible,
+.season-egg:focus-visible {
+    outline: 2px dashed #ffff00;
+    outline-offset: 4px;
+}
+
+.season-perch .season-frames > * {
+    animation-duration: 1.4s;
+}
+
+/* Groundhog: peeks out of its hole, hides when clicked */
+.season-burrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.season-peek {
+    overflow: hidden;
+    margin-bottom: -10px;
+}
+
+.season-critter {
+    animation: season-peek 7s ease-in-out infinite;
+}
+
+.season-perch.hide .season-critter {
+    animation: none;
+    transform: translateY(100%);
+}
+
+@keyframes season-peek {
+    0%, 15% { transform: translateY(100%); }
+    25%, 70% { transform: translateY(0); }
+    80%, 100% { transform: translateY(100%); }
+}
+
+/* Laser sword: the blade grows in pixel steps */
+.season-saber {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.season-blade {
+    width: 8px;
+    height: 0;
+    background: var(--blade);
+    transition: height 0.4s steps(10);
+}
+
+.season-perch.on .season-blade {
+    height: 140px;
+}
+
+/* April Fools */
+.season-tag.upside-down {
+    transform: rotate(180deg);
+}
+
+.season-roll {
+    animation: season-roll 1s ease-in-out;
+}
+
+@keyframes season-roll {
+    to { transform: rotate(360deg); }
+}
+
+/* Easter egg hunt */
+.season-egg {
+    position: absolute;
+    z-index: 40;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.season-egg:hover {
+    transform: rotate(-12deg);
+}
+
+.season-egg.found {
+    transform: translateY(-30px) scale(1.4);
+    opacity: 0;
+}
+
+@media (max-width: 768px) {
+    .season-perch {
+        right: 12px;
+        bottom: 12px;
+    }
+
+    .season-perch svg {
+        width: auto;
+        height: 48px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .season-hang,
+    .season-twinkle,
+    .season-frames > *,
+    .flicker {
+        animation: none;
+    }
+
+    .season-frames > :last-child {
+        display: none;
+    }
+
+    .season-critter {
+        animation: none;
+    }
+
+    .season-blade {
+        transition: none;
+    }
+
+    .season-perch,
+    .season-egg {
+        transition: none;
+    }
+}
