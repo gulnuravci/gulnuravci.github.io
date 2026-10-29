@@ -35,16 +35,20 @@ const form = createDressForm();
 scene.add(form.group, form.stand, createFloor());
 
 const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 50);
-const TARGET = new THREE.Vector3(0, 0.84, 0);
+const TARGET = new THREE.Vector3();
+const FORM_TOP = 1.64;
+let viewTop = FORM_TOP;
 
 function resize() {
     const { clientWidth: w, clientHeight: h } = stage;
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
-    // fit the whole form (1.7m tall, ~1.2m wide when a skirt flares)
+    // fit everything from the floor to the top of the form (or of a taller
+    // costume), and ~1.2m wide for when a skirt flares
     const halfTan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
-    const distance = Math.max(0.92 / halfTan, 0.62 / (halfTan * camera.aspect));
-    camera.position.set(0, 1.05, distance);
+    const distance = Math.max((viewTop + 0.2) / 2 / halfTan, 0.62 / (halfTan * camera.aspect));
+    TARGET.set(0, viewTop / 2 + 0.02, 0);
+    camera.position.set(0, TARGET.y + 0.21, distance);
     camera.lookAt(TARGET);
     camera.updateProjectionMatrix();
 }
@@ -106,6 +110,7 @@ function takeOff() {
     if (!current) return;
     if (current.root) scene.remove(current.root);
     form.group.remove(current.attached);
+    form.body.visible = true;
     current.dispose();
     current = null;
 }
@@ -118,6 +123,9 @@ async function wear(garment) {
     document.getElementById('tag-name').textContent = garment.name;
     document.getElementById('tag-details').textContent = garment.details ?? '';
     document.getElementById('tag-description').textContent = garment.description ?? '';
+    const photos = document.getElementById('tag-photos');
+    photos.hidden = !garment.photos;
+    if (garment.photos) photos.href = garment.photos;
     history.replaceState(null, '', '#' + garment.id);
 
     takeOff();
@@ -149,6 +157,9 @@ async function wear(garment) {
     current = next;
     if (current.root) scene.add(current.root);
     form.group.add(current.attached);
+    form.body.visible = !current.hidesForm;
+    viewTop = Math.max(FORM_TOP, current.top ?? 0);
+    resize();
 }
 
 for (const garment of GARMENTS) {

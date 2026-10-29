@@ -18,16 +18,24 @@
         }
     </script>
 </head>
-<body>
-    <a class="back-link" href="../../../index.html">← Back</a>
-    <img class="header-image" src="../../../gifs/sewing.webp" alt="">
-    <h1>My Closet</h1>
-    <p class="closet-intro">Things I made. Pick something off the rail, then drag the dress form to spin it. Flick it hard (or hit twirl) to see the fabric fly.</p>
+<body class="closet-page">
+    <header class="closet-header">
+        <a class="back-link" href="../../../index.html">← Back</a>
+        <div class="closet-title">
+            <img class="closet-gif" src="../../../gifs/sewing.webp" alt="">
+            <h1>My Closet</h1>
+        </div>
+        <p class="closet-intro">Things I made. Pick a piece off the rail, then drag it to spin. Flick it hard (or hit twirl) to see the fabric fly.</p>
+    </header>
 
     <main class="closet">
+        <section class="rail-wrap" aria-label="Clothing rail">
+            <ul class="rail" id="rail"></ul>
+        </section>
+
         <section class="stage" id="stage">
             <canvas id="stage-canvas" tabindex="0" aria-label="3D dress form. Drag or use the arrow keys to spin it."></canvas>
-            <p class="stage-hint" id="stage-hint">⟵ drag to spin ⟶</p>
+            <p class="stage-hint" id="stage-hint">← drag to spin →</p>
             <p class="stage-status" id="stage-status" hidden></p>
             <button class="twirl-button" id="twirl" type="button">Twirl!</button>
         </section>
@@ -36,11 +44,8 @@
             <h2 id="tag-name"></h2>
             <p class="tag-details" id="tag-details"></p>
             <p id="tag-description"></p>
+            <a class="tag-photos" id="tag-photos" hidden>See photos →</a>
         </aside>
-
-        <section class="rail-wrap" aria-label="Clothing rail">
-            <ul class="rail" id="rail"></ul>
-        </section>
     </main>
 
     <script type="module" src="js/main.js"></script>

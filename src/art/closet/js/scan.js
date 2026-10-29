@@ -162,6 +162,104 @@ function smoothNormals(geometry) {
     }
 }
 
+// Groups triangles into connected pieces (welding the vertices that scans
+// duplicate along UV seams) and drops pieces under 1% of the scan: floating
+// bits of floor, dust and background.
+function removeDebris(geometry) {
+    if (!geometry.index) return;
+    const p = geometry.attributes.position.array;
+    const index = geometry.index.array;
+    const ids = new Map();
+    const weld = new Int32Array(p.length / 3);
+    for (let i = 0; i < weld.length; i++) {
+        const key = `${p[i * 3].toFixed(4)},${p[i * 3 + 1].toFixed(4)},${p[i * 3 + 2].toFixed(4)}`;
+        if (!ids.has(key)) ids.set(key, ids.size);
+        weld[i] = ids.get(key);
+    }
+    const parent = Int32Array.from({ length: ids.size }, (_, i) => i);
+    const find = (x) => {
+        while (parent[x] !== x) x = parent[x] = parent[parent[x]];
+        return x;
+    };
+    for (let t = 0; t < index.length; t += 3) {
+        const a = find(weld[index[t]]);
+        parent[find(weld[index[t + 1]])] = a;
+        parent[find(weld[index[t + 2]])] = a;
+    }
+    const size = new Map();
+    for (let t = 0; t < index.length; t += 3) {
+        const root = find(weld[index[t]]);
+        size.set(root, (size.get(root) ?? 0) + 1);
+    }
+    const minimum = (index.length / 3) * 0.01;
+    const kept = [];
+    for (let t = 0; t < index.length; t += 3) {
+        if (size.get(find(weld[index[t]])) >= minimum) kept.push(index[t], index[t + 1], index[t + 2]);
+    }
+    geometry.setIndex(kept);
+}
+
+// Bounding box of the vertices the triangles actually use.
+function usedBox(geometry) {
+    const p = geometry.attributes.position.array;
+    const box = new THREE.Box3();
+    const v = new THREE.Vector3();
+    for (const i of geometry.index?.array ?? Array.from({ length: p.length / 3 }, (_, i) => i)) {
+        box.expandByPoint(v.fromArray(p, i * 3));
+    }
+    return box;
+}
+
+// A costume scanned on a real dress form already has the torso inside it.
+// Scale it to its real height, put the top of the form (neck or wig) on the
+// turning axis, and lift its lowest point to `bottom` metres above the floor.
+function placeOnForm(geometry, height, bottom) {
+    const box = usedBox(geometry);
+    const p = geometry.attributes.position.array;
+    const neckBand = box.max.y - (box.max.y - box.min.y) * 0.05;
+    let x = 0, z = 0, n = 0;
+    for (const i of new Set(geometry.index.array)) {
+        if (p[i * 3 + 1] < neckBand) continue;
+        x += p[i * 3];
+        z += p[i * 3 + 2];
+        n++;
+    }
+    const scale = height / (box.max.y - box.min.y);
+    geometry.translate(-x / n, -box.min.y, -z / n);
+    geometry.scale(scale, scale, scale);
+    geometry.translate(0, bottom, 0);
+}
+
+// Scans on a dress form include some of the real stand. A stand doesn't turn
+// or sway, so cut it out: dark parts near the floor (the legs) or near the
+// turning axis in the lower half (the pole). The 3D stand shows instead.
+function removeStand(geometry, map, poleTop) {
+    const size = 256;
+    const canvas = document.createElement('canvas');
+    canvas.width = canvas.height = size;
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    ctx.drawImage(map.image, 0, 0, size, size);
+    const pixels = ctx.getImageData(0, 0, size, size).data;
+    const p = geometry.attributes.position.array;
+    const uv = geometry.attributes.uv;
+    const wrap = (t) => Math.min(size - 1, Math.floor((t - Math.floor(t)) * size));
+    const isStand = (i) => {
+        const x = p[i * 3], y = p[i * 3 + 1], z = p[i * 3 + 2];
+        if (y > 0.15 && (y > poleTop || Math.hypot(x, z) > 0.07)) return false;
+        // glTF textures aren't flipped: v = 0 is the top row of the image
+        const k = (wrap(uv.getY(i)) * size + wrap(uv.getX(i))) * 4;
+        return 0.2126 * pixels[k] + 0.7152 * pixels[k + 1] + 0.0722 * pixels[k + 2] < 45;
+    };
+    const index = geometry.index.array;
+    const kept = [];
+    for (let t = 0; t < index.length; t += 3) {
+        if (isStand(index[t]) && isStand(index[t + 1]) && isStand(index[t + 2])) continue;
+        kept.push(index[t], index[t + 1], index[t + 2]);
+    }
+    geometry.setIndex(kept);
+    removeDebris(geometry);
+}
+
 export async function createScanGarment(garment, form) {
     const gltf = await loadModel(garment.model);
     gltf.scene.updateMatrixWorld(true);
@@ -169,11 +267,17 @@ export async function createScanGarment(garment, form) {
     const rotate = new THREE.Matrix4().makeRotationFromEuler(
         new THREE.Euler(...(garment.rotate ?? [0, 0, 0]).map(THREE.MathUtils.degToRad))
     );
-    const length = garment.length / 100;
+    const onForm = Boolean(garment.scannedOnForm);
+    const length = (onForm ? garment.height : garment.length) / 100;
     const top = form.waistY + 0.01;
+    const bottom = (garment.bottom ?? 0) / 100;
+    // the part of the scan that sways: from the waist (or `flowFrom` cm
+    // below the top, for costumes) down to the hem
+    const flowTop = onForm ? bottom + length - garment.flowFrom / 100 : form.waistY;
+    const flowBottom = onForm ? bottom : form.waistY - length;
     const uniforms = {
-        uWaist: { value: form.waistY },
-        uLength: { value: length },
+        uWaist: { value: flowTop },
+        uLength: { value: flowTop - flowBottom },
         uLag: { value: 0 },
         uFlare: { value: 0 },
         uFlutter: { value: 0 },
@@ -186,11 +290,14 @@ export async function createScanGarment(garment, form) {
         const geometry = object.geometry.clone();
         geometry.applyMatrix4(object.matrixWorld);
         geometry.applyMatrix4(rotate);
-        geometry.computeBoundingBox();
-        const box = geometry.boundingBox.clone();
+        removeDebris(geometry);
+        const box = usedBox(geometry);
         cropTop(geometry, box, garment.cropTop);
         const scale = length / (box.max.y - box.min.y);
-        if (garment.scannedFlat) {
+        if (onForm) {
+            placeOnForm(geometry, length, bottom);
+            if (object.material.map) removeStand(geometry, object.material.map, bottom + length / 2);
+        } else if (garment.scannedFlat) {
             wrapAroundForm(geometry, box, form, top, scale, garment.flare ?? 0);
         } else {
             const center = box.getCenter(new THREE.Vector3());
@@ -217,6 +324,8 @@ export async function createScanGarment(garment, form) {
     return {
         root: null,
         attached: root,
+        hidesForm: onForm,
+        top: new THREE.Box3().setFromObject(root).max.y,
         update(dt, motion) {
             // damped spring, pushed by the form's angular acceleration and air drag
             const force = flow * (motion.accel + 0.6 * motion.velocity) - 45 * lag - 6 * lagVelocity;
