@@ -6,14 +6,11 @@ function nextL3() {
     l3Plate = newPlate;
     l3Answered = false;
 
-    const plateEl = document.getElementById('plate-number');
-    plateEl.textContent = l3Plate;
-    plateEl.classList.remove('shake');
-    plateEl.classList.add('pop');
-    plateEl.addEventListener('animationend', () => plateEl.classList.remove('pop'), { once: true });
+    document.getElementById('plate-number').textContent = l3Plate;
+    animateAircraft(document.getElementById('aircraft-l3'), 'arrive');
 
     const tokens = plateToPhonetic(l3Plate);
-    document.getElementById('plate-example').textContent = `e.g. "${tokens.join(' ')}"`;
+    document.getElementById('plate-example').textContent = `Say: ${tokens.join(' ')}`;
 
     document.getElementById('answer-l3').value = '';
     document.getElementById('answer-l3').disabled = false;
@@ -63,17 +60,16 @@ function submitL3() {
         l3Streak++;
         feedback.textContent = 'Readback correct. Cleared for takeoff.';
         feedback.className = 'feedback correct';
-        spawnConfetti();
+        playSquelch();
+        animateAircraft(document.getElementById('aircraft-l3'), 'depart');
     } else {
         l3Streak = 0;
-        feedback.textContent = `Say again. ${correct}/${expected.length} correct — check tokens.`;
+        feedback.textContent = `${correct} of ${expected.length} correct.`;
         feedback.className = 'feedback incorrect';
-        const plateEl = document.getElementById('plate-number');
-        plateEl.classList.add('shake');
-        plateEl.addEventListener('animationend', () => plateEl.classList.remove('shake'), { once: true });
+        animateAircraft(document.getElementById('aircraft-l3'), 'shake');
     }
 
-    document.getElementById('streak-l3').textContent = l3Streak >= 3 ? `🔥 ${l3Streak} in a row!` : '';
+    document.getElementById('streak-l3').textContent = l3Streak >= 3 ? `${l3Streak} in a row` : '';
     document.getElementById('score-val-3').textContent = l3Score;
     document.getElementById('attempts-val-3').textContent = l3Attempts;
     document.getElementById('answer-l3').disabled = true;

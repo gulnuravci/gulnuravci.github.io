@@ -23,7 +23,7 @@ function nextL1() {
     document.getElementById('feedback-l1').className = 'feedback';
     document.getElementById('next-btn-l1').style.display = 'none';
     document.getElementById('submit-btn-l1').disabled = false;
-    document.getElementById('hint-label').textContent = 'Hints revealing in 2s...';
+    document.getElementById('hint-label').textContent = 'A letter appears every 2 seconds.';
 
     renderBlanks();
     l1HintTimer = setInterval(revealHint, L1_HINT_INTERVAL);
@@ -32,10 +32,10 @@ function nextL1() {
 function renderBlanks() {
     const word = phonetic[l1Current].toUpperCase();
     document.getElementById('blanks').innerHTML = word.split('').map((ch, i) => {
-        if (ch === '-' || ch === ' ') return `<span>${ch}</span>`;
-        if (l1Revealed.includes(i)) return `<span class="revealed">${ch}</span>`;
-        return `<span>_</span>`;
-    }).join(' ');
+        if (ch === '-' || ch === ' ') return `<span class="sep">${ch}</span>`;
+        if (l1Revealed.includes(i)) return `<span class="slot revealed">${ch}</span>`;
+        return `<span class="slot"></span>`;
+    }).join('');
 }
 
 function revealHint() {
@@ -56,7 +56,7 @@ function revealHint() {
         timeUpL1();
     } else {
         document.getElementById('hint-label').textContent =
-            `${remaining} letter${remaining > 1 ? 's' : ''} hidden — next hint in 2s`;
+            `${remaining} letter${remaining > 1 ? 's' : ''} hidden`;
     }
 }
 
@@ -65,7 +65,7 @@ function timeUpL1() {
     l1Attempts++;
     l1Streak = 0;
     const correct = phonetic[l1Current];
-    document.getElementById('feedback-l1').textContent = `TRANSMISSION LOST — ${l1Current} = ${correct}`;
+    document.getElementById('feedback-l1').textContent = `Out of time. ${l1Current} is ${correct}.`;
     document.getElementById('feedback-l1').className = 'feedback incorrect';
     document.getElementById('answer-l1').disabled = true;
     document.getElementById('submit-btn-l1').disabled = true;
@@ -90,19 +90,19 @@ function submitL1() {
     if (input.toLowerCase() === correct.toLowerCase()) {
         l1Score++;
         l1Streak++;
-        feedback.textContent = `Readback correct. ${l1Current} = ${correct}`;
+        feedback.textContent = `Correct. ${l1Current} is ${correct}.`;
         feedback.className = 'feedback correct';
-        spawnConfetti();
+        playSquelch();
     } else {
         l1Streak = 0;
-        feedback.textContent = `Negative. ${l1Current} = ${correct}`;
+        feedback.textContent = `Not quite. ${l1Current} is ${correct}.`;
         feedback.className = 'feedback incorrect';
         card.classList.add('shake');
         card.addEventListener('animationend', () => card.classList.remove('shake'), { once: true });
     }
 
     document.getElementById('hint-label').textContent = '';
-    document.getElementById('streak-l1').textContent = l1Streak >= 3 ? `🔥 ${l1Streak} in a row!` : '';
+    document.getElementById('streak-l1').textContent = l1Streak >= 3 ? `${l1Streak} in a row` : '';
     document.getElementById('score-val-1').textContent = l1Score;
     document.getElementById('attempts-val-1').textContent = l1Attempts;
     document.getElementById('answer-l1').disabled = true;

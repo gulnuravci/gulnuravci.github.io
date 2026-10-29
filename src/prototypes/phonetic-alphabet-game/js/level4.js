@@ -25,14 +25,11 @@ function nextL4() {
     l4Plate = newPlate;
     l4Answered = false;
 
-    const plateEl = document.getElementById('plate-number-l4');
-    plateEl.textContent = l4Plate;
-    plateEl.classList.remove('shake');
-    plateEl.classList.add('pop');
-    plateEl.addEventListener('animationend', () => plateEl.classList.remove('pop'), { once: true });
+    document.getElementById('plate-number-l4').textContent = l4Plate;
+    animateAircraft(document.getElementById('aircraft-l4'), 'arrive');
 
     const tokens = plateToPhonetic(l4Plate);
-    document.getElementById('plate-example-l4').textContent = `Say: "${tokens.join(' ')}"`;
+    document.getElementById('plate-example-l4').textContent = `Say: ${tokens.join(' ')}`;
 
     clearTimeout(l4HardStopTimer);
     l4Listening = false;
@@ -44,8 +41,8 @@ function nextL4() {
     document.getElementById('next-btn-l4').style.display = 'none';
     document.getElementById('mic-btn').disabled = false;
     document.getElementById('mic-btn').classList.remove('listening');
-    document.getElementById('mic-label').textContent = 'Tap to Transmit';
-    document.getElementById('mic-status').textContent = 'Tap to begin transmission';
+    document.getElementById('mic-label').textContent = 'Start speaking';
+    document.getElementById('mic-status').textContent = '';
 }
 
 function initRecognition() {
@@ -67,7 +64,7 @@ function initRecognition() {
     r.onend = () => {
         l4Listening = false;
         document.getElementById('mic-btn').classList.remove('listening');
-        document.getElementById('mic-label').textContent = 'Tap to Transmit';
+        document.getElementById('mic-label').textContent = 'Start speaking';
         if (!l4Answered && l4LastTranscript) gradeL4(l4LastTranscript);
     };
     return r;
@@ -79,26 +76,26 @@ function toggleListening() {
         clearTimeout(l4HardStopTimer);
         l4Listening = false;
         document.getElementById('mic-btn').classList.remove('listening');
-        document.getElementById('mic-label').textContent = 'Tap to Transmit';
-        document.getElementById('mic-status').textContent = 'Processing...';
+        document.getElementById('mic-label').textContent = 'Start speaking';
+        document.getElementById('mic-status').textContent = 'Checking…';
         setTimeout(() => { if (recognition) try { recognition.stop(); } catch(e) {} }, 700);
     } else {
         if (!recognition) recognition = initRecognition();
         if (!recognition) {
-            document.getElementById('mic-status').textContent = 'Speech not supported in this browser';
+            document.getElementById('mic-status').textContent = 'This browser does not support speech input. Try Chrome or Safari.';
             return;
         }
         l4Listening = true;
         l4LastTranscript = '';
         document.getElementById('mic-btn').classList.add('listening');
-        document.getElementById('mic-label').textContent = 'Tap to Stop';
-        document.getElementById('mic-status').textContent = '🔴 Transmitting...';
+        document.getElementById('mic-label').textContent = 'Stop';
+        document.getElementById('mic-status').textContent = 'Listening…';
         document.getElementById('transcript-box').textContent = '';
         try { recognition.start(); } catch(e) {}
 
         l4HardStopTimer = setTimeout(() => {
             if (l4Listening) {
-                document.getElementById('mic-status').textContent = 'Max transmission time reached.';
+                document.getElementById('mic-status').textContent = 'Stopped after 15 seconds.';
                 toggleListening();
             }
         }, L4_MAX_SECONDS * 1000);
@@ -155,17 +152,16 @@ function gradeL4(transcript) {
         l4Streak++;
         feedback.textContent = 'Readback correct. Cleared for takeoff.';
         feedback.className = 'feedback correct';
-        spawnConfetti();
+        playSquelch();
+        animateAircraft(document.getElementById('aircraft-l4'), 'depart');
     } else {
         l4Streak = 0;
-        feedback.textContent = `Say again. ${correct}/${expNorm.length} correct — check tokens.`;
+        feedback.textContent = `${correct} of ${expNorm.length} correct.`;
         feedback.className = 'feedback incorrect';
-        const plateEl = document.getElementById('plate-number-l4');
-        plateEl.classList.add('shake');
-        plateEl.addEventListener('animationend', () => plateEl.classList.remove('shake'), { once: true });
+        animateAircraft(document.getElementById('aircraft-l4'), 'shake');
     }
 
-    document.getElementById('streak-l4').textContent = l4Streak >= 3 ? `🔥 ${l4Streak} in a row!` : '';
+    document.getElementById('streak-l4').textContent = l4Streak >= 3 ? `${l4Streak} in a row` : '';
     document.getElementById('score-val-4').textContent = l4Score;
     document.getElementById('attempts-val-4').textContent = l4Attempts;
     document.getElementById('mic-btn').disabled = true;
