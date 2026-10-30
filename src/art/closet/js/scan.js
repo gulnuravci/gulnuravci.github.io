@@ -309,12 +309,20 @@ export async function createScanGarment(garment, form) {
 
         const material = object.material.clone();
         material.flatShading = false;
+        // the scan's baked shadows are in its colour texture too: don't darken twice
+        material.aoMapIntensity = 0.4;
         material.side = THREE.DoubleSide;
         material.onBeforeCompile = (shader) => {
             Object.assign(shader.uniforms, uniforms);
             shader.vertexShader = FLOW_HEAD + shader.vertexShader
                 .replace('#include <beginnormal_vertex>', FLOW_NORMAL)
                 .replace('#include <begin_vertex>', FLOW_POSITION);
+            // phone scans record dark fabric darker than it looks in person, so
+            // lift the darkest colours and leave the bright ones nearly as they are
+            shader.fragmentShader = shader.fragmentShader.replace(
+                '#include <map_fragment>',
+                '#include <map_fragment>\ndiffuseColor.rgb = pow(diffuseColor.rgb, vec3(0.8));'
+            );
         };
         root.add(new THREE.Mesh(geometry, material));
     });

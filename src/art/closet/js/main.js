@@ -20,15 +20,18 @@ renderer.toneMapping = THREE.NeutralToneMapping;
 
 const scene = new THREE.Scene();
 scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
-scene.environmentIntensity = 0.35;
+scene.environmentIntensity = 0.5;
 
-scene.add(new THREE.HemisphereLight(0xfff4f8, 0x2a1020, 0.6));
-const key = new THREE.DirectionalLight(0xffffff, 1.8);
+// Scans already have their real light and shadow in their textures, so keep
+// this soft and even. The warm ground colour is light bouncing off the closet
+// floor; it lights the hems and everything else that faces down.
+scene.add(new THREE.HemisphereLight(0xfff8f4, 0xe0c0b4, 2.0));
+const key = new THREE.DirectionalLight(0xffffff, 1.3);
 key.position.set(1.5, 2.5, 2.5);
-const rim = new THREE.DirectionalLight(0xff69b4, 2.5);
+const rim = new THREE.DirectionalLight(0xffc2dc, 0.8);
 rim.position.set(-2, 1.8, -2);
-const fill = new THREE.DirectionalLight(0xffe9c4, 0.5);
-fill.position.set(-2, 1, 2);
+const fill = new THREE.DirectionalLight(0xffe9c4, 0.6);
+fill.position.set(-2, 0.3, 2);
 scene.add(key, rim, fill);
 
 const form = createDressForm();
