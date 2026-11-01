@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../../../style.css">
 </head>
 <body>
+    <!-- returns to the page you came from (the closet or Sewing); opened directly, it goes to Sewing -->
+    <a class="back-link" href="sewing.html" onclick="if (document.referrer.startsWith(location.origin)) { history.back(); return false; }">← Back</a>
     <img class = "header-image" src="../../../gifs/jolyne-cujoh.webp"> 
     <h1>Jolyne Cujoh Cosplay</h1>
     <div class="photography-image-grid">
