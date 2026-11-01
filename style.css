@@ -34,6 +34,13 @@ a:visited {
     color: #ffff00;  /* Keep yellow even after visiting */
 }
 
+.back-link {
+    display: block;
+    width: fit-content;
+    margin-bottom: 16px;
+    text-decoration: none;
+}
+
 /* Murals page styling */
 .murals-image-grid {
     display: grid;
